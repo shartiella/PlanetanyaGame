@@ -23,11 +23,86 @@ public class Globals : MonoBehaviour
     public static int numberOfLaunches = 0;
     public static bool demo = false;
     public static Vector3 currentMousePosition;
-   
+
+    public static Satellite ChosenSatellite;
+    public static SatPart ChosenSatPart;
+    public List<Satellite> SatellitesList;
+    [SerializeField] private GameObject SatDishGO;
+    [SerializeField] private GameObject BananaGO;
+    [SerializeField] private GameObject AntennaGO;
+    [SerializeField] private GameObject SolarArrayGO;
+    [SerializeField] private GameObject AtomicClockGO;
+    [SerializeField] private GameObject ComputerGO;
+    [SerializeField] private GameObject CameraGO;
 
     // Start is called before the first frame update
     void Start()
     {
+        //הגדרת חלקי הלוויינים
+        SatPart SatDish = new SatPart();
+        SatDish.Name = SatDishGO.name;
+        SatDish.Description = "תיאור על צלחת קליטה";
+
+        SatPart Banana = new SatPart();
+        Banana.Name = BananaGO.name;
+        Banana.Description = "תיאור על בננה";
+
+        SatPart Antenna = new SatPart();
+        Antenna.Name = AntennaGO.name;
+        Antenna.Description = "תיאור על אנטנה";
+
+        SatPart SolarArray = new SatPart();
+        SolarArray.Name = SolarArrayGO.name;
+        SolarArray.Description = "תיאור על לוחות סולאריים";
+
+        SatPart AtomicClock = new SatPart();
+        AtomicClock.Name = AtomicClockGO.name;
+        AtomicClock.Description = "תיאור על שעון אטומי";
+
+        SatPart Computer = new SatPart();
+        Computer.Name = ComputerGO.name;
+        Computer.Description = "תיאור על מחשב";
+
+        SatPart Camera=new SatPart();
+        Camera.Name = CameraGO.name;
+        Camera.Description = "תיאור על מצלמה";
+
+        //רשימת לוויינים
+        Satellite GPS= new Satellite();
+        GPS.Name = "GPS";
+        GPS.Kind = "Navigation";
+        GPS.Orbit = "MEO";
+        GPS.PartsList = new List<SatPart>
+        {
+            Antenna, Computer, AtomicClock, SolarArray
+        };
+        GPS.DistractorsList = new List<SatPart>
+        {
+            Banana, Camera, SatDish
+        };
+
+        Satellite TV = new Satellite();
+        TV.Name = "TV";
+        TV.Kind = "Communication";
+        TV.Orbit = "GEO";
+        TV.PartsList = new List<SatPart>
+        {
+            SolarArray, Computer, SatDish, Antenna
+        };
+        TV.DistractorsList = new List<SatPart>
+        {
+            Banana, Camera, AtomicClock
+        };
+
+        SatellitesList = new List<Satellite>
+        {
+            GPS, TV
+        };
+
+        Debug.Log("created list");
+
+        //זמני!!! בחירת לוויין
+        ChosenSatellite = GPS;
 
     }
 
@@ -55,3 +130,22 @@ public class Globals : MonoBehaviour
     }
 
 }
+
+[System.Serializable]
+public class SatPart
+{
+    public string Name;
+    public string Description;
+}
+
+[System.Serializable]
+public class Satellite
+{
+    public string Name;
+    public string Kind;
+    public string Orbit;
+    public List<SatPart> PartsList;
+    public List<SatPart> DistractorsList;
+
+}
+

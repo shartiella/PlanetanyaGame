@@ -7,6 +7,7 @@ public class AllObjects : MonoBehaviour
 {
     public GameObject InfoPanel;
     public static bool showInfoPanel = false;
+    public static bool isTouchingSatBody = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,9 @@ public class AllObjects : MonoBehaviour
     {
         if (showInfoPanel)
         {
-           // Debug.Log(showInfoPanel);
+           Debug.Log(showInfoPanel);
             InfoPanel.SetActive(true);
-            InfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = "טקסט לפי האובייקט";
+            InfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = Globals.ChosenSatPart.Description;
         }
         else
         {
@@ -36,3 +37,4 @@ public class AllObjects : MonoBehaviour
 
     }
 }
+
