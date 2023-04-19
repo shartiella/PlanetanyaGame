@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3a71096d04c8948b7e152aa9295648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allObjects: {fileID: 815174455}
+  _globals: {fileID: 1741456723}
 --- !u!1 &375419614
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3a71096d04c8948b7e152aa9295648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allObjects: {fileID: 815174455}
+  _globals: {fileID: 1741456723}
 --- !u!1001 &445510903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,6 +702,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InfoPanel: {fileID: 940893007}
+  satParts:
+  - Name: SatDish
+    Description: "\u05E6\u05DC\u05D7\u05EA \u05DC\u05D5\u05D5\u05D9\u05D9\u05DF"
+    gObject: {fileID: 1631154215}
+    relatedSatellites:
+    - TV
+  - Name: Banana
+    Description: "\u05D1\u05E0\u05E0\u05D4"
+    gObject: {fileID: 929080578}
+    relatedSatellites: []
+  - Name: Antenna
+    Description: "\u05D0\u05E0\u05D8\u05E0\u05D4"
+    gObject: {fileID: 1746535637}
+    relatedSatellites:
+    - TV
+    - GPS
+  - Name: SolarArray
+    Description: "\u05E7\u05D5\u05DC\u05D8\u05D9 \u05E9\u05DE\u05E9"
+    gObject: {fileID: 1457480698}
+    relatedSatellites:
+    - TV
+    - GPS
+  - Name: AtomicClock
+    Description: "\u05E9\u05E2\u05D5\u05DF \u05D0\u05D8\u05D5\u05DE\u05D9"
+    gObject: {fileID: 410927167}
+    relatedSatellites:
+    - GPS
+  - Name: Computer
+    Description: "\u05DE\u05D7\u05E9\u05D1"
+    gObject: {fileID: 6802703679464680632}
+    relatedSatellites:
+    - GPS
+    - TV
+  - Name: Camera
+    Description: "\u05EA\u05D9\u05D0\u05D5\u05E8 \u05E2\u05DC \u05DE\u05E6\u05DC\u05DE\u05D4"
+    gObject: {fileID: 300141476}
+    relatedSatellites: []
 --- !u!4 &815174456
 Transform:
   m_ObjectHideFlags: 0
@@ -742,6 +783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3a71096d04c8948b7e152aa9295648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allObjects: {fileID: 815174455}
+  _globals: {fileID: 1741456723}
 --- !u!1 &940893007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +1049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3a71096d04c8948b7e152aa9295648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allObjects: {fileID: 815174455}
+  _globals: {fileID: 1741456723}
 --- !u!1 &1618518134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,19 +1281,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SatellitesList:
-  - Name: 
-    Kind: GPS
+  - Name: GPS
+    Kind: navigation
     Orbit: MEO
-    PartsList:
-    - Name: 
-      Description: 
-  SatDishGO: {fileID: 1631154215}
-  BananaGO: {fileID: 929080578}
-  AntennaGO: {fileID: 1746535637}
-  SolarArrayGO: {fileID: 1457480698}
-  AtomicClockGO: {fileID: 410927167}
-  ComputerGO: {fileID: 6802703679464680632}
-  CameraGO: {fileID: 300141476}
+  - Name: TV
+    Kind: communication
+    Orbit: GEO
+  ChosenSatelliteName: GPS
 --- !u!4 &1741456724
 Transform:
   m_ObjectHideFlags: 0
@@ -1333,7 +1372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3755502493302530956, guid: bdbbdcab8ec66d4429896f428a757cf2, type: 3}
       propertyPath: m_Name
-      value: antenna
+      value: Antenna
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdbbdcab8ec66d4429896f428a757cf2, type: 3}
@@ -1359,6 +1398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3a71096d04c8948b7e152aa9295648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allObjects: {fileID: 815174455}
+  _globals: {fileID: 1741456723}
 --- !u!1001 &2081928762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1433,6 +1474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3a71096d04c8948b7e152aa9295648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allObjects: {fileID: 815174455}
+  _globals: {fileID: 1741456723}
 --- !u!1001 &2355682256073529575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1747,3 +1790,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3a71096d04c8948b7e152aa9295648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allObjects: {fileID: 815174455}
+  _globals: {fileID: 1741456723}

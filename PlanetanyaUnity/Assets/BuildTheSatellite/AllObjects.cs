@@ -9,10 +9,13 @@ public class AllObjects : MonoBehaviour
     public static bool showInfoPanel = false;
     public static bool isTouchingSatBody = false;
 
+    public List<SatPart> satParts;
+    public static SatPart currentSatPart;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,9 +23,9 @@ public class AllObjects : MonoBehaviour
     {
         if (showInfoPanel)
         {
-           Debug.Log(showInfoPanel);
+           //Debug.Log(showInfoPanel);
             InfoPanel.SetActive(true);
-            InfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = Globals.ChosenSatPart.Description;
+            InfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = currentSatPart.Description;
         }
         else
         {
@@ -38,3 +41,11 @@ public class AllObjects : MonoBehaviour
     }
 }
 
+[System.Serializable]
+public class SatPart
+{
+    public string Name;
+    public string Description;
+    public GameObject gObject;
+    public List<string> relatedSatellites;
+}

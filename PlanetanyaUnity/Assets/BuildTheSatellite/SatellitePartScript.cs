@@ -8,14 +8,43 @@ using UnityEngine.UIElements;
 
 public class SatellitePartScript : MonoBehaviour
 {
-    private Vector3 initialobjectPosition; //המיקום ההתחלתי של העיגול
-    //[SerializeField] private bool isCorrect;
+    private Vector3 initialobjectPosition; //המיקום ההתחלתי של האובייקט
     private float dragTimer;
+    private bool isCorrect = false;
+    [SerializeField] private AllObjects _allObjects;
+    [SerializeField] private Globals _globals;
+    private SatPart thisSatPart;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         initialobjectPosition = transform.position; //קביעת המיקום ההתחלתי של האובייקט
+
+        //איזה חלק אני
+        //עובר על רשימת החלקים המלאה ומכניס למשתנה החלק הזה את החלק שהוא
+        foreach (SatPart sp in _allObjects.satParts)
+        {
+            //Debug.Log("checking " + sp.Name + " in sat Parts");
+            if (sp.Name == transform.name)
+            {
+                Debug.Log("found myself: "+transform.name);
+                thisSatPart = sp;
+
+
+                //האם אני שייך ללוויין המדובר
+                foreach (string sat in sp.relatedSatellites)
+                {
+                    Debug.Log("looking up " + sat + " in sats of "+ sp.Name);
+                    if (_globals.ChosenSatelliteName == sat)
+                    {
+                        isCorrect = true;
+                    }
+                    Debug.Log("I'm " + transform.name + " and I'm " + isCorrect);
+                }
+            }
+        }
+
+
     }
 
     // Update is called once per frame
@@ -33,21 +62,7 @@ public class SatellitePartScript : MonoBehaviour
 
         dragTimer = 0;
 
-        //הגדרת החלק הזה בתור החלק הבחור כעת
-        foreach (SatPart part in Globals.ChosenSatellite.PartsList)
-        {
-            if (part.Name == transform.name)
-            {
-                Globals.ChosenSatPart = part;
-            }
-        }
-        foreach (SatPart part in Globals.ChosenSatellite.DistractorsList)
-        {
-            if (part.Name == transform.name)
-            {
-                Globals.ChosenSatPart = part;
-            }
-        }
+        AllObjects.currentSatPart = thisSatPart;
 
         //קריאה להפעלת חלונית המידע
         if (AllObjects.showInfoPanel)
@@ -77,27 +92,12 @@ public class SatellitePartScript : MonoBehaviour
     {
         //GetComponent<Renderer>().material = defaultColor;
 
-        //בדיקה האם קרוב ואז האם נכון
-        Debug.Log("x " + transform.position.x);
-        Debug.Log("y " + transform.position.y);
-        Debug.Log("z " + transform.position.z);
-        //        if (transform.position.x > -0.4 && transform.position.x < 0.4 && transform.position.y > 0.3 && transform.position.y < 0.7 && transform.position.z > 0.14 && transform.position.z < 0.22)
-
+        //בדיקה האם נוגע ואז האם נכון
         if (AllObjects.isTouchingSatBody)
         {
             Debug.Log("I'm In");
 
-            //בדיקה של האם זה אחד החלקים שמשוייכים ללוויין המדובר
-            bool isCorrectPart = false;
-            foreach (SatPart part in Globals.ChosenSatellite.PartsList)
-            {
-                if (transform.name == part.Name)
-                {
-                    isCorrectPart = true;
-                }
-            }
-
-            if (isCorrectPart)
+            if (isCorrect)
             {
                 Debug.Log("I'm correct");
             }
