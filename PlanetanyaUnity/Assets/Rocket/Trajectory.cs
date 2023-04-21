@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class Trajectory : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        TrajectoryDots = new GameObject[dotNumber]; //ιφιψϊ ξςψκ πχεγεϊ δριξεο
+        TrajectoryDots = new GameObject[dotNumber]; //Χ™Χ¦Χ™Χ¨Χª ΧΧΆΧ¨Χ Χ Χ§Χ•Χ“Χ•Χª Χ”Χ΅Χ™ΧΧ•Χ
 
 
     }

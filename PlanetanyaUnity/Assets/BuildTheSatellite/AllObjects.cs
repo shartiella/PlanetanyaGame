@@ -1,13 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AllObjects : MonoBehaviour
 {
-    public GameObject InfoPanel;
-    public static bool showInfoPanel = false;
-    public static bool isTouchingSatBody = false;
+    public static string BuildingState = "";
 
     public List<SatPart> satParts;
     public static SatPart currentSatPart;
@@ -21,24 +20,15 @@ public class AllObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (showInfoPanel)
-        {
-           //Debug.Log(showInfoPanel);
-            InfoPanel.SetActive(true);
-            InfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = currentSatPart.Description;
-        }
-        else
-        {
-            //Debug.Log(showInfoPanel);
-            InfoPanel.SetActive(false);
-        }
+
     }
 
     private void OnMouseDown()
     {
-        //GetComponent<Renderer>().material = holdingFeedback; //öáéòú äòéâåì áöäåá
+        //GetComponent<Renderer>().material = holdingFeedback; //×¦×‘×™×¢×ª ×”×¢×™×’×•×œ ×‘×¦×”×•×‘
 
     }
+
 }
 
 [System.Serializable]

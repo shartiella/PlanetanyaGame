@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,13 +9,13 @@ public class Globals : MonoBehaviour
     public static string orbit = "";
     public static float orbitTime = 0.0f;
     public static string rocketStatus = "toLaunch";
-    //ΰτωψειεϊ:
-    //toLaunch ξελο μωιβεψ
-    //launching αϊδμικ ωιβεψ
-    //launched ωεβψ - ΰαμ ςεγ μΰ αξρμεμ
-    //pushed αϊδμικ γηιτδ
-    //crashed δϊψρχ εςεγ μΰ ΰεϊημ
-    //inOrbit πλπρ μξρμεμ λμωδε
+    //ΧΧ¤Χ©Χ¨Χ•Χ™Χ•Χª:
+    //toLaunch ΧΧ•Χ›Χ ΧΧ©Χ™Χ’Χ•Χ¨
+    //launching Χ‘ΧªΧ”ΧΧ™Χ Χ©Χ™Χ’Χ•Χ¨
+    //launched Χ©Χ•Χ’Χ¨ - ΧΧ‘Χ ΧΆΧ•Χ“ ΧΧ Χ‘ΧΧ΅ΧΧ•Χ
+    //pushed Χ‘ΧªΧ”ΧΧ™Χ Χ“Χ—Χ™Χ¤Χ”
+    //crashed Χ”ΧªΧ¨Χ΅Χ§ Χ•ΧΆΧ•Χ“ ΧΧ ΧΧ•ΧªΧ—Χ
+    //inOrbit Χ Χ›Χ Χ΅ ΧΧΧ΅ΧΧ•Χ Χ›ΧΧ©Χ”Χ•
     public static bool Gravity = false;
     public static Vector3 launchForce= Vector3.zero;
     public static string correctOrbit = "none";
@@ -33,7 +33,7 @@ public class Globals : MonoBehaviour
     void Start()
     {
 
-        //ζξπι!!! αηιψϊ μεειιο
+        //Χ–ΧΧ Χ™!!! Χ‘Χ—Χ™Χ¨Χª ΧΧ•Χ•Χ™Χ™Χ
         foreach (Satellite satellite in SatellitesList)
         {
             if (satellite.Name == ChosenSatelliteName)
@@ -52,7 +52,7 @@ public class Globals : MonoBehaviour
 
     }
 
-    //λεη δξωιλδ ωμ λγεψ δΰψυ
+    //Χ›Χ•Χ— Χ”ΧΧ©Χ™Χ›Χ” Χ©Χ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥
     public static Vector3 GravityForce(GameObject attractor, GameObject target, float massProduct)
     {
         float G = 1;

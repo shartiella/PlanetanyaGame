@@ -1,4 +1,4 @@
-using System;
+ο»Ώusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,11 +18,11 @@ public class Behaviour : MonoBehaviour
     //public int hitnum=1;
     //public bool rocketHasLaunched=false;
 
-    //θιμ
+    //ΧΧ™Χ
     //public Transform rocketTransform;
     public Rigidbody rocketRigidbody;
 
-    //ΰψυ
+    //ΧΧ¨Χ¥
     //public GameObject Earth;
     public Rigidbody EarthRigidbody;
     //public Transform EarthTransform;
@@ -30,7 +30,7 @@ public class Behaviour : MonoBehaviour
     //MEO
     //public Transform meotransform;
 
-    //ξγ ςεφξϊ ωιβεψ
+    //ΧΧ“ ΧΆΧ•Χ¦ΧΧª Χ©Χ™Χ’Χ•Χ¨
     //public TextMeshProUGUI forceMeter;
 
     // Start is called before the first frame update
@@ -46,10 +46,10 @@ public class Behaviour : MonoBehaviour
     //    rocketTransform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
     //}
 
-    // τεπχφιδ ωψφδ λμ τψιιν
+    // Χ¤Χ•Χ Χ§Χ¦Χ™Χ” Χ©Χ¨Χ¦Χ” Χ›Χ Χ¤Χ¨Χ™Χ™Χ
     void Update()
     {
-        //δθιιδ ιξιπδ εωξΰμδ μριψεβιο
+        //Χ”ΧΧ™Χ™Χ” Χ™ΧΧ™Χ Χ” Χ•Χ©ΧΧΧΧ” ΧΧ΅Χ™Χ¨Χ•Χ’Χ™Χ
         //if (rocketRotationDirection == "right")
         //{
         //    if (rocketTransform.rotation.z > -0.4)
@@ -74,10 +74,10 @@ public class Behaviour : MonoBehaviour
         //}
     }
 
-    //τεπχφιιϊ ςγλεο μγαψιν τιζιχμιιν
+    //Χ¤Χ•Χ Χ§Χ¦Χ™Χ™Χª ΧΆΧ“Χ›Χ•Χ ΧΧ“Χ‘Χ¨Χ™Χ Χ¤Χ™Χ–Χ™Χ§ΧΧ™Χ™Χ
     private void FixedUpdate()
     {
-        //μηιφεϊ ςμ δξρκ
+        //ΧΧ—Χ™Χ¦Χ•Χª ΧΆΧ Χ”ΧΧ΅Χ
         //foreach (Touch touch in Input.touches)
         //{
         //    if (touch.phase == UnityEngine.TouchPhase.Began)
@@ -96,7 +96,7 @@ public class Behaviour : MonoBehaviour
         //    }
         //}
 
-        //μηιφεϊ ςμ δςλαψ
+        //ΧΧ—Χ™Χ¦Χ•Χª ΧΆΧ Χ”ΧΆΧ›Χ‘Χ¨
         //if (Input.GetMouseButtonDown(0))
         //{
         //    Debug.Log("mouse DOWN");
@@ -140,11 +140,11 @@ public class Behaviour : MonoBehaviour
         //throwHard = 1;
     }
 
-    //λεη δξωιλδ ωμ λγεψ δΰψυ
+    //Χ›Χ•Χ— Χ”ΧΧ©Χ™Χ›Χ” Χ©Χ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥
     public static void AddGravityForce(Rigidbody attractor, Rigidbody target)
     {
         float G = 25;
-        float massProduct = attractor.mass * target.mass; //ξρδ ξωεϊτϊ
+        float massProduct = attractor.mass * target.mass; //ΧΧ΅Χ” ΧΧ©Χ•ΧªΧ¤Χª
 
         Vector3 difference=attractor.position-target.position;
         float distance = difference.magnitude;

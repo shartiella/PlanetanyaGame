@@ -1,9 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BodyTrigger : MonoBehaviour
 {
+    [SerializeField] private GameObject doneBTN;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +23,16 @@ public class BodyTrigger : MonoBehaviour
         //Debug.Log("Touching Satellite Body");
         Debug.Log("I'm touching " + other.gameObject.name);
 
-        AllObjects.isTouchingSatBody = true;
+        BuildIU.isTouchingSatBody = true;
+
+        doneBTN.SetActive(true);
+
     }
 
     void OnTriggerExit(Collider other)
     {
         Debug.Log("Untouching Satellite Body");
 
-        AllObjects.isTouchingSatBody = false;
+        BuildIU.isTouchingSatBody = false;
     }
 }

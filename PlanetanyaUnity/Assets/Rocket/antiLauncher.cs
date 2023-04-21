@@ -1,3 +1,4 @@
+ο»Ώ
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class antiLauncher : MonoBehaviour
         if (Globals.demo)
         {
             demoInProgress.enabled = true;
-            demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.correctOrbit + " μεμρξμ δξβεγμ ψεβιω";
+            demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.correctOrbit + " ΧΧ•ΧΧ΅ΧΧ Χ”ΧΧ’Χ•Χ“Χ Χ¨Χ•Χ’Χ™Χ©";
         }
         else
         {

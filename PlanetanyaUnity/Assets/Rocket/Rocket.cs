@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -168,7 +168,7 @@ public class Rocket : MonoBehaviour
     }
 
 
-    //λτϊεψι λιεεεπεο - μωτψ
+    //Χ›Χ¤ΧªΧ•Χ¨Χ™ Χ›Χ™Χ•Χ•Χ•Χ Χ•Χ - ΧΧ©Χ¤Χ¨
     public void gentlePush(string direction)
     {
         if (Globals.rocketStatus == "launched")
@@ -201,7 +201,7 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    //λτϊεψ ΰιτερ δθιμ
+    //Χ›Χ¤ΧªΧ•Χ¨ ΧΧ™Χ¤Χ•Χ΅ Χ”ΧΧ™Χ
     public void resetRocket()
     {
         if (Globals.rocketStatus != "inOrbit")

@@ -1,4 +1,4 @@
-using System;
+ο»Ώusing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -20,13 +20,13 @@ public class UI : MonoBehaviour
     private float demoTimer = 0.0f;
     private int pushTimes=0;
 
-    //μαθμ λωπγς ξδ θεα
+    //ΧΧ‘ΧΧ Χ›Χ©Χ Χ“ΧΆ ΧΧ” ΧΧ•Χ‘
     [SerializeField] private float Xforce;
     [SerializeField] private float Yforce;
     [SerializeField] private float pushAfter;
     [SerializeField] private float forceAmountonY;
 
-    //τχγι UI
+    //Χ¤Χ§Χ“Χ™ UI
     [SerializeField] private Button demoBtn;
     [SerializeField] private TMP_Dropdown dropdownO;
     [SerializeField] private GameObject pushBtns;
@@ -67,16 +67,16 @@ public class UI : MonoBehaviour
     {
         if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching" || Globals.rocketStatus == "pushed")
         {
-            //αγιχϊ ξρμεμ
+            //Χ‘Χ“Χ™Χ§Χª ΧΧ΅ΧΧ•Χ
             if (Globals.orbit == Globals.correctOrbit && Globals.demo == false)
             {
                 Globals.orbitTime += Time.deltaTime;
-                meter.text = " :οελπδ μεμρξα οξζ" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString();
+                meter.text = " :ΧΧ•Χ›Χ Χ” ΧΧ•ΧΧ΅ΧΧ‘ ΧΧΧ–" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString();
 
                 if (Globals.orbitTime >= neededOrbitTime)
                 {
                     winPanel.SetActive(true);
-                    winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "!νϊημφδ" + Environment.NewLine + "μεμρξμ νϊςβδ" + Environment.NewLine + "!" + Globals.correctOrbit;
+                    winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "!ΧΧªΧ—ΧΧ¦Χ”" + Environment.NewLine + "ΧΧ•ΧΧ΅ΧΧ ΧΧªΧΆΧ’Χ”" + Environment.NewLine + "!" + Globals.correctOrbit;
                     meter.text = "";
                     Globals.rocketStatus = "inOrbit";
 
@@ -93,7 +93,7 @@ public class UI : MonoBehaviour
 
         }
 
-        //γξε
+        //Χ“ΧΧ•
 
 
         if (Globals.demo)
@@ -164,7 +164,7 @@ public class UI : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    //λτϊεψ ωιβεψ - μαθμ
+    //Χ›Χ¤ΧªΧ•Χ¨ Χ©Χ™Χ’Χ•Χ¨ - ΧΧ‘ΧΧ
     public void launchTest()
     {
         if (Globals.correctOrbit != "none")

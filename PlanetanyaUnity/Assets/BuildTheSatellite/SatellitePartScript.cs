@@ -1,6 +1,7 @@
-using System;
+ο»Ώusing System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
@@ -8,20 +9,22 @@ using UnityEngine.UIElements;
 
 public class SatellitePartScript : MonoBehaviour
 {
-    private Vector3 initialobjectPosition; //δξιχεν δδϊημϊι ωμ δΰεαιιχθ
+    //Χ”ΧΆΧ¨Χ” Χ—Χ“Χ©Χ” Χ‘ΧΆΧ‘Χ¨Χ™Χª
+    private Vector3 initialobjectPosition; //Χ”ΧΧ™Χ§Χ•Χ Χ”Χ”ΧªΧ—ΧΧªΧ™ Χ©Χ Χ”ΧΧ•Χ‘Χ™Χ™Χ§Χ
     private float dragTimer;
     private bool isCorrect = false;
     [SerializeField] private AllObjects _allObjects;
     [SerializeField] private Globals _globals;
     private SatPart thisSatPart;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        initialobjectPosition = transform.position; //χαιςϊ δξιχεν δδϊημϊι ωμ δΰεαιιχθ
+        initialobjectPosition = transform.position; //Χ§Χ‘Χ™ΧΆΧª Χ”ΧΧ™Χ§Χ•Χ Χ”Χ”ΧªΧ—ΧΧªΧ™ Χ©Χ Χ”ΧΧ•Χ‘Χ™Χ™Χ§Χ
 
-        //ΰιζδ ημχ ΰπι
-        //ςεαψ ςμ ψωιξϊ δημχιν δξμΰδ εξλπιρ μξωϊπδ δημχ δζδ ΰϊ δημχ ωδεΰ
+        //ΧΧ™Χ–Χ” Χ—ΧΧ§ ΧΧ Χ™
+        //ΧΆΧ•Χ‘Χ¨ ΧΆΧ Χ¨Χ©Χ™ΧΧª Χ”Χ—ΧΧ§Χ™Χ Χ”ΧΧΧΧ” Χ•ΧΧ›Χ Χ™Χ΅ ΧΧΧ©ΧªΧ Χ” Χ”Χ—ΧΧ§ Χ”Χ–Χ” ΧΧª Χ”Χ—ΧΧ§ Χ©Χ”Χ•Χ
         foreach (SatPart sp in _allObjects.satParts)
         {
             //Debug.Log("checking " + sp.Name + " in sat Parts");
@@ -31,7 +34,7 @@ public class SatellitePartScript : MonoBehaviour
                 thisSatPart = sp;
 
 
-                //δΰν ΰπι ωιικ μμεειιο δξγεαψ
+                //Χ”ΧΧ ΧΧ Χ™ Χ©Χ™Χ™Χ ΧΧΧ•Χ•Χ™Χ™Χ Χ”ΧΧ“Χ•Χ‘Χ¨
                 foreach (string sat in sp.relatedSatellites)
                 {
                     Debug.Log("looking up " + sat + " in sats of "+ sp.Name);
@@ -53,47 +56,91 @@ public class SatellitePartScript : MonoBehaviour
         float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         Globals.currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
 
+        if (AllObjects.BuildingState == "feedback")
+        {
+            //if (isCorrect)
+            //{
+            //    GetComponent<MeshRenderer>().material.color = Color.green;
+            //}
+            //else
+            //{
+            //GetComponent<MeshRenderer>().material.color = Color.red;
+            //}
 
+            //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+
+            List<MeshRenderer> renderers = GetComponentsInChildren<MeshRenderer>().ToList();
+            foreach (MeshRenderer ren in renderers)
+            {
+                if (isCorrect)
+                {
+                    ren.material.color = Color.green;
+                }
+                else
+                {
+                    ren.material.color = Color.red;
+                }
+            }
+
+            //GetComponent<Renderer>().material = defaultColor;
+        }
+        else
+        {
+            List<MeshRenderer> renderers = GetComponentsInChildren<MeshRenderer>().ToList();
+            foreach (MeshRenderer ren in renderers)
+            {
+                ren.material.color = Color.white;
+            }
+        }
     }
 
     private void OnMouseDown()
     {
-        //GetComponent<Renderer>().material = holdingFeedback; //φαιςϊ δςιβεμ αφδεα
-
-        dragTimer = 0;
-
-        AllObjects.currentSatPart = thisSatPart;
-
-        //χψιΰδ μδτςμϊ ημεπιϊ δξιγς
-        if (AllObjects.showInfoPanel)
+        //GetComponent<Renderer>().material = holdingFeedback; //Χ¦Χ‘Χ™ΧΆΧª Χ”ΧΆΧ™Χ’Χ•Χ Χ‘Χ¦Χ”Χ•Χ‘
+        if (AllObjects.BuildingState== "building")
         {
-            AllObjects.showInfoPanel = false;
+            dragTimer = 0;
+
+            AllObjects.currentSatPart = thisSatPart;
+
+            //Χ§Χ¨Χ™ΧΧ” ΧΧ”Χ¤ΧΆΧΧª Χ—ΧΧ•Χ Χ™Χª Χ”ΧΧ™Χ“ΧΆ
+            if (BuildIU.showInfoPanel)
+            {
+                BuildIU.showInfoPanel = false;
+            }
+            else
+            {
+                BuildIU.showInfoPanel = true;
+
+            }
         }
-        else
-        {
-            AllObjects.showInfoPanel = true;
-            
-        }
+
     }
 
     private void OnMouseDrag()
     {
-        transform.position = Globals.currentMousePosition; //βψιψδ - δςιβεμ ςεχα ΰηψι δςλαψ
+        if (AllObjects.BuildingState == "building")
+        {
+        transform.position = Globals.currentMousePosition; //Χ’Χ¨Χ™Χ¨Χ” - Χ”ΧΆΧ™Χ’Χ•Χ ΧΆΧ•Χ§Χ‘ ΧΧ—Χ¨Χ™ Χ”ΧΆΧ›Χ‘Χ¨
 
         dragTimer += Time.deltaTime;
 
         if (dragTimer >= 0.2f)
         {
-            AllObjects.showInfoPanel = false;
+            BuildIU.showInfoPanel = false;
         }
+        }
+
     }
 
     private void OnMouseUp()
     {
         //GetComponent<Renderer>().material = defaultColor;
 
-        //αγιχδ δΰν πεβς εΰζ δΰν πλεο
-        if (AllObjects.isTouchingSatBody)
+        if (AllObjects.BuildingState == "building")
+        {
+        //Χ‘Χ“Χ™Χ§Χ” Χ”ΧΧ Χ Χ•Χ’ΧΆ Χ•ΧΧ– Χ”ΧΧ Χ Χ›Χ•Χ
+        if (BuildIU.isTouchingSatBody)
         {
             Debug.Log("I'm In");
 
@@ -104,7 +151,6 @@ public class SatellitePartScript : MonoBehaviour
             else
             {
                 Debug.Log("I'm wrong");
-                transform.position = initialobjectPosition;
             }
         }
         else
@@ -112,6 +158,8 @@ public class SatellitePartScript : MonoBehaviour
             Debug.Log("I'm out");
             transform.position = initialobjectPosition;
         }
+        }
+
     }
 
 }

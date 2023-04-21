@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Cinemachine.CinemachineFreeLook;
@@ -59,16 +59,16 @@ public class Orbits : MonoBehaviour
         //}
     }
 
-    //αγιχδ δΰν δθιμ πξφΰ αξρμεμ ξρειν
+    //Χ‘Χ“Χ™Χ§Χ” Χ”ΧΧ Χ”ΧΧ™Χ Χ ΧΧ¦Χ Χ‘ΧΧ΅ΧΧ•Χ ΧΧ΅Χ•Χ™Χ
     public void IdentifyOrbit()
     {
         if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching")
         {
-            //ξφιΰϊ δξψηχ αιο δθιμ μλγεψ δΰψυ
+            //ΧΧ¦Χ™ΧΧª Χ”ΧΧ¨Χ—Χ§ Χ‘Χ™Χ Χ”ΧΧ™Χ ΧΧ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥
             Vector3 EarthRocketVec = earth.position - rocket.position;
             float EarthRocketDistance = EarthRocketVec.magnitude;
 
-            //ξιεο δξψηχιν μξρμεμιν
+            //ΧΧ™Χ•Χ Χ”ΧΧ¨Χ—Χ§Χ™Χ ΧΧΧ΅ΧΧ•ΧΧ™Χ
             if (EarthRocketDistance < 1.9)
             {
                 Globals.orbit = "ground";
