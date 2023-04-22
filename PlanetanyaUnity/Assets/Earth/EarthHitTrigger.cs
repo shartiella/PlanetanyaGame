@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +17,7 @@ public class EarthHitTrigger : MonoBehaviour
         
     }
 
-    //τβιςϊ δθιμ αλγεψ δΰψυ
+    //Χ¤Χ’Χ™ΧΆΧª Χ”ΧΧ™Χ Χ‘Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")

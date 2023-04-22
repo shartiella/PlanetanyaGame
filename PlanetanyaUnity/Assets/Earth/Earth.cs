@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,11 +33,11 @@ public class Earth : MonoBehaviour
     //}
 
 
-    ////ëåç äîùéëä ùì ëãåø äàøõ
+    ////×›×•×— ×”××©×™×›×” ×©×œ ×›×“×•×¨ ×”××¨×¥
     //public static void AddGravityForce(Rigidbody attractor, Rigidbody target)
     //{
     //    float G = 25;
-    //    float massProduct = attractor.mass * target.mass; //îñä îùåúôú
+    //    float massProduct = attractor.mass * target.mass; //××¡×” ××©×•×ª×¤×ª
 
     //    Vector3 difference = attractor.position - target.position;
     //    float distance = difference.magnitude;
