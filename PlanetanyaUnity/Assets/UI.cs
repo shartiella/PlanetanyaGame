@@ -164,7 +164,17 @@ public class UI : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    //כפתור שיגור - לבטל
+    public void nextScene()
+    {
+        Globals.rocketStatus = "restart";
+        //demoTimer = 0.0f;
+        //pushTime = 0.0f;
+        //Globals.demo = false;
+        Globals.correctOrbit = "none";
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    
+    //שיגורי דמו
     public void launchTest()
     {
         if (Globals.correctOrbit != "none")
