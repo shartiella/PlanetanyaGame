@@ -19,9 +19,12 @@ public class DeviceClick : MonoBehaviour
         
     }
 
-    public void OnMouseUp()
+    public void OnMouseDown()
     {
         cam.GetComponent<Animator>().enabled = true;
+    }
+    public void OnMouseUp()
+    {
         MoveCamera.deviceClicked = thisDevice;
     }
 }

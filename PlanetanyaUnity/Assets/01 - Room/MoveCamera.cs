@@ -52,11 +52,10 @@ public class MoveCamera : MonoBehaviour
             zoom( Input.GetAxis("Mouse ScrollWheel")* morescroll);
         }
 
-        //if (deviceClicked == "Phone")
-        //{
-        //    Debug.Log("phone clicked");
-        //    OnPhoneClick();
-        //}
+        if (deviceClicked != "")
+        {
+            OnDeviceClick();
+        }
         //else if (deviceClicked == "TV")
         //{
         //    Debug.Log("TV clicked");
