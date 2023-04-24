@@ -35,32 +35,33 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var dropdown = transform.GetComponentInChildren<TMP_Dropdown>();
-        dropdown.onValueChanged.AddListener(delegate { DropdownItemSelected (dropdown); });
+        //var dropdown = transform.GetComponentInChildren<TMP_Dropdown>();
+        //dropdown.onValueChanged.AddListener(delegate { DropdownItemSelected (dropdown); });
+        Globals.correctOrbit = "MEO";
     }
 
-    private void DropdownItemSelected(TMP_Dropdown dropdown)
-    {
-        Debug.Log(dropdown.value);
+    //private void DropdownItemSelected(TMP_Dropdown dropdown)
+    //{
+    //    Debug.Log(dropdown.value);
 
-        if (dropdown.value == 0)
-        {
-            Globals.correctOrbit = "none";
-        }
-        else if (dropdown.value == 1)
-        {
-            Globals.correctOrbit = "LEO";
-        }
-        else if (dropdown.value == 2)
-        {
-            Globals.correctOrbit = "MEO";
-        }
-        else if (dropdown.value == 3)
-        {
-            Globals.correctOrbit = "GEO";
-        }
+    //    if (dropdown.value == 0)
+    //    {
+    //        Globals.correctOrbit = "none";
+    //    }
+    //    else if (dropdown.value == 1)
+    //    {
+    //        Globals.correctOrbit = "LEO";
+    //    }
+    //    else if (dropdown.value == 2)
+    //    {
+    //        Globals.correctOrbit = "MEO";
+    //    }
+    //    else if (dropdown.value == 3)
+    //    {
+    //        Globals.correctOrbit = "GEO";
+    //    }
 
-    }
+    //}
 
     // Update is called once per frame
     void Update()
@@ -83,7 +84,7 @@ public class UI : MonoBehaviour
                     demoBtn.gameObject.SetActive(false);
                     resetBtn.gameObject.SetActive(false);
                     pushBtns.gameObject.SetActive(false);
-                    dropdownO.gameObject.SetActive(false);
+                    //dropdownO.gameObject.SetActive(false);
                 }
             }
             else
@@ -125,23 +126,23 @@ public class UI : MonoBehaviour
             demoBtn.gameObject.SetActive(false);
             resetBtn.gameObject.SetActive(false);
             pushBtns.gameObject.SetActive(false);
-            dropdownO.gameObject.SetActive(true);
-            dropdownO.enabled = true;
+            //dropdownO.gameObject.SetActive(true);
+            //dropdownO.enabled = true;
         }
         else if (Globals.demo)
         {
             demoBtn.gameObject.SetActive(false);
             resetBtn.gameObject.SetActive(true);
             pushBtns.gameObject.SetActive(true);
-            dropdownO.gameObject.SetActive(false);
+            //dropdownO.gameObject.SetActive(false);
         }
         else if (Globals.rocketStatus == "toLaunch")
         {
             demoBtn.gameObject.SetActive(true);
             resetBtn.gameObject.SetActive(false);
             pushBtns.gameObject.SetActive(true);
-            dropdownO.gameObject.SetActive(true);
-            dropdownO.enabled = true;
+            //dropdownO.gameObject.SetActive(true);
+            //dropdownO.enabled = true;
 
         }
         else if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching" || Globals.rocketStatus == "pushed")
@@ -149,8 +150,8 @@ public class UI : MonoBehaviour
             demoBtn.gameObject.SetActive(false);
             resetBtn.gameObject.SetActive(true);
             pushBtns.gameObject.SetActive(true);
-            dropdownO.gameObject.SetActive(true);
-            dropdownO.enabled = false;
+            //dropdownO.gameObject.SetActive(true);
+            //dropdownO.enabled = false;
         }
     }
 
