@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://shartiella.github.io/marshmellowmed/ -->
+<html lang="he"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>מסלולוויין</title>
+    <meta name="description" content="משחק לימודי - נועה טויטו ואלה שרתיאל">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <!-- CSS -->
+
+    <link rel="icon" href="./images/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <link href="styles/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.rtl.min.css">
+    <link href="styles/indexCss.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="jScripts/jquery-1.12.0.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="jScripts/JavaScript.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div id="container">
+        <header>
+            <!--תפריט עליון-->
+            <nav>
+                <div id="right">
+                    <img id="logo" src="./images/logo.png">
+                    <h1>מסלולוויין</h1>
+                </div>
+                <span id="left">
+                    <a id="howToPlay" onclick="openHow()">איך משחקים?</a>
+                    <a id="about" onclick="openAbout()">אודות</a>
+                </span>
+            </nav>
+        </header>
+        <div id="aboutPopUp" class="aboutPopUpClosed">
+            <div class="aboutPopUpBox">
+                <img id="aboutPopUpX" class="aboutPopUpXclosed" onclick="closeAbout()" src="./images/X.png">
+                <h2 class="aboutH2">אודות</h2>
+                <div id="aboutPopUpContent">
+                    <h3>אפיון ופיתוח</h3>
+                    <p>אלה שרתיאל ונועה טויטו</p>
+                    <h3>אופיין ופותח במסגרת פרויקט בקורסים</h3>
+                    <p>פרויקט גמר ותכנות 3</p>
+                    <h3>תשפ"ג - הפקולטה לטכנולוגיות למידה</h3>
+                    <a id="faculta" href="https://www.hit.ac.il/telem/overview">
+                        <img src="./images/HITlogo.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="howPopUp" class="howPopUpClosed">
+            <div class="howPopUpBox">
+                <img id="howPopUpX" class="howPopUpXclosed" onclick="closeHow()" src="./images/X.png">
+                <h2 class="howH2">איך משחקים?</h2>
+                <div id="howPopUpContent">
+                    <p>ראשית, בחרו מסלול אליו תרצו לשגר את הטיל:</p>
+                    <ul>
+                        <li>
+                            LEO - מסלול לווייני נמוך
+                        </li>
+                        <li>
+                            MEO - מסלול לווייני בינוני
+                        </li>
+                        <li>
+                            GEO - מסלול גיאוסינכרוני
+                        </li>
+                    </ul>
+                    <p>כדי לשגר את הטיל, משכו את העיגול האדום וכוונו את הטיל בכיוון ובעוצמה הרצויים.</p>
+                    <p>בעזרת כפתורי הכיוונון העדין בתחתית המסך תוכלו לתקן את המסלול לאחר השיגור, כדי לדייק את המסלול של הטיל.</p>
+                    <p>אם תרצו - תוכלו להיעזר בשיגור לדוגמא למסלול שבחרתם ע"י לחיצה על הכפתור האדום.</p>
+                    <p>במקרה הצורך, לחצו על "אתחול" כדי לאפס את הטיל.</p>
+                    <p><b>בהצלחה!</b></p>
+                </div>
+            </div>
+        </div>
+        <!--תוכן העמוד-->
+        <main id="game">
+            <iframe src="https://shartiella.github.io/PlanetanyaGameBuild0603" frameborder="0" allowfullscreen="">Browser not compatible</iframe>
+        </main>
+    </div>
+
+</body></html>
