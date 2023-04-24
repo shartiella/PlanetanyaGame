@@ -8,6 +8,9 @@ public class MoveCamera : MonoBehaviour
     public float speed = 3.5f;
     private float X;
     private float Y;
+    public float zoomOutMin = 15;
+    public float zoomOutMax = 15;
+
 
     void Update()
     {
@@ -18,5 +21,11 @@ public class MoveCamera : MonoBehaviour
             Y = transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(X, Y, 0);
         }
+        zoom(Input.GetAxis("Mouse ScrolloWheel"));
+    }
+
+    void zoom (float increment)
+    {
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, zoomOutMin, zoomOutMax);
     }
 }
