@@ -1,0 +1,13 @@
+#unity-container.unity-desktop{
+    width: 100%;
+    height: 99%;
+}
+#unity-footer{
+    display: none;
+}
+
+#unity-warning{
+    display: none;
+background: black;
+}
+
