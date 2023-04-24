@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 4776540769478884932}
   smoke: {fileID: 3887337691335812480}
-  yforce: 4
+  yforce: 5
   firerate: 20
   smokerate: 400
   SatelliteToRocket: {fileID: 1925090362}
@@ -719,7 +719,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61092
+  m_Name: pb_Mesh44654
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -922,7 +922,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61110
+  m_Name: pb_Mesh44672
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1250,7 +1250,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61064
+  m_Name: pb_Mesh44626
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1719,7 +1719,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61116
+  m_Name: pb_Mesh44678
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2302,9 +2302,9 @@ RectTransform:
   m_Father: {fileID: 1191175625}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -82.2, y: -249}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 75.53, y: 52.8}
   m_SizeDelta: {x: 95.8, y: 36.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251875080
@@ -3832,7 +3832,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61068
+  m_Name: pb_Mesh44630
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
