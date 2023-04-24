@@ -38,7 +38,7 @@ public class SatellitePartScript : MonoBehaviour
                 foreach (string sat in sp.relatedSatellites)
                 {
                     Debug.Log("looking up " + sat + " in sats of "+ sp.Name);
-                    if (_globals.ChosenSatelliteName == sat)
+                    if (Globals.ChosenSatelliteName == sat)
                     {
                         isCorrect = true;
                     }

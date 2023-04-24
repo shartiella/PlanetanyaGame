@@ -26,7 +26,7 @@ public class Globals : MonoBehaviour
 
     public List<Satellite> SatellitesList;
     public static Satellite ChosenSatellite;
-    public string ChosenSatelliteName;
+    public static string ChosenSatelliteName;
 
 
     // Start is called before the first frame update

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -68,7 +67,18 @@ public class RocketLaunch : MonoBehaviour
             SatelliteToRocket.SetActive(false);
             launchBTN.SetActive(true);
         }
-        else if (Globals.rocketStatus == "launching") //משוגר
+
+
+        if (rocketRB.position.y > 200)
+        {
+            toNext.SetActive(true);
+        }
+
+    }
+
+    void FixedUpdate()
+    {
+        if (Globals.rocketStatus == "launching") //משוגר
         {
             //float angle = Mathf.Atan2(rocket.GetComponent<Rigidbody>().velocity.y, rocket.GetComponent<Rigidbody>().velocity.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -77,7 +87,7 @@ public class RocketLaunch : MonoBehaviour
             window4.SetActive(false);
 
             rocketRB.AddForce(0, yforce, 0);
-            launchBTN.SetActive(false) ;
+            launchBTN.SetActive(false);
 
             if (Globals.rocketStatus == "launching")
             {
@@ -97,11 +107,6 @@ public class RocketLaunch : MonoBehaviour
 
                 var smokeEmission = smoke.emission;
                 smokeEmission.enabled = false;
-            }
-
-            if (rocketRB.position.y > 200)
-            {
-                toNext.SetActive(true);
             }
         }
     }

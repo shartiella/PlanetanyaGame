@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -13,12 +14,20 @@ public class MoveCamera : MonoBehaviour
     public float zoomOutMax;
     public float morescroll;
 
-    private Animator camAnimator;
     public static string deviceClicked = "";
+    public static bool finalPart = false;
+
+    [SerializeField] private GameObject window1;
+    [SerializeField] private GameObject window2;
+    [SerializeField] private GameObject window3;
+
+    [SerializeField] private GameObject cineMachine;
+
+
 
     private void Start()
     {
-        camAnimator = GetComponent<Animator>();
+        window1.SetActive(true);
     }
 
     void Update()
@@ -26,7 +35,7 @@ public class MoveCamera : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("i'm being clicked");
+           // Debug.Log("i'm being clicked");
             transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed, -Input.GetAxis("Mouse X") * speed, 0));
             X = transform.rotation.eulerAngles.x;
             Y = transform.rotation.eulerAngles.y;
@@ -54,7 +63,14 @@ public class MoveCamera : MonoBehaviour
 
         if (deviceClicked != "")
         {
-            OnDeviceClick();
+            //OnDeviceClick();
+            window1.SetActive(false);
+            window2.SetActive(true);
+
+        }
+        if (finalPart == true)
+        {
+            window2.SetActive(false);
         }
         //else if (deviceClicked == "TV")
         //{
@@ -73,14 +89,18 @@ public class MoveCamera : MonoBehaviour
         Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView - increment, zoomOutMin, zoomOutMax);
     }
 
+    //public void OnDeviceClick()
+    //{
 
+    //    cineMachine.SetActive(true);
+    //    deviceClicked = "";
 
+    //}
 
-    public void OnDeviceClick()
+    public void towindow3()
     {
-        camAnimator.SetTrigger(deviceClicked);
-        deviceClicked = "";
-
+        finalPart = true;
+        //window2.SetActive(false);
+        window3.SetActive(true);
     }
-
 }
