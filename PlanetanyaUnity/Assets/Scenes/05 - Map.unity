@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a09050c7a331f4eaccf96ccf95088c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  speed: 0.1
   window1: {fileID: 448882154}
   window2: {fileID: 1669592159}
   arrivalBTN: {fileID: 1582289442}
