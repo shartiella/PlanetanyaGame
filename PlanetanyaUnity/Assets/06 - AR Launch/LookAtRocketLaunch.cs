@@ -9,7 +9,7 @@ public class LookAtRocketLaunch : MonoBehaviour
     private float X;
     private float Y;
 
-    void Update()
+   void Update()
     {
         if (Globals.rocketStatus == "lookingAround") {
             if (Input.GetMouseButton(0))
@@ -21,11 +21,16 @@ public class LookAtRocketLaunch : MonoBehaviour
                 //Debug.Log(transform.rotation.eulerAngles);
             }
 
-            if((transform.rotation.eulerAngles.y>358 || transform.rotation.eulerAngles.y<2)&& (transform.rotation.eulerAngles.x > 358 || transform.rotation.eulerAngles.x < 2))
+            if((transform.rotation.eulerAngles.y>178 || transform.rotation.eulerAngles.y<182)&& (transform.rotation.eulerAngles.x > 350 || transform.rotation.eulerAngles.x < 0))
             {
-                Debug.Log("correct");
-                Globals.rocketStatus = "LookAtRocket";
+                Debug.Log("in view");
+                //Globals.rocketStatus = "LookAtRocket";
             }
         }
+
+        //if (Globals.rocketStatus == "launching")
+        //{
+
+        //}
     }
 }

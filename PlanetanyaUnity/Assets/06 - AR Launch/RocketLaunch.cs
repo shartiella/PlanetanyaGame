@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using log4net.Filter;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using WebXR;
 
 public class RocketLaunch : MonoBehaviour
 {
@@ -27,12 +28,23 @@ public class RocketLaunch : MonoBehaviour
     [SerializeField] private GameObject window4;
     [SerializeField] private GameObject toNext;
 
+    [SerializeField] private GameObject ARBTN;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rocketRB= GetComponent<Rigidbody>();
-        Globals.rocketStatus = "lookingAround";
+        //Debug.Log(WebXRManager.OnXRChange);
+        //if (WebXRManager.Instance.isSupportedAR)
+        //{
+        //    AR.SetActive(true);
+        //}
+        //else
+        //{
+        //    AR.SetActive(false);
+        //}
+        rocketRB = GetComponent<Rigidbody>();
+        Globals.rocketStatus = "ARoff";
         Debug.Log(Globals.rocketStatus);
 
     }
@@ -40,9 +52,14 @@ public class RocketLaunch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Globals.rocketStatus == "lookingAround") //מסתכל מסביב עד שהוא מול הטיל
+        if (Globals.rocketStatus == "ARoff")// לפני הפעלת מציאות רבודה
         {
+            ARBTN.SetActive(true);
+        }
+        else if (Globals.rocketStatus == "lookingAround") //מסתכל מסביב עד שהוא מול הטיל
+        {
+            ARBTN.SetActive(false);
+
             window1.SetActive(true);
             SatelliteToRocket.SetActive(false);
 
@@ -113,9 +130,19 @@ public class RocketLaunch : MonoBehaviour
 
     public void launchIt()
     {
-        Globals.rocketStatus = "launching";
         Debug.Log(Globals.rocketStatus);
         cineMachine.SetActive(true); //לבטל כשנצליח להטמיע מציאות רבודה
+
+        Globals.rocketStatus = "launching";
+
+        //if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
+        //{
+        //    Debug.Log("TRUE");
+        //}
+        //else
+        //{
+        //    Debug.Log("FALSE");
+        //}
 
         //Globals.launchForce=new Vector3(0, yforce, 0);
         //GetComponent<Rigidbody>().velocity = Globals.launchForce;
@@ -128,7 +155,40 @@ public class RocketLaunch : MonoBehaviour
 
     public void toNextscene()
     {
+        if (WebXRManager.Instance.XRState == WebXRState.AR)
+        {
+            WebXRManager.Instance.ToggleAR();
+            Debug.Log("AR is OFF");
+
+        }
+        else
+        {
+            Debug.Log("no AR");
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
+    private void OnMouseUp()
+    {
+        Globals.rocketStatus = "LookAtRocket";
+    }
+
+    public void ARon()
+    {
+        Globals.rocketStatus = "lookingAround";
+
+        //לחבר כפתור של מציאות רבודה לפונקציה הזאת
+        if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
+        {
+            WebXRManager.Instance.ToggleAR();
+            Debug.Log("AR is ON");
+
+        }
+        else
+        {
+            Debug.Log("no AR");
+        }
     }
 
 }

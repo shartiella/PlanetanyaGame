@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18369381, g: 0.22913687, b: 0.304941, a: 1}
+  m_IndirectSpecularColor: {r: 0.45113987, g: 0.50092614, b: 0.57391894, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12284,6 +12284,7 @@ MonoBehaviour:
   window2: {fileID: 579219777}
   window3: {fileID: 204851447}
   cineMachine: {fileID: 407885056}
+  pointerPrefab: {fileID: 0}
 --- !u!1001 &948021499296755151
 PrefabInstance:
   m_ObjectHideFlags: 0
