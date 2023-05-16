@@ -30,19 +30,19 @@ public class SatellitePartScript : MonoBehaviour
             //Debug.Log("checking " + sp.Name + " in sat Parts");
             if (sp.Name == transform.name)
             {
-                Debug.Log("found myself: "+transform.name);
+                //Debug.Log("found myself: "+transform.name);
                 thisSatPart = sp;
 
 
                 //האם אני שייך ללוויין המדובר
                 foreach (string sat in sp.relatedSatellites)
                 {
-                    Debug.Log("looking up " + sat + " in sats of "+ sp.Name);
+                    //Debug.Log("looking up " + sat + " in sats of "+ sp.Name);
                     if (Globals.ChosenSatelliteName == sat)
                     {
                         isCorrect = true;
                     }
-                    Debug.Log("I'm " + transform.name + " and I'm " + isCorrect);
+                    //Debug.Log("I'm " + transform.name + " and I'm " + isCorrect);
                 }
             }
         }

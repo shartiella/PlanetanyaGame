@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+//using UnityEditor.Graphs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Globals : MonoBehaviour
 {
+    public static int GuideCode;
+    public static string GroupName="שם הקבוצה";
+
+
     public static string orbit = "";
     public static float orbitTime = 0.0f;
     public static string rocketStatus = "toLaunch";
@@ -16,6 +21,7 @@ public class Globals : MonoBehaviour
     //pushed בתהליך דחיפה
     //crashed התרסק ועוד לא אותחל
     //inOrbit נכנס למסלול כלשהו
+
     public static bool Gravity = false;
     public static Vector3 launchForce= Vector3.zero;
     public static string correctOrbit = "none";
@@ -32,24 +38,52 @@ public class Globals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GroupName = "";
 
-        //זמני!!! בחירת לוויין
-        foreach (Satellite satellite in SatellitesList)
-        {
-            if (satellite.Name == ChosenSatelliteName)
-            {
-                ChosenSatellite = satellite;
-                Debug.Log("chosen satellite is "+ ChosenSatellite.Name);
 
-            }
-        }
 
+    }
+
+    private void Awake()
+    {
+        Satellite GPS = new Satellite();
+        GPS.Name = "GPS";
+        GPS.Kind = "navigation";
+        GPS.Orbit = "MEO";
+        GPS.Object = "phone";
+        SatellitesList.Add(GPS);
+
+        Satellite TV = new Satellite();
+        TV.Name = "TV";
+        TV.Kind = "communication";
+        TV.Orbit = "GEO";
+        TV.Object = "TV";
+        SatellitesList.Add(TV);
+
+        Satellite MAP = new Satellite();
+        MAP.Name = "MAP";
+        MAP.Kind = "mapping";
+        MAP.Orbit = "LEO";
+        MAP.Object = "computer";
+        SatellitesList.Add(MAP);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (ChosenSatellite == null)
+        {
+            foreach (Satellite satellite in SatellitesList)
+            {
+                //Debug.Log(satellite.Name);
+                if (satellite.Name == ChosenSatelliteName)
+                {
+                    ChosenSatellite = satellite;
+                    Debug.Log("chosen satellite is " + ChosenSatellite.Name);
 
+                }
+            }
+        }
     }
 
     //כוח המשיכה של כדור הארץ
@@ -74,9 +108,9 @@ public class Globals : MonoBehaviour
 [System.Serializable]
 public class Satellite
 {
-    public string Name;
-    public string Kind;
-    public string Orbit;
-
+    public string Name; //שם
+    public string Kind; //סוג
+    public string Orbit; //מסלול
+    public string Object; //אובייקט יומיומי שמייצג אותו
 }
 

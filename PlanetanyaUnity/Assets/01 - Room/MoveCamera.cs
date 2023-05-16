@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class MoveCamera : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class MoveCamera : MonoBehaviour
     private GameObject pointer1;
     private GameObject pointer2;
 
+    [SerializeField] private TextMeshProUGUI fingers1;
+    [SerializeField] private TextMeshProUGUI fingers2;
+
     private void Start()
     {
         window1.SetActive(true);
@@ -34,41 +38,51 @@ public class MoveCamera : MonoBehaviour
 
     void Update()
     {
-
-        //if (Input.touchCount > 0)
+        //var fingerCount = 0;
+        //foreach (Touch touch in Input.touches)
         //{
-        //    Debug.Log(Input.touchCount);
-
-        //    Touch touchZero = Input.GetTouch(0);
-        //    Touch touchOne = Input.GetTouch(1);
-
-        //    Vector3 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-        //    Vector3 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-        //    float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-        //    float currentMaginitude = (touchZero.position - touchOne.position).magnitude;
-        //    float difference = currentMaginitude - prevMagnitude;
-
-        //    pointer1 = Instantiate(pointerPrefab);
-        //    pointer1.transform.position = touchZero.position;
-
-        //    pointer2 = Instantiate(pointerPrefab);
-        //    pointer2.transform.position = touchOne.position;
-
-        //    zoom(difference * 0.01f);
+        //    if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled)
+        //    {
+        //        fingerCount++;
+        //    }
         //}
-        //else
-        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        //if (fingerCount > 0)
+        //{
+        //    //print("User has " + fingerCount + " finger(s) touching the screen");
+        //    fingers1.text=fingerCount.ToString();
+        //}
+
+        if (Input.touchCount == 2)
         {
-            zoom(Input.GetAxis("Mouse ScrollWheel") * morescroll);
+            //Debug.Log(Input.touchCount);
+            fingers1.text = Input.touchCount.ToString();
+
+            Touch touchZero = Input.GetTouch(0);
+            Touch touchOne = Input.GetTouch(1);
+
+            Vector3 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector3 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+            float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float currentMaginitude = (touchZero.position - touchOne.position).magnitude;
+            float difference = currentMaginitude - prevMagnitude;
+
+            fingers2.text = difference.ToString();
+
+            zoom(difference * -0.01f);
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.touchCount == 1 || Input.GetMouseButton(0))
         {
-            float FOVfactor = Camera.main.fieldOfView/60;
-            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed* FOVfactor, -Input.GetAxis("Mouse X") * speed* FOVfactor, 0));
+            float FOVfactor = Camera.main.fieldOfView / 60;
+            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed * FOVfactor, -Input.GetAxis("Mouse X") * speed * FOVfactor, 0));
             X = transform.rotation.eulerAngles.x;
             Y = transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(X, Y, 0);
         }
+        else if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            zoom(Input.GetAxis("Mouse ScrollWheel") * morescroll);
+        }
+
 
 
 

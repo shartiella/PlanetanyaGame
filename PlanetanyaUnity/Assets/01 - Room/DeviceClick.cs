@@ -31,7 +31,11 @@ public class DeviceClick : MonoBehaviour
     public void OnMouseUp()
     {
         MoveCamera.deviceClicked = thisDevice;
-        Globals.ChosenSatelliteName = "GPS";
         LookAtTarget.transform.position = transform.position;
+
+
+        //בחירת לוויין
+        Globals.ChosenSatelliteName = "GPS";//לבטל כדי לבחור לוויין
+
     }
 }

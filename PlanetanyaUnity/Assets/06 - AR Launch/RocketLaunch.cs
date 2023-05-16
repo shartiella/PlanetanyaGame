@@ -1,4 +1,4 @@
-﻿using log4net.Filter;
+﻿//using log4net.Filter;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;

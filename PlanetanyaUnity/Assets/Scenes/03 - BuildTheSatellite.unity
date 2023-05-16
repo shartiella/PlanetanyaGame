@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18032795, g: 0.22576877, b: 0.3069493, a: 1}
+  m_IndirectSpecularColor: {r: 0.44663423, g: 0.49647737, b: 0.5748522, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4237,13 +4237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea214a22a5921d4ab466a69a8482951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SatellitesList:
-  - Name: GPS
-    Kind: navigation
-    Orbit: MEO
-  - Name: TV
-    Kind: communication
-    Orbit: GEO
+  SatellitesList: []
 --- !u!4 &1741456724
 Transform:
   m_ObjectHideFlags: 0

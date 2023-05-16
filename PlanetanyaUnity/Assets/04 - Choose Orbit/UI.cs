@@ -35,33 +35,8 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //var dropdown = transform.GetComponentInChildren<TMP_Dropdown>();
-        //dropdown.onValueChanged.AddListener(delegate { DropdownItemSelected (dropdown); });
         Globals.correctOrbit = "MEO";
     }
-
-    //private void DropdownItemSelected(TMP_Dropdown dropdown)
-    //{
-    //    Debug.Log(dropdown.value);
-
-    //    if (dropdown.value == 0)
-    //    {
-    //        Globals.correctOrbit = "none";
-    //    }
-    //    else if (dropdown.value == 1)
-    //    {
-    //        Globals.correctOrbit = "LEO";
-    //    }
-    //    else if (dropdown.value == 2)
-    //    {
-    //        Globals.correctOrbit = "MEO";
-    //    }
-    //    else if (dropdown.value == 3)
-    //    {
-    //        Globals.correctOrbit = "GEO";
-    //    }
-
-    //}
 
     // Update is called once per frame
     void Update()
@@ -155,6 +130,7 @@ public class UI : MonoBehaviour
         }
     }
 
+    //אתחול השיגור
     public void RestartGame()
     {
         Globals.rocketStatus = "restart";
@@ -165,6 +141,7 @@ public class UI : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    //מעבר לסצנה הבאה
     public void nextScene()
     {
         Globals.rocketStatus = "restart";

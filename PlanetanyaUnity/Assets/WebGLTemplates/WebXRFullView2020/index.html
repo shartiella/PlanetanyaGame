@@ -9,8 +9,22 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="stylesheet" href="./styles/style.css">
+    <script src="jScripts/JavaScript.js" type="text/javascript"></script>
+
   </head>
   <body>
+            <div id="pregame">
+                <section id="guide" class="hide">
+                  <p>פה אפשר להכניס בדיקת מיקום כדי לוודא שהם בפלנתניה</p>
+                </section>
+                <section id="group" class="">
+                    <h2>שלום קבוצה!</h2>
+                    <p>הקלידו כאן את שם הקבוצה שלכם:</p>
+                    <input id="groupname" type="text" placeholder="שם קבוצה"> <br/>
+                    <input id="btn" type="button" value="כניסה למשחק" onclick="getgroupname()">
+                </section>
+            </div>
+
     <div id="unity-container">
       <div id="unity-canvas-container" style="width: 100%; height: 100%;">
         <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
