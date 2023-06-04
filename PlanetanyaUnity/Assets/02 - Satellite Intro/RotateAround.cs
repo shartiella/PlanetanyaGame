@@ -17,6 +17,7 @@ public class RotateAround : MonoBehaviour
     [SerializeField] private GameObject Moon;
     [SerializeField] private GameObject Satellite;
 
+    [SerializeField] private GameObject FadeGO;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,6 @@ public class RotateAround : MonoBehaviour
 
     public void nextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        FadeGO.SetActive(true);
     }
 }

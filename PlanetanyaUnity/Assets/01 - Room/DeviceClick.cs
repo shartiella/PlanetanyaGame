@@ -23,19 +23,20 @@ public class DeviceClick : MonoBehaviour
         
     }
 
+    //לחיצה על אובייקט
     public void OnMouseDown()
     {
-        cam.GetComponent<Animator>().enabled = true;
-        cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
+        cam.GetComponent<Animator>().enabled = true; //הפעלת אנימציית המצלמה
+        cam.GetComponent<CinemachineVirtualCamera>().enabled = true; //הפעלת מעקב המצלמה אחרי האובייקט
     }
     public void OnMouseUp()
     {
-        MoveCamera.deviceClicked = thisDevice;
-        LookAtTarget.transform.position = transform.position;
+        MoveCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
+        LookAtTarget.transform.position = transform.position; //הגדרת מיקום המעקב כמיקום האובייקט הלחוץ
 
 
         //בחירת לוויין
-        Globals.ChosenSatelliteName = "GPS";//לבטל כדי לבחור לוויין
+        Globals.ChosenSatellite.Name = "GPS";//לבטל כדי לבחור לוויין
 
     }
 }

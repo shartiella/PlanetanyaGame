@@ -19,9 +19,9 @@ public class startButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        groupname.text = Globals.GroupName;
+        groupname.text = Globals.GroupName; //שם הקבוצה
 
-        if (Globals.GroupName == "" || Globals.GroupName == "שם הקבוצה")
+        if (Globals.GroupName == "" || Globals.GroupName == "שם הקבוצה") //אפרור הכפתור אם אין שם קבוצה
         {
             startBTN.interactable= false;
         }

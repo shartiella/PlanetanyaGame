@@ -7,7 +7,6 @@ using TMPro;
 
 public class MoveCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float speed = 1;
     private float X;
     private float Y;
@@ -25,8 +24,7 @@ public class MoveCamera : MonoBehaviour
     [SerializeField] private GameObject cineMachine;
 
     [SerializeField] private GameObject pointerPrefab;
-    private GameObject pointer1;
-    private GameObject pointer2;
+
 
     [SerializeField] private TextMeshProUGUI fingers1;
     [SerializeField] private TextMeshProUGUI fingers2;

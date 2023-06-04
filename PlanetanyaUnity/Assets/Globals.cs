@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 //using UnityEditor.Graphs;
@@ -32,58 +33,26 @@ public class Globals : MonoBehaviour
 
     public List<Satellite> SatellitesList;
     public static Satellite ChosenSatellite;
-    public static string ChosenSatelliteName;
-
+    public string ChosenSatelliteName;
 
     // Start is called before the first frame update
     void Start()
     {
         GroupName = "";
 
-
-
+        FillSatList();
+        ChooseSat(ChosenSatelliteName);
     }
 
     private void Awake()
     {
-        Satellite GPS = new Satellite();
-        GPS.Name = "GPS";
-        GPS.Kind = "navigation";
-        GPS.Orbit = "MEO";
-        GPS.Object = "phone";
-        SatellitesList.Add(GPS);
 
-        Satellite TV = new Satellite();
-        TV.Name = "TV";
-        TV.Kind = "communication";
-        TV.Orbit = "GEO";
-        TV.Object = "TV";
-        SatellitesList.Add(TV);
-
-        Satellite MAP = new Satellite();
-        MAP.Name = "MAP";
-        MAP.Kind = "mapping";
-        MAP.Orbit = "LEO";
-        MAP.Object = "computer";
-        SatellitesList.Add(MAP);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ChosenSatellite == null)
-        {
-            foreach (Satellite satellite in SatellitesList)
-            {
-                //Debug.Log(satellite.Name);
-                if (satellite.Name == ChosenSatelliteName)
-                {
-                    ChosenSatellite = satellite;
-                    Debug.Log("chosen satellite is " + ChosenSatellite.Name);
 
-                }
-            }
-        }
     }
 
     //כוח המשיכה של כדור הארץ
@@ -103,6 +72,52 @@ public class Globals : MonoBehaviour
         //target.AddForce(forceVector);
     }
 
+    public static string Reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        Array.Reverse(charArray);
+        return new string(charArray);
+    }
+
+    public void FillSatList()
+    {
+        Satellite GPS = new Satellite();
+        GPS.Name = "GPS";
+        GPS.Kind = "ניווט";
+        GPS.Orbit = "MEO";
+        GPS.Object = "phone";
+        SatellitesList.Add(GPS);
+
+        Satellite TV = new Satellite();
+        TV.Name = "TV";
+        TV.Kind = "תקשורת";
+        TV.Orbit = "GEO";
+        TV.Object = "TV";
+        SatellitesList.Add(TV);
+
+        Satellite MAP = new Satellite();
+        MAP.Name = "MAP";
+        MAP.Kind = "מיפוי";
+        MAP.Orbit = "LEO";
+        MAP.Object = "computer";
+        SatellitesList.Add(MAP);
+    }
+
+    public void ChooseSat(string satName)
+    {
+        //תעבור על רשימת הלוויינים
+        foreach (Satellite satellite in SatellitesList)
+        {
+            //תמצא את הלווין ששמו הוא שם הלוויין שנבחר
+            if (satellite.Name == satName)
+            {
+                //תגדיר אותו בתור הלוויין שנבחר
+                ChosenSatellite = satellite;
+                Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+
+            }
+        }
+    }
 }
 
 [System.Serializable]
