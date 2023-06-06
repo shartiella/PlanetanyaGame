@@ -13,7 +13,7 @@ public class RotateAround : MonoBehaviour
     [SerializeField] private GameObject info1;
     [SerializeField] private GameObject info2;
     [SerializeField] private GameObject info3;
-
+    
     [SerializeField] private GameObject Moon;
     [SerializeField] private GameObject Satellite;
 
@@ -30,15 +30,15 @@ public class RotateAround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 moveby = new Vector3(Input.GetAxis("Mouse X") * speed, -Input.GetAxis("Mouse Y") * speed, 0);
-            X = transform.position.x;
-            Y = transform.position.y;
-            Z = transform.position.z;
-            transform.transform.position = new Vector3(X, Y + moveby.y*2, Z + moveby.x);
-            Debug.Log(transform.position);
-        }
+        //if (Input.GetMouseButton(0))
+        //{
+        //    Vector3 moveby = new Vector3(Input.GetAxis("Mouse X") * speed, -Input.GetAxis("Mouse Y") * speed, 0);
+        //    X = transform.position.x;
+        //    Y = transform.position.y;
+        //    Z = transform.position.z;
+        //    transform.transform.position = new Vector3(X, Y + moveby.y*2, Z + moveby.x);
+        //    Debug.Log(transform.position);
+        //}
     }
 
     public void openSecondInfo()

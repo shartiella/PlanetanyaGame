@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +6,13 @@ public class CameraRotate : MonoBehaviour
 {
     private Camera cam;
     private Vector3 previousPosition;
+    private Vector3 initialPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = GetComponent<Camera>();
+        initialPosition = cam.transform.position;
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class CameraRotate : MonoBehaviour
 
             cam.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
             cam.transform.Rotate(new Vector3(0, 1, 0), -direction.x * 180, Space.World);
-            cam.transform.Translate(new Vector3(0, 0, -10)); //îé÷åí äîöìîä
+            cam.transform.Translate(initialPosition); //Ã®Ã©Ã·Ã¥Ã­ Ã¤Ã®Ã¶Ã¬Ã®Ã¤
 
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
         }
