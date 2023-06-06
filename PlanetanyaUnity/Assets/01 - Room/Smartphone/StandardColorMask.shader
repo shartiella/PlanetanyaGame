@@ -16,9 +16,13 @@
         [NoScaleOffset]
         _Emission ("Emission", 2D) = "white" {}
  
-        _ColorR ("Color (R)", Color) = (1,1,1,1)
-        _ColorG ("Color (G)", Color) = (1,1,1,1)
-        _ColorB ("Color (B)", Color) = (1,1,1,1)
+        
+        _Color ("Color",Color)=(1,1,1,1)
+
+        //_ColorR ("Color (R)", Color) = (1,1,1,1)
+        //_ColorG ("Color (G)", Color) = (1,1,1,1)
+        //_ColorB ("Color (B)", Color) = (1,1,1,1)
+
  
         [HDR]
         _EmissionColor("EmissionColor", Color) = (0,0,0)
@@ -47,13 +51,13 @@
             float2 uv_MainTex;
         };
  
-        fixed4 _ColorR,_ColorG,_ColorB;
+        fixed4 _Color;
  
         void surf (Input IN, inout SurfaceOutputStandardSpecular o) {
  
             fixed4 mask = tex2D (_Mask, IN.uv_MainTex);
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * saturate( ( _ColorR * mask.r + _ColorG * mask.g + _ColorB * mask.b) );
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * saturate( ( _Color * mask.r + _Color * mask.g + _Color * mask.b) );
  
             half occ = tex2D(_OcclusionMap, IN.uv_MainTex).g;
             o.Occlusion = LerpOneTo (occ, _OcclusionStrength);
