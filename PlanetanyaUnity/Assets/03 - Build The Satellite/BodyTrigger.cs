@@ -5,7 +5,7 @@ using UnityEngine;
 public class BodyTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject doneBTN;
-    public static GameObject currentTouchingPart;
+    public static GameObject newPartTouching;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +23,7 @@ public class BodyTrigger : MonoBehaviour
     {
         //Debug.Log("Touching Satellite Body");
         Debug.Log("I'm touching " + other.gameObject.name);
-        currentTouchingPart= other.gameObject;
-
+        newPartTouching = other.gameObject;
         //BuildIU.isTouchingSatBody = true;
 
 
@@ -32,7 +31,7 @@ public class BodyTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        currentTouchingPart = null;
+        newPartTouching = null;
         Debug.Log("Untouching Satellite Body");
 
         //BuildIU.isTouchingSatBody = false;

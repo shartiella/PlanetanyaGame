@@ -37,21 +37,26 @@ public class SatellitePartScript : MonoBehaviour
 
 
 
-        if (BodyTrigger.currentTouchingPart == transform.gameObject)
+        if (BodyTrigger.newPartTouching == transform.gameObject)
         {
+            Debug.Log(BodyTrigger.newPartTouching);
             isCurrentlyConnected = true;
+            showInfo();
+
             //Debug.Log("CURRENTLY TOUCHING BODY");
         }
         else
         {
             isCurrentlyConnected = false;
+            hideInfo();
+
         }
     }
 
     private void OnMouseDown()
     {
 
-
+        AllObjects.currentSatPart = thisSatPart;
         //Debug.Log(thisSatPart.Name + isCorrect);
 
 
@@ -84,11 +89,11 @@ public class SatellitePartScript : MonoBehaviour
         {
             if (dragTimer >= 0.2f)//אם זו הייתה גרירה
             {
-                hideInfo();
+                //hideInfo();
             }
             else //אם זו הייתה לחיצה
             {
-                onMouseClick();
+                //onMouseClick();
             }
             dragTimer = 0; //איפוס טיימר הגרירה
 
@@ -207,13 +212,13 @@ public class SatellitePartScript : MonoBehaviour
     private void showInfo()
     {
         BuildIU.showInfoPanel = true;
-        Debug.Log("showInfoPanel true");
+        //Debug.Log("showInfoPanel true");
     }
 
     private void hideInfo()
     {
         BuildIU.showInfoPanel = false;
-        Debug.Log("showInfoPanel false");
+        //Debug.Log("showInfoPanel false");
 
     }
 
