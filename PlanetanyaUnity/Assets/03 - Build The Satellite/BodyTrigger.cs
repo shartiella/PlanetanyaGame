@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BodyTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject doneBTN;
-    public static GameObject newPartTouching;
+    public GameObject infoPanel;
+    [SerializeField] private AllObjects _allObjects;
+    public static SatPart currentPart;
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +23,35 @@ public class BodyTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Touching Satellite Body");
-        Debug.Log("I'm touching " + other.gameObject.name);
-        newPartTouching = other.gameObject;
-        //BuildIU.isTouchingSatBody = true;
-
-
+        identifyPart(other.gameObject.name);
+        showInfo(currentPart.Description);
+        currentPart.isConnected = true;
+        AllObjects.connectedPart(currentPart);
     }
 
     void OnTriggerExit(Collider other)
     {
-        newPartTouching = null;
-        Debug.Log("Untouching Satellite Body");
+        identifyPart(other.gameObject.name);
+        infoPanel.SetActive(false);
+        currentPart.isConnected = false;
+        AllObjects.disConnectedPart(currentPart);
+        currentPart = null;
+    }
 
-        //BuildIU.isTouchingSatBody = false;
+    void identifyPart(string touchingPartName)
+    {
+        foreach (SatPart sp in _allObjects.satParts)
+        {
+            if (sp.Name == touchingPartName)
+            {
+                currentPart = sp;
+            }
+        }
+    }
+
+    void showInfo(string description)
+    {
+        infoPanel.SetActive(true);
+        infoPanel.GetComponentInChildren<TextMeshProUGUI>().text = description;
     }
 }

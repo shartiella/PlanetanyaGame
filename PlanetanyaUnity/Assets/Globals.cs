@@ -41,7 +41,7 @@ public class Globals : MonoBehaviour
         GroupName = "";
 
         FillSatList();
-        ChooseSat(ChosenSatelliteName);
+        ChooseSat(ChosenSatelliteName);  //לבטל כשצריך
     }
 
     private void Awake()

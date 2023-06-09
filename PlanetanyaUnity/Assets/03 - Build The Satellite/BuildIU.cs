@@ -4,8 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-
+using Codice.CM.Common.Serialization.Replication;
+using System;
 
 public class BuildIU : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class BuildIU : MonoBehaviour
     [SerializeField] private GameObject feedback;
 
     public GameObject InfoPanel;
-    public static bool showInfoPanel = false;
+    //public static bool showInfoPanel = false;
     //public static bool isTouchingSatBody = false;
     //[SerializeField] private GameObject guideInput;
     [SerializeField] private Material correctColor;
@@ -32,6 +32,8 @@ public class BuildIU : MonoBehaviour
     public TextMeshProUGUI correctNum;
     public TextMeshProUGUI wrongNum;
     public TextMeshProUGUI missingNum;
+
+    public static bool showDoneBTN;
 
     [SerializeField] private GameObject Fader;
 
@@ -68,26 +70,20 @@ public class BuildIU : MonoBehaviour
         }
         else if (AllObjects.BuildingState == "building")
         {
-            if (showInfoPanel)
+
+            if(Input.GetMouseButtonUp(0))
             {
-                //Debug.Log(showInfoPanel);
-                InfoPanel.SetActive(true);
-                InfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = AllObjects.currentSatPart.Description;
-            }
-            else
-            {
-                //Debug.Log(showInfoPanel);
-                InfoPanel.SetActive(false);
+                if (numberOfCorrectObjectsConnected + numberOfWrongObjectsConnected > 0)
+                {
+                    doneBTN.SetActive(true);
+                }
+                else
+                {
+                    doneBTN.SetActive(false);
+                }
             }
 
-            if (numberOfCorrectObjectsConnected + numberOfWrongObjectsConnected > 0)
-            {
-                doneBTN.SetActive(true);
-            }
-            else
-            {
-                doneBTN.SetActive(false);
-            }
+
         }
     }
 
@@ -112,14 +108,18 @@ public class BuildIU : MonoBehaviour
     {
         AllObjects.BuildingState = "checking";
         doneBTN.SetActive(false);
+        InfoPanel.SetActive(false);
 
-        if (overallNumberOfCorrectParts == numberOfCorrectObjectsConnected)
+        if (overallNumberOfCorrectParts == numberOfCorrectObjectsConnected && numberOfWrongObjectsConnected==0)
         {
             continueToNextLevel();
         }
         else
         {
             feedback.SetActive(true);
+            //אולי לשנות למשוב יותר כזה:
+            //לוויין ה-משהו- שלכם לא מוכן עדיין! בדקו ברשימה מהם 2 החלקים החסרים
+            //וגם, חיברתם 2 חלקים שלא מתאימים לסוג הלוויין הזה
             mashov.text = "בלוויין ה" + Globals.ChosenSatellite.Kind + " שבניתם יש:";
             correctNum.text = numberOfCorrectObjectsConnected.ToString();
             wrongNum.text = numberOfWrongObjectsConnected.ToString();
@@ -135,18 +135,7 @@ public class BuildIU : MonoBehaviour
         //endWindow.SetActive(false);
 
     }
-    public void openGuideInput()
-    {
-        //feedbackWindow.SetActive(false);
-        //guideInput.SetActive(true);
-    }
-    public void showFeedbackForGuide()
-    {
-        //guideInput.SetActive(false);
-        AllObjects.BuildingState = "feedback";
-        //endWindow.SetActive(true);
 
-    }
     public void continueToNextLevel()
     {
         //endWindow.SetActive(false);
