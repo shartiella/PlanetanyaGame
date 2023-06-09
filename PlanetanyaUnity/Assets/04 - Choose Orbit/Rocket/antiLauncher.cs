@@ -43,7 +43,7 @@ public class antiLauncher : MonoBehaviour
         if (Globals.demo)
         {
             demoInProgress.enabled = true;
-            demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.correctOrbit + " לולסמל המגודל רוגיש";
+            demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.ChosenSatellite.Orbit + " לולסמל המגודל רוגיש";
         }
         else
         {
@@ -51,7 +51,7 @@ public class antiLauncher : MonoBehaviour
             {
                 GetComponent<MeshRenderer>().enabled = false;
                 //instruction.GetComponent<MeshRenderer>().enabled = true;
-                if (Globals.correctOrbit == "none")
+                if (Globals.ChosenSatellite.Orbit == "none")
                 {
                     instructionChooseOrbit.enabled = true;
                     instructionHowToLaunch.enabled = false;

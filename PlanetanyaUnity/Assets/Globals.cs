@@ -25,7 +25,7 @@ public class Globals : MonoBehaviour
 
     public static bool Gravity = false;
     public static Vector3 launchForce= Vector3.zero;
-    public static string correctOrbit = "none";
+    //public static string correctOrbit = "none";
     public static Vector3 lastFingerRelease = new Vector3(0, (float)1.45, -2);
     public static int numberOfLaunches = 0;
     public static bool demo = false;

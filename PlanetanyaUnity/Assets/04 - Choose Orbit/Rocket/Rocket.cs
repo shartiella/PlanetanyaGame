@@ -21,6 +21,7 @@ public class Rocket : MonoBehaviour
     private float pushTimer = 0.0f;
     [SerializeField] private GameObject launcher;
     private float crashTimer = 0.0f;
+    public static float pushForce;
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +40,22 @@ public class Rocket : MonoBehaviour
             //rocket.GetComponent<Rigidbody>().AddForce(Globals.GravityForce(earth, rocket, 0.5f));
             rocketRB.velocity += Globals.GravityForce(earth, rocket, 0.5f);
         }
+
+        if (Globals.rocketStatus == "launched")
+        {
+            if (pushForce > 0)
+            {
+                rocketRB.velocity += transform.up * pushForce;
+                Globals.rocketStatus = "pushed";
+            }
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Globals.correctOrbit == "none")
+        if (Globals.ChosenSatellite.Orbit == "none")
         {
             launcher.SetActive(false);
         }
@@ -133,7 +144,7 @@ public class Rocket : MonoBehaviour
         if (Globals.rocketStatus == "launching")
         {
             launchTimer += Time.deltaTime;
-            Debug.Log(launchTimer);
+            //Debug.Log(launchTimer);
 
             if (launchTimer >= 1)
             {
@@ -146,7 +157,7 @@ public class Rocket : MonoBehaviour
         if (Globals.rocketStatus == "pushed")
         {
             pushTimer += Time.deltaTime;
-            Debug.Log(pushTimer);
+            //Debug.Log(pushTimer);
 
             if (pushTimer >= 0.5)
             {
@@ -200,6 +211,7 @@ public class Rocket : MonoBehaviour
             }
         }
     }
+
 
     //כפתור איפוס הטיל
     public void resetRocket()

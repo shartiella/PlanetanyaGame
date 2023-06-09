@@ -29,13 +29,15 @@ public class UI : MonoBehaviour
     //פקדי UI
     [SerializeField] private Button demoBtn;
     [SerializeField] private TMP_Dropdown dropdownO;
-    [SerializeField] private GameObject pushBtns;
+    [SerializeField] private GameObject pushBtn;
     [SerializeField] private Button resetBtn;
 
     // Start is called before the first frame update
     void Start()
     {
-        Globals.correctOrbit = "MEO";
+        //Globals.correctOrbit = "MEO";
+        Debug.Log("correct Orbit " + Globals.ChosenSatellite.Orbit);
+
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class UI : MonoBehaviour
         if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching" || Globals.rocketStatus == "pushed")
         {
             //בדיקת מסלול
-            if (Globals.orbit == Globals.correctOrbit && Globals.demo == false)
+            if (Globals.orbit == Globals.ChosenSatellite.Orbit && Globals.demo == false)
             {
                 Globals.orbitTime += Time.deltaTime;
                 meter.text = " :ןוכנה לולסמב ןמז" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString();
@@ -52,13 +54,13 @@ public class UI : MonoBehaviour
                 if (Globals.orbitTime >= neededOrbitTime)
                 {
                     winPanel.SetActive(true);
-                    winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "!םתחלצה" + Environment.NewLine + "לולסמל םתעגה" + Environment.NewLine + "!" + Globals.correctOrbit;
+                    winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "!םתחלצה" + Environment.NewLine + "לולסמל םתעגה" + Environment.NewLine + "!" + Globals.ChosenSatellite.Orbit;
                     meter.text = "";
                     Globals.rocketStatus = "inOrbit";
 
                     demoBtn.gameObject.SetActive(false);
                     resetBtn.gameObject.SetActive(false);
-                    pushBtns.gameObject.SetActive(false);
+                    pushBtn.gameObject.SetActive(false);
                     //dropdownO.gameObject.SetActive(false);
                 }
             }
@@ -96,11 +98,11 @@ public class UI : MonoBehaviour
             pushTimes=0;
         }
 
-        if (Globals.correctOrbit == "none")
+        if (Globals.ChosenSatellite.Orbit == "none")
         {
             demoBtn.gameObject.SetActive(false);
             resetBtn.gameObject.SetActive(false);
-            pushBtns.gameObject.SetActive(false);
+            pushBtn.gameObject.SetActive(false);
             //dropdownO.gameObject.SetActive(true);
             //dropdownO.enabled = true;
         }
@@ -108,14 +110,14 @@ public class UI : MonoBehaviour
         {
             demoBtn.gameObject.SetActive(false);
             resetBtn.gameObject.SetActive(true);
-            pushBtns.gameObject.SetActive(true);
+            pushBtn.gameObject.SetActive(false);
             //dropdownO.gameObject.SetActive(false);
         }
         else if (Globals.rocketStatus == "toLaunch")
         {
             demoBtn.gameObject.SetActive(true);
             resetBtn.gameObject.SetActive(false);
-            pushBtns.gameObject.SetActive(true);
+            pushBtn.gameObject.SetActive(false);
             //dropdownO.gameObject.SetActive(true);
             //dropdownO.enabled = true;
 
@@ -124,7 +126,7 @@ public class UI : MonoBehaviour
         {
             demoBtn.gameObject.SetActive(false);
             resetBtn.gameObject.SetActive(true);
-            pushBtns.gameObject.SetActive(true);
+            pushBtn.gameObject.SetActive(true);
             //dropdownO.gameObject.SetActive(true);
             //dropdownO.enabled = false;
         }
@@ -137,7 +139,7 @@ public class UI : MonoBehaviour
         //demoTimer = 0.0f;
         //pushTime = 0.0f;
         //Globals.demo = false;
-        Globals.correctOrbit = "none";
+        //Globals.ChosenSatellite.Orbit = "none";
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -148,14 +150,14 @@ public class UI : MonoBehaviour
         //demoTimer = 0.0f;
         //pushTime = 0.0f;
         //Globals.demo = false;
-        Globals.correctOrbit = "none";
+        //Globals.ChosenSatellite.Orbit = "none";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
     //שיגורי דמו
     public void launchTest()
     {
-        if (Globals.correctOrbit != "none")
+        if (Globals.ChosenSatellite.Orbit != "none")
         {
             Globals.demo = true;
             demoTimer = 0.0f;
@@ -165,7 +167,7 @@ public class UI : MonoBehaviour
             Globals.rocketStatus = "launching";
             Debug.Log(Globals.rocketStatus);
 
-            if (Globals.correctOrbit == "LEO")
+            if (Globals.ChosenSatellite.Orbit == "LEO")
             {
                 Globals.Gravity = true;
                 Xforce = -92;
@@ -173,7 +175,7 @@ public class UI : MonoBehaviour
                 pushAfter = 1;
                 forceAmountonY = -18;
             }
-            else if (Globals.correctOrbit == "MEO")
+            else if (Globals.ChosenSatellite.Orbit == "MEO")
             {
                 Globals.Gravity = true;
                 Xforce = -93;
@@ -182,7 +184,7 @@ public class UI : MonoBehaviour
                 forceAmountonY = -23;
 
             }
-            else if (Globals.correctOrbit == "GEO")
+            else if (Globals.ChosenSatellite.Orbit == "GEO")
             {
                 Globals.Gravity = true;
                 Xforce = -94;
