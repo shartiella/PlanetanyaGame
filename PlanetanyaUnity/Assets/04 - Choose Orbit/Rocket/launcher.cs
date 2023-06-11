@@ -73,8 +73,9 @@ public class launcher : MonoBehaviour
         for (int i = 1; i < dotNumber; i++)
         {
             TrajectoryDots[i] = Instantiate(dotPrefab, trajectoryDotsParent.transform);
-            //TrajectoryDots[i].transform.localScale = new Vector3(1/i, 0.01f, 1/i);
-            Debug.Log(TrajectoryDots[i].transform.position);
+            float relativeScale = (float)(dotNumber - i) / (float)dotNumber;
+            TrajectoryDots[i].transform.localScale = new Vector3(relativeScale, 0.01f, relativeScale);
+            //Debug.Log(TrajectoryDots[i].transform.localScale);
         }
 
     }
@@ -115,6 +116,9 @@ public class launcher : MonoBehaviour
 
     private void OnMouseUp()
     {
+        Debug.Log(Globals.currentMousePosition.ToString());
+
+
         GetComponent<Renderer>().material = defaultColor;
         if (Globals.demo==false)
         {

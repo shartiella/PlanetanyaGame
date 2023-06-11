@@ -36,7 +36,7 @@ public class UI : MonoBehaviour
     void Start()
     {
         //Globals.correctOrbit = "MEO";
-        Debug.Log("correct Orbit " + Globals.ChosenSatellite.Orbit);
+        //Debug.Log("correct Orbit " + Globals.ChosenSatellite.Orbit);
 
     }
 

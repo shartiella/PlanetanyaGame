@@ -21,7 +21,7 @@ public class Rocket : MonoBehaviour
     private float pushTimer = 0.0f;
     [SerializeField] private GameObject launcher;
     private float crashTimer = 0.0f;
-    public static float pushForce;
+    public float pushForce;
 
     // Start is called before the first frame update
     void Start()
@@ -39,15 +39,6 @@ public class Rocket : MonoBehaviour
             //AddGravityForce(EarthRigidbody, rocketRigidbody);
             //rocket.GetComponent<Rigidbody>().AddForce(Globals.GravityForce(earth, rocket, 0.5f));
             rocketRB.velocity += Globals.GravityForce(earth, rocket, 0.5f);
-        }
-
-        if (Globals.rocketStatus == "launched")
-        {
-            if (pushForce > 0)
-            {
-                rocketRB.velocity += transform.up * pushForce;
-                Globals.rocketStatus = "pushed";
-            }
         }
 
     }
@@ -210,6 +201,44 @@ public class Rocket : MonoBehaviour
 
             }
         }
+    }
+
+    public void push()
+    {
+
+        if (Globals.ChosenSatellite.Orbit == "LEO")
+        {
+            pushForce = 0.6f;
+            //3.72  0.12
+            //3.69  0.38
+            //3.63  0.18
+            //3.66  0.41
+            //3.66  0.25
+            //3.69  0.38
+            //3.76  0.54
+            //3.53  0.05
+        }
+        else if (Globals.ChosenSatellite.Orbit == "MEO")
+        {
+            pushForce = 0.8f;
+            //3.85  -0.50
+            //3.85  -0.44
+            //3.85  -0.53
+            //3.89  -0.47
+            //3.82  -0.63
+            //4.02  -0.18
+        }
+        else if (Globals.ChosenSatellite.Orbit == "GEO")
+        {
+            pushForce = 0.9f;
+            //3.98  -0.82
+            //3.85  -1.08
+            //4.02  -0.79
+            //3.82  -1.15
+            //3.98  -0.86
+        }
+        rocketRB.velocity += transform.up * pushForce;
+        Globals.rocketStatus = "pushed";
     }
 
 
