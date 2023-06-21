@@ -17,9 +17,12 @@ public class MoveCamera : MonoBehaviour
     public static string deviceClicked = "";
     public static bool finalPart = false;
 
-    [SerializeField] private GameObject window1;
-    [SerializeField] private GameObject window2;
-    [SerializeField] private GameObject window3;
+    //[SerializeField] private GameObject Story1;
+    //[SerializeField] private GameObject Story2;
+
+    //[SerializeField] private GameObject Inst1;
+    //[SerializeField] private GameObject window2;
+    //[SerializeField] private GameObject window3;
 
     [SerializeField] private GameObject cineMachine;
 
@@ -31,7 +34,7 @@ public class MoveCamera : MonoBehaviour
 
     private void Start()
     {
-        window1.SetActive(true);
+        //Inst1.SetActive(true);
     }
 
     void Update()
@@ -87,13 +90,13 @@ public class MoveCamera : MonoBehaviour
         if (deviceClicked != "")
         {
             //OnDeviceClick();
-            window1.SetActive(false);
-            window2.SetActive(true);
+            //Inst1.SetActive(false);
+            //window2.SetActive(true);
 
         }
         if (finalPart == true)
         {
-            window2.SetActive(false);
+            //window2.SetActive(false);
         }
         //else if (deviceClicked == "TV")
         //{
@@ -124,6 +127,6 @@ public class MoveCamera : MonoBehaviour
     {
         finalPart = true;
         //window2.SetActive(false);
-        window3.SetActive(true);
+       // window3.SetActive(true);
     }
 }

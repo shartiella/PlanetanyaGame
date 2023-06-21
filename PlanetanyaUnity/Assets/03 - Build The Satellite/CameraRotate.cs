@@ -9,7 +9,7 @@ public class CameraRotate : MonoBehaviour
     private Vector3 initialPosition;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cam = GetComponent<Camera>();
         initialPosition = cam.transform.position;

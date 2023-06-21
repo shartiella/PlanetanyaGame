@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427159515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f5c55b7d196d964ea99c86c9f8300d0, type: 3}
   m_Name: 
@@ -1379,6 +1379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinForce: 1
+  RandomRotation: 0
+  rotateX: {x: 0, y: 0, z: 0}
+  rotateY: {x: 0, y: 0, z: 0}
 --- !u!1001 &1097147111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2263,7 +2266,7 @@ SphereCollider:
   m_GameObject: {fileID: 1595776741}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -7661,3 +7664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinForce: 1
+  RandomRotation: 0
+  rotateX: {x: 0, y: 0, z: 0}
+  rotateY: {x: 0, y: 0, z: 0}

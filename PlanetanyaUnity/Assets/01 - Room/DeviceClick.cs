@@ -31,12 +31,14 @@ public class DeviceClick : MonoBehaviour
     }
     public void OnMouseUp()
     {
+        CanvasManager.counter++;
+
         MoveCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
         LookAtTarget.transform.position = transform.position; //הגדרת מיקום המעקב כמיקום האובייקט הלחוץ
 
-
+        WinAnimOpen.exitAnimationTrigger = true;
         //בחירת לוויין
-        Globals.ChosenSatellite.Name = "GPS";//לבטל כדי לבחור לוויין
+        //Globals.ChosenSatellite.Name = "GPS";//לבטל כדי לבחור לוויין
 
     }
 }

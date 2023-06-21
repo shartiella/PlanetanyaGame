@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -44,7 +44,7 @@ public class Clipboard : MonoBehaviour
 
     private void updateList()
     {
-        title.text = "μεειιο " + Globals.ChosenSatellite.Kind + ": ψλιαιν"; 
+        title.text = "ΧΧ•Χ•Χ™Χ™Χ " + Globals.ChosenSatellite.Kind + ": Χ¨Χ›Χ™Χ‘Χ™Χ"; 
 
         string textForList = "";
         int index = 0;
