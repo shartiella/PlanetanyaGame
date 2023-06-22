@@ -19,7 +19,7 @@ public class SatelliteToRocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Globals.rocketStatus == "connectSat")
+        if (Globals.rocketStatus == "connectSat"&&ARcanvasManager.counter==2)
         {
             if (Input.GetMouseButton(0))
             {
@@ -33,6 +33,7 @@ public class SatelliteToRocket : MonoBehaviour
             if (transform.position.y > 3 & transform.position.x > -1 & transform.position.x < 1)
             {
                 Globals.rocketStatus = "ToLaunch";
+                ARcanvasManager.counter = 3;
             }
         }
 

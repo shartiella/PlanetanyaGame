@@ -11,22 +11,26 @@ public class WinAnimMove : MonoBehaviour
     public float delay=0;
     public static bool exitAnimationTrigger;
 
+    [SerializeField] private GameObject upPosition;
+    [SerializeField] private GameObject downPosition;
+
     private Vector3 initialPosition;
     private Vector3 otherPosition;
 
     // Start is called before the first frame update
     void Awake()
     {
-        window = GetComponent<Transform>();
-        initialPosition = window.localPosition;
+        initialPosition = GetComponent<Transform>().localPosition;
 
         if (fromTheTop)
         {
-            otherPosition = new Vector3(0, initialPosition.y + Screen.height, 0);
+            //otherPosition = new Vector3(0, initialPosition.y + Screen.height, 0);
+            otherPosition = upPosition.GetComponent<Transform>().localPosition;
         }
         else
         {
-            otherPosition = new Vector3(0, initialPosition.y - Screen.height, 0);
+            //otherPosition = new Vector3(0, initialPosition.y - Screen.height, 0);
+            otherPosition = downPosition.GetComponent<Transform>().localPosition;
         }
     }
 
@@ -41,16 +45,18 @@ public class WinAnimMove : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.localPosition = otherPosition;
-        transform.LeanMoveLocal(initialPosition, animationTime).setEaseOutBack().setDelay(delay).setOnComplete(enableText);
+        //transform.localPosition = otherPosition;
+        //transform.LeanMoveLocal(initialPosition, animationTime).setEaseOutBack().setDelay(delay).setOnComplete(enableText);
+        enableText();
     }
 
     private void exitAnimation()
     {
         exitAnimationTrigger = false;
 
-        transform.localPosition = initialPosition;
-        transform.LeanMoveLocal(otherPosition, animationTime).setEaseInBack().setOnComplete(disableSelf);
+        //transform.localPosition = initialPosition;
+        //transform.LeanMoveLocal(otherPosition, animationTime).setEaseInBack().setOnComplete(disableSelf);
+        disableSelf();
     }
 
     void enableText()

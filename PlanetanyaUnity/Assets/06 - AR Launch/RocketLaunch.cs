@@ -22,13 +22,13 @@ public class RocketLaunch : MonoBehaviour
     [SerializeField] private GameObject launchBTN;
     [SerializeField] private GameObject cineMachine;
 
-    [SerializeField] private GameObject window1;
-    [SerializeField] private GameObject window2;
-    [SerializeField] private GameObject window3;
-    [SerializeField] private GameObject window4;
-    [SerializeField] private GameObject toNext;
+    //[SerializeField] private GameObject window1;
+    //[SerializeField] private GameObject window2;
+    //[SerializeField] private GameObject window3;
+    //[SerializeField] private GameObject window4;
+    //[SerializeField] private GameObject toNext;
 
-    [SerializeField] private GameObject ARBTN;
+    //[SerializeField] private GameObject ARBTN;
 
 
     // Start is called before the first frame update
@@ -54,31 +54,31 @@ public class RocketLaunch : MonoBehaviour
     {
         if (Globals.rocketStatus == "ARoff")// לפני הפעלת מציאות רבודה
         {
-            ARBTN.SetActive(true);
+            //ARBTN.SetActive(true);
         }
         else if (Globals.rocketStatus == "lookingAround") //מסתכל מסביב עד שהוא מול הטיל
         {
-            ARBTN.SetActive(false);
+            //ARBTN.SetActive(false);
 
-            window1.SetActive(true);
+            //window1.SetActive(true);
             SatelliteToRocket.SetActive(false);
 
         }
         else if(Globals.rocketStatus== "LookAtRocket") //רואה את הטיל - עד שהוא לוחץ על כפתור חיבור הלווין
         {
-            window1.SetActive(false);
-            window2.SetActive(true);
+            //window1.SetActive(false);
+            //window2.SetActive(true);
         }
         else if (Globals.rocketStatus == "connectSat") //חיבור הטיל ללווין - עד שהלוויין מחובר
         {
             SatelliteToRocket.SetActive(true);
-            window2.SetActive(false);
-            window3.SetActive(true);
+            //window2.SetActive(false);
+            //window3.SetActive(true);
         }
         else if (Globals.rocketStatus == "ToLaunch") //מוכן לשיגור - עד שלוחץ על כפתור השיגור
         {
-            window3.SetActive(false);
-            window4.SetActive(true);
+            //window3.SetActive(false);
+            //window4.SetActive(true);
 
             topCone.SetActive(true);
             SatelliteToRocket.SetActive(false);
@@ -88,7 +88,7 @@ public class RocketLaunch : MonoBehaviour
 
         if (rocketRB.position.y > 200)
         {
-            toNext.SetActive(true);
+            //toNext.SetActive(true);
         }
 
     }
@@ -97,11 +97,12 @@ public class RocketLaunch : MonoBehaviour
     {
         if (Globals.rocketStatus == "launching") //משוגר
         {
+            ARcanvasManager.counter = 5;
             //float angle = Mathf.Atan2(rocket.GetComponent<Rigidbody>().velocity.y, rocket.GetComponent<Rigidbody>().velocity.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.Euler(0, 0, angle);
             //rocket.transform.Rotate(0, 180, 90);
 
-            window4.SetActive(false);
+            //window4.SetActive(false);
 
             rocketRB.AddForce(0, yforce, 0);
             launchBTN.SetActive(false);
