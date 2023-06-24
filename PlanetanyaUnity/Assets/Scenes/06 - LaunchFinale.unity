@@ -5020,11 +5020,11 @@ PrefabInstance:
     - target: {fileID: 3391453737137951300, guid: 1dba28ccf4a91ce44856c7ba9c0697ce, type: 3}
       propertyPath: upPosition
       value: 
-      objectReference: {fileID: 356731488}
+      objectReference: {fileID: 356731489}
     - target: {fileID: 3391453737137951300, guid: 1dba28ccf4a91ce44856c7ba9c0697ce, type: 3}
       propertyPath: downPosition
       value: 
-      objectReference: {fileID: 656386795}
+      objectReference: {fileID: 656386796}
     - target: {fileID: 3391453738010547260, guid: 1dba28ccf4a91ce44856c7ba9c0697ce, type: 3}
       propertyPath: m_Enabled
       value: 1

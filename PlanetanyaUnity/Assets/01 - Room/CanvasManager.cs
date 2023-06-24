@@ -149,7 +149,6 @@ public class CanvasManager : MonoBehaviour
     public void advanceCounter()
     {
         counter++;
-        Debug.Log("COUNTER: "+counter);
     }
 
     void showStoryWindow(string textContent)
@@ -187,6 +186,6 @@ public class CanvasManager : MonoBehaviour
 
     void hideInstructionWindow()
     {
-        WinAnimMove.exitAnimationTrigger = true;
+        SlideFromTop.exitAnimationTrigger = true;
     }
 }

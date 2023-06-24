@@ -7,6 +7,8 @@ public class WinAnimPopUp : MonoBehaviour
     private Transform window;
     private Vector3 winScale;
     private Vector3 startScale;
+    public float time=0.5f;
+    public float delay = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,6 +27,6 @@ public class WinAnimPopUp : MonoBehaviour
     private void OnEnable()
     {
         transform.localScale = startScale;
-        transform.LeanScale(winScale, 0.5f).setEaseOutElastic();
+        transform.LeanScale(winScale, time).setDelay(delay).setEaseOutElastic();
     }
 }

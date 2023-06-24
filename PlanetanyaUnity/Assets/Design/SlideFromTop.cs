@@ -1,18 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WinAnimMove : MonoBehaviour
+public class SlideFromTop : MonoBehaviour
 {
     private Transform window;
-    [SerializeField] private bool fromTheTop;
     [SerializeField] private float animationTime = 0.5f;
     [SerializeField] private GameObject textGameObject;
-    public float delay=0;
+    public float delay = 0;
     public static bool exitAnimationTrigger;
-
-    //[SerializeField] private Transform upPosition;
-    //[SerializeField] private Transform downPosition;
 
     private Vector3 initialPosition;
     private Vector3 otherPosition;
@@ -22,16 +18,8 @@ public class WinAnimMove : MonoBehaviour
     {
         initialPosition = GetComponent<Transform>().localPosition;
 
-        if (fromTheTop)
-        {
-            otherPosition = new Vector3(0, initialPosition.y + 500, 0);
-            //otherPosition = upPosition.localPosition;
-        }
-        else
-        {
-            otherPosition = new Vector3(0, initialPosition.y - 500, 0);
-            //otherPosition = downPosition.localPosition;
-        }
+        otherPosition = new Vector3(0, initialPosition.y + 500, 0);
+
     }
 
     // Update is called once per frame
@@ -46,7 +34,7 @@ public class WinAnimMove : MonoBehaviour
     private void OnEnable()
     {
         transform.localPosition = otherPosition;
-        transform.LeanMoveLocal(initialPosition, animationTime).setEaseOutBack().setDelay(delay).setOnComplete(enableText);
+        transform.LeanMoveLocal(initialPosition, animationTime).setEaseOutQuart().setDelay(delay).setOnComplete(enableText);
     }
 
     private void exitAnimation()
@@ -54,8 +42,7 @@ public class WinAnimMove : MonoBehaviour
         exitAnimationTrigger = false;
 
         transform.localPosition = initialPosition;
-        transform.LeanMoveLocal(otherPosition, animationTime).setEaseInBack().setOnComplete(disableSelf);
-        //disableSelf();
+        transform.LeanMoveLocal(otherPosition, animationTime).setEaseInQuart().setOnComplete(disableSelf);
     }
 
     void enableText()
@@ -67,5 +54,4 @@ public class WinAnimMove : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
 }
