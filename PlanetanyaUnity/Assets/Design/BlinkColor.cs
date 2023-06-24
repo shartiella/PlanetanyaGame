@@ -22,7 +22,7 @@ public class BlinkColor : MonoBehaviour
 
     void Update()
     {
-        if (MoveCamera.deviceClicked == "" && glowOn)
+        if (RoomCamera.deviceClicked == "" && glowOn)
         {
             Color color = Color.Lerp(startColor, endColor, Mathf.PingPong(Time.time * speed, 1));
             float intensity = Mathf.PingPong(Time.time * speed * glow, glow) - 1;
