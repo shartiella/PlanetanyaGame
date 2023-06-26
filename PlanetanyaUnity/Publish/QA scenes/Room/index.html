@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | {{{ PRODUCT_NAME }}}</title>
-    <meta name="description" content="{{{ DESCRIPTION }}}">
+    <title>Unity WebGL Player | Planetanya Game</title>
+    <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="stylesheet" href="./styles/style.css">
@@ -39,26 +39,20 @@
         <div id="unity-webgl-logo" style="display:none"></div>
         <button id="enterar" value="Enter AR" style="display:none" disabled>מסך מלא</button>
         <div id="unity-webxr-link" style="display:none">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
-        <div id="unity-build-title" style="display:none">{{{ PRODUCT_NAME }}}</div>
+        <div id="unity-build-title" style="display:none">Planetanya Game</div>
       </div>
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+      var loaderUrl = buildUrl + "/Room.loader.js";
       var config = {
-        dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
-        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
-        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
-#if MEMORY_FILENAME
-        memoryUrl: buildUrl + "/{{{ MEMORY_FILENAME }}}",
-#endif
-#if SYMBOLS_FILENAME
-        symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
-#endif
+        dataUrl: buildUrl + "/Room.data",
+        frameworkUrl: buildUrl + "/Room.framework.js",
+        codeUrl: buildUrl + "/Room.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "{{{ COMPANY_NAME }}}",
-        productName: "{{{ PRODUCT_NAME }}}",
-        productVersion: "{{{ PRODUCT_VERSION }}}",
+        companyName: "Ella and Noa - HIT",
+        productName: "Planetanya Game",
+        productVersion: "0.1",
       };
 
       var container = document.querySelector("#unity-container");
@@ -68,11 +62,8 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var unityInstance = null;
-      {{{ WEBXR_POLYFILL_CONFIG }}}
+      
 
-#if BACKGROUND_FILENAME
-      canvas.style.background = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";
-#endif
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
