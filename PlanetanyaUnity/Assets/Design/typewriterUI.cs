@@ -25,7 +25,9 @@ public class typewriterUI : MonoBehaviour
 	// Use this for initialization
 	void OnEnable()
 	{
-		_text = GetComponent<Text>()!;
+        TypeWriterIsFinished = false;
+
+        _text = GetComponent<Text>()!;
 		_tmpProText = GetComponent<TMP_Text>()!;
 
 		if(_text != null)
@@ -74,8 +76,6 @@ public class typewriterUI : MonoBehaviour
 
 	IEnumerator TypeWriterTMP()
     {
-        TypeWriterIsFinished = false;
-
         _tmpProText.text = leadingCharBeforeDelay ? leadingChar : "";
 
         yield return new WaitForSeconds(delayBeforeStart);

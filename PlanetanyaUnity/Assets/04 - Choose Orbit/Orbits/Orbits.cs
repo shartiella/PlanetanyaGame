@@ -65,28 +65,29 @@ public class Orbits : MonoBehaviour
         if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching")
         {
             //מציאת המרחק בין הטיל לכדור הארץ
-            Vector3 EarthRocketVec = earth.position - rocket.position;
-            float EarthRocketDistance = EarthRocketVec.magnitude;
+            //Vector3 EarthRocketVec = earth.position - rocket.position;
+            //float EarthRocketDistance = EarthRocketVec.magnitude;
+
 
             //מיון המרחקים למסלולים
-            if (EarthRocketDistance < 1.9)
+            if (Rocket.EarthRocketDistance < 1.9)
             {
                 Globals.orbit = "ground";
                 Globals.orbitTime = 0;
             }
-            else if (EarthRocketDistance > 2 && EarthRocketDistance < 3)
+            else if (Rocket.EarthRocketDistance > 2 && Rocket.EarthRocketDistance < 3)
             {
                 Globals.orbit = "LEO";
             }
-            else if (EarthRocketDistance > 3.1 && EarthRocketDistance < 4.2)
+            else if (Rocket.EarthRocketDistance > 3.1 && Rocket.EarthRocketDistance < 4.2)
             {
                 Globals.orbit = "MEO";
             }
-            else if (EarthRocketDistance > 4.3 && EarthRocketDistance < 5.5)
+            else if (Rocket.EarthRocketDistance > 4.3 && Rocket.EarthRocketDistance < 5.5)
             {
                 Globals.orbit = "GEO";
             }
-            else if (EarthRocketDistance > 5.5)
+            else if (Rocket.EarthRocketDistance > 5.5)
             {
                 Globals.orbit = "far";
                 Globals.orbitTime = 0;
@@ -96,9 +97,9 @@ public class Orbits : MonoBehaviour
                 Globals.orbitTime = 0;
             }
 
-            if (EarthRocketDistance > 12)
+            if (Rocket.EarthRocketDistance > 12)
             {
-                Globals.rocketStatus = "crashed";
+                //Globals.rocketStatus = "crashed";
             }
 
             //Debug.Log("distance " + EarthRocketDistance);

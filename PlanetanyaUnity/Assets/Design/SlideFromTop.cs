@@ -9,6 +9,7 @@ public class SlideFromTop : MonoBehaviour
     [SerializeField] private GameObject textGameObject;
     public float delay = 0;
     public static bool exitAnimationTrigger;
+    public static bool activeAnimation;
 
     private Vector3 initialPosition;
     private Vector3 otherPosition;
@@ -25,21 +26,24 @@ public class SlideFromTop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (exitAnimationTrigger)
+        if (exitAnimationTrigger && !activeAnimation)
         {
+            exitAnimationTrigger = false;
             exitAnimation();
         }
     }
 
     private void OnEnable()
     {
+        activeAnimation = true;
         transform.localPosition = otherPosition;
         transform.LeanMoveLocal(initialPosition, animationTime).setEaseOutQuart().setDelay(delay).setOnComplete(enableText);
     }
 
     private void exitAnimation()
     {
-        exitAnimationTrigger = false;
+        typewriterUI.TypeWriterIsFinished = false;
+        activeAnimation = true;
 
         transform.localPosition = initialPosition;
         transform.LeanMoveLocal(otherPosition, animationTime).setEaseInQuart().setOnComplete(disableSelf);
@@ -47,11 +51,13 @@ public class SlideFromTop : MonoBehaviour
 
     void enableText()
     {
+        activeAnimation = false;
         textGameObject.SetActive(true);
     }
 
     void disableSelf()
     {
+        activeAnimation = false;
         gameObject.SetActive(false);
     }
 }
