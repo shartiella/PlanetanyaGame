@@ -23,6 +23,7 @@ public class launcher : MonoBehaviour
     [SerializeField] private GameObject Earth;
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject trajectoryDotsParent;
+    [SerializeField] private GameObject resetBTN;
 
     [SerializeField] private Vector3 currentPosition;
     [SerializeField] private Vector3 currentSpeed;
@@ -118,10 +119,11 @@ public class launcher : MonoBehaviour
             rocket.transform.LookAt(TrajectoryDots[3].transform);
             rocket.transform.Rotate(-90, 180, 0);
 
-            if (rocket.transform.rotation.eulerAngles.z == 180 && rocket.transform.rotation.eulerAngles.x > 300 && (rocket.transform.rotation.eulerAngles.y > 270 || rocket.transform.rotation.eulerAngles.y < 90))
+            Debug.Log(rocket.transform.rotation.eulerAngles);
+
+            if (rocket.transform.rotation.eulerAngles.z == 180 && rocket.transform.rotation.eulerAngles.x > 300 && (rocket.transform.rotation.eulerAngles.y < 269 || rocket.transform.rotation.eulerAngles.y > 90))
             {
                 OrbitManager.LaunchTowardsEarth = true;
-                Debug.Log("LaunchTowardsEarth");
             }
             else
             {
@@ -132,6 +134,16 @@ public class launcher : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (OrbitManager.LaunchTowardsEarth)
+        {
+            OrbitManager.lastLaunchWasTowardsEarth = true;
+            Debug.Log("LaunchedTowardsEarth");
+        }
+        else
+        {
+            OrbitManager.lastLaunchWasTowardsEarth = false;
+        }
+
         //Debug.Log(Globals.currentMousePosition.ToString());
         Globals.lastLaunchForce=Globals.launchForce;
         Debug.Log("launch force: " + Globals.launchForce);
@@ -151,6 +163,11 @@ public class launcher : MonoBehaviour
             Globals.rocketStatus = "LAUNCH"; //קריאה לשיגור
             transform.position = initialLauncherPosition; //חזרה למיקום ההתחלתי
             GetComponent<MeshRenderer>().enabled = false; //הסתרה
+
+            if (OrbitManager.showResetAfterLaunch)
+            {
+                resetBTN.SetActive(true);
+            }
 
             //מחיקת הנקודות
             for (int i = 1; i < dotNumber; i++)

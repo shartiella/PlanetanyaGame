@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.WSA;
+using System;
 
 public class OrbitManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class OrbitManager : MonoBehaviour
 
     public static int counter = 0;
     public static bool showLauncherAfterCrash = false;
+    public static bool showResetAfterLaunch = false;
 
     [SerializeField] private GameObject launcher;
     [SerializeField] private GameObject antiLauncher;
@@ -26,8 +28,13 @@ public class OrbitManager : MonoBehaviour
     [SerializeField] private GameObject Orbits;
     [SerializeField] private GameObject OrbitsNames;
 
+    [SerializeField] private GameObject demoBTN;
+
     public static bool crashFromEarthCollision=false;
     public static bool LaunchTowardsEarth = false;
+    public static bool lastLaunchWasTowardsEarth = false;
+
+    [SerializeField] private float neededOrbitTime=5;
 
     public static Vector3 lastFingerRelease;
 
@@ -160,7 +167,7 @@ public class OrbitManager : MonoBehaviour
             case 14: //משוב על עוצמת השיגור
                 launcher.SetActive(true);
 
-                if (LaunchTowardsEarth)
+                if (lastLaunchWasTowardsEarth)
                 {
                     //לתוך האדמה
                     showStoryWindow("כדאי לזכור שלשגר טילים כלפי האדמה זה לא מאוד אפקטיבי...", false);
@@ -330,6 +337,9 @@ public class OrbitManager : MonoBehaviour
 
             case 34:
                 launcher.SetActive(true);
+                showLauncherAfterCrash = true;
+                showResetAfterLaunch= true;
+                Rocket.launchCounter = 0;
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
                     showInstructionWindow("שגרו את הטיל למסלול לווייני נמוך");
@@ -350,8 +360,17 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 35:
+                if (Globals.rocketStatus=="crashed" && Rocket.launchCounter >= 2)
+                {
+                    demoBTN.SetActive(true);
+                }
+                if (Globals.rocketStatus == "pushed")
+                {
+                    pushBTN.SetActive(false);
+                }
                 //להציג כפתור דמו אחרי 2 התרסקויות
                 //בדיקה האם הטיל הגיע למסלול
+                checkOrbit();
                 break;
         }
 
@@ -416,6 +435,36 @@ public class OrbitManager : MonoBehaviour
             {
                 SlideFromTop.exitAnimationTrigger = true;
             }
+        }
+    }
+
+    void checkOrbit()
+    {
+        if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching" || Globals.rocketStatus == "pushed")
+        {
+            //בדיקת מסלול
+            if (Globals.orbit == Globals.ChosenSatellite.Orbit && Globals.demo == false)
+            {
+                Globals.orbitTime += Time.deltaTime;
+                Debug.Log(" :ןוכנה לולסמב ןמז" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString());
+
+                if (Globals.orbitTime >= neededOrbitTime)
+                {
+                    //winPanel.SetActive(true);
+                    //winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "!םתחלצה" + Environment.NewLine + "לולסמל םתעגה" + Environment.NewLine + "!" + Globals.ChosenSatellite.Orbit;
+                    //meter.text = "";
+                    Globals.rocketStatus = "inOrbit";
+
+                    //demoBtn.gameObject.SetActive(false);
+                    //resetBtn.gameObject.SetActive(false);
+                    //pushBtn.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                //meter.text = "";
+            }
+
         }
     }
 }
