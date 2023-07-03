@@ -23,7 +23,6 @@ public class launcher : MonoBehaviour
     [SerializeField] private GameObject Earth;
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject trajectoryDotsParent;
-    [SerializeField] private GameObject resetBTN;
 
     [SerializeField] private Vector3 currentPosition;
     [SerializeField] private Vector3 currentSpeed;
@@ -163,11 +162,6 @@ public class launcher : MonoBehaviour
             Globals.rocketStatus = "LAUNCH"; //קריאה לשיגור
             transform.position = initialLauncherPosition; //חזרה למיקום ההתחלתי
             GetComponent<MeshRenderer>().enabled = false; //הסתרה
-
-            if (OrbitManager.showResetAfterLaunch)
-            {
-                resetBTN.SetActive(true);
-            }
 
             //מחיקת הנקודות
             for (int i = 1; i < dotNumber; i++)

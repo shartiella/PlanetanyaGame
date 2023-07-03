@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.WSA;
 using System;
 
 public class OrbitManager : MonoBehaviour
@@ -14,7 +13,7 @@ public class OrbitManager : MonoBehaviour
 
     private TextMeshProUGUI InstructionTXT;
     [SerializeField] private GameObject InstructionBTN;
-    private TextMeshProUGUI StoryTXT;
+    [SerializeField] private TMP_Text StoryTXT;
     [SerializeField] private GameObject StoryBTN;
     [SerializeField] private GameObject pushBTN;
 
@@ -27,6 +26,7 @@ public class OrbitManager : MonoBehaviour
 
     [SerializeField] private GameObject Orbits;
     [SerializeField] private GameObject OrbitsNames;
+    [SerializeField] private GameObject resetBTN;
 
     [SerializeField] private GameObject demoBTN;
 
@@ -37,6 +37,10 @@ public class OrbitManager : MonoBehaviour
     [SerializeField] private float neededOrbitTime=5;
 
     public static Vector3 lastFingerRelease;
+
+    //float eccentricityPercent =0;
+    string eccentricityFeedback = "";
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +55,7 @@ public class OrbitManager : MonoBehaviour
         switch (counter)
         {
             case 0:
-                showStoryWindow("איך שולחים לוויין לחלל? \n משגרים אותו באמצעות טיל", true);
+                showStoryWindow("איך שולחים לוויין לחלל?\nמשגרים אותו באמצעות טיל", true);
                 break;
 
             case 1:
@@ -193,7 +197,7 @@ public class OrbitManager : MonoBehaviour
                 {
                     //בינוני
                     hideInstructionWindow();
-                    showStoryWindow("שיגרתם את הטיל עם עוצמה מתאימה. הטיל הצליח להתרומם מכדור הארץ, אבל בסוף נפל בחזרה.", true);
+                    showStoryWindow("כל הכבוד! שיגרתם את הטיל בעוצמה מתאימה.", true);
                 }
 
                 if (typewriterUI.TypeWriterIsFinished)
@@ -220,7 +224,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 16:
-                showStoryWindow("גם כשמשגרים בעוצמה המתאימה, הטיל עדיין מתרסק בסוף. למה בעצם?", true);
+                showStoryWindow("אבל, גם עכשיו - הטיל עדיין מתרסק בסוף. למה בעצם?", true);
                 break;
 
             case 17:
@@ -238,8 +242,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 20:
-                showInstructionWindow("שגרו את הטיל למסלול מעגלי ויציב סביב כדור הארץ");
-                SlideFromTop.exitAnimationTrigger = false;
+                showStoryWindow("כדי להפוך את המסלול האליפטי למסלול מעגלי ויציב, צריך לתת לטיל דחיפה קלה אחרי השיגור", false);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     counter = 21;
@@ -247,10 +250,12 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 21:
-                showStoryWindow("כדי להפוך את המסלול האליפטי למסלול מעגלי ויציב, צריך לתת לטיל דחיפה קלה אחרי השיגור", true);
-                if (typewriterUI.TypeWriterIsFinished)
+                showInstructionWindow("הכניסו את הטיל למסלול מעגלי ויציב בעזרת דחיפה");
+                SlideFromTop.exitAnimationTrigger = false;
+                if (typewriterUI.TypeWriterIsFinished && Globals.rocketStatus=="pushed")
                 {
-                    pushBTN.SetActive(true);
+                    counter = 22;
+                    showResetAfterLaunch = true;
                 }
                 break;
 
@@ -270,52 +275,104 @@ public class OrbitManager : MonoBehaviour
 
             case 25:
                 showStoryWindow("את הדחיפה צריך לתת כשהטיל נמצא בנקודה הרחוקה ביותר של האליפסה מכדור הארץ", false);
-                if (Rocket.Eccentricity > 0 && Rocket.Eccentricity < 0.2)
+                if (typewriterUI.TypeWriterIsFinished && Globals.rocketStatus == "pushed")
                 {
-                    pushBTN.SetActive(false);
-                    hideInstructionWindow();
-                    hideStoryWindow();
-                    counter = 26;
+                    counter= 26;
                 }
                 break;
 
             case 26:
-                showStoryWindow("כל הכבוד - אתם יודעים עכשיו לשגר טיל למסלול!", true);
+                hideStoryWindow();
+                counter= 27;
                 break;
 
-            case 27:
-                hideStoryWindow();
-                Globals.rocketStatus = "crashed";
-                showLauncherAfterCrash = false;
-                counter = 28;
+                case 27:
+                //eccentricityPercent = Mathf.Round((1 - Rocket.Eccentricity) * 10);
+                //eccentricityFeedback = "המסלול שלכם מעגלי ב-%0" + eccentricityPercent.ToString();
+                if (Rocket.Eccentricity > 1)
+                {
+                    eccentricityFeedback = "הטיל שלכם לא במסלול בכלל";
+                }
+                else if (Rocket.Eccentricity > 0.15)
+                {
+                    eccentricityFeedback = "הטיל שלכם במסלול אליפטי מידי";
+                }
+                else
+                {
+                    pushBTN.SetActive(false);
+                    resetBTN.SetActive(false);
+                    hideInstructionWindow();
+                    hideStoryWindow();
+                    counter = 29;
+                }
+                showStoryWindow(eccentricityFeedback, false);
+                if (typewriterUI.TypeWriterIsFinished)
+                {
+                    counter = 28;
+                }
                 break;
 
             case 28:
-                showStoryWindow("סביב כדור הארץ יש כמה מסלולים שונים של לוויינים",true);
-                Orbits.SetActive(true);
+                //eccentricityPercent = Mathf.Round((1 - Rocket.Eccentricity) * 10);
+                //eccentricityFeedback = "המסלול שלכם מעגלי ב-%0" + eccentricityPercent.ToString();
+
+                if (Rocket.Eccentricity > 1)
+                {
+                    eccentricityFeedback = "הטיל שלכם לא במסלול בכלל";
+                }
+                else if (Rocket.Eccentricity > 0.15)
+                {
+                    eccentricityFeedback = "הטיל שלכם במסלול אליפטי מידי";
+                }
+                else
+                {
+                    pushBTN.SetActive(false);
+                    resetBTN.SetActive(false);
+                    hideInstructionWindow();
+                    hideStoryWindow();
+                    counter = 29;
+                }
+
+                StoryWindow.GetComponentInChildren<TextMeshProUGUI>().text = eccentricityFeedback;
                 break;
 
             case 29:
+                showStoryWindow("כל הכבוד - אתם יודעים עכשיו לשגר טיל למסלול!", true);
+                break;
+
+            case 30:
+                hideStoryWindow();
+                Globals.rocketStatus = "crashed";
+                showLauncherAfterCrash = false;
+                counter = 31;
+                break;
+
+            case 31:
+                showStoryWindow("סביב כדור הארץ יש כמה מסלולים שונים של לוויינים", true);
+                Orbits.SetActive(true);
+                break;
+
+            case 32:
                 hideStoryWindow();
                 typewriterUI.TextToType = "נמוך\nבינוני\nגיאוסינכרוני";
                 OrbitsNames.SetActive(true);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
-                    counter = 30;
+                    counter = 33;
                 }
                 break;
 
-            case 30:
+            case 33:
                 showStoryWindow("אלה שלושת המסלולים העיקריים", true);
                 StoryWinAnim.exitAnimationTrigger = false;
                 break;
 
-            case 31:
+            case 34:
                 hideStoryWindow();
-                counter = 32;
+                counter = 35;
                 break;
 
-            case 32:
+            case 35:
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
                     showStoryWindow("לוויין המיפוי שבניתם צריך לראות את כדור הארץ מקרוב, ולכן...", true);
@@ -330,15 +387,14 @@ public class OrbitManager : MonoBehaviour
                 }
                 break;
 
-            case 33:
+            case 36:
                 hideStoryWindow();
-                counter = 34;
+                counter = 37;
                 break;
 
-            case 34:
+            case 37:
                 launcher.SetActive(true);
                 showLauncherAfterCrash = true;
-                showResetAfterLaunch= true;
                 Rocket.launchCounter = 0;
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
@@ -355,22 +411,68 @@ public class OrbitManager : MonoBehaviour
                 SlideFromTop.exitAnimationTrigger = false;
                 if (typewriterUI.TypeWriterIsFinished)
                 {
-                    counter = 35;
+                    counter = 38;
                 }
                 break;
 
-            case 35:
-                if (Globals.rocketStatus=="crashed" && Rocket.launchCounter >= 2)
+            case 38:
+                if (Globals.rocketStatus == "crashed")
                 {
-                    demoBTN.SetActive(true);
+                    OrbitsNames.SetActive(false);
+                }
+                if (Globals.rocketStatus == "crashed" && Rocket.launchCounter >= 2)
+                {
+                    if (!Globals.demo)
+                    {
+                        demoBTN.SetActive(true);
+                    }
+                    else
+                    {
+                        demoBTN.SetActive(false);
+                    }
                 }
                 if (Globals.rocketStatus == "pushed")
                 {
                     pushBTN.SetActive(false);
                 }
-                //להציג כפתור דמו אחרי 2 התרסקויות
-                //בדיקה האם הטיל הגיע למסלול
-                checkOrbit();
+                if (checkOrbit())
+                {
+                    counter = 39;
+                }
+                break;
+
+            case 39:
+                hideInstructionWindow();
+                hideStoryWindow();
+                demoBTN.SetActive(false);
+                Orbits.SetActive(false);
+                resetBTN.SetActive(false);
+                counter = 40;
+                break;
+
+            case 40:
+                if (Globals.ChosenSatellite.Orbit == "LEO")
+                {
+                    showStoryWindow("כל הכבוד! הצלחתם לשגר טיל למסלול לווייני נמוך", true);
+                }
+                else if (Globals.ChosenSatellite.Orbit == "MEO")
+                {
+                    showStoryWindow("כל הכבוד! הצלחתם לשגר טיל למסלול לווייני בינוני", true);
+                }
+                else if (Globals.ChosenSatellite.Orbit == "GEO")
+                {
+                    showStoryWindow("כל הכבוד! הצלחתם לשגר טיל למסלול לווייני גיאוסינכרוני", true);
+                }
+                break;
+
+            case 41:
+                hideStoryWindow();
+                counter = 42;
+                break;
+
+            case 42:
+                showStoryWindow("עכשיו אחרי שבניתם לוויין ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויון שלכם לחלל!", true);
+
                 break;
         }
 
@@ -438,7 +540,7 @@ public class OrbitManager : MonoBehaviour
         }
     }
 
-    void checkOrbit()
+    private bool checkOrbit()
     {
         if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching" || Globals.rocketStatus == "pushed")
         {
@@ -455,16 +557,25 @@ public class OrbitManager : MonoBehaviour
                     //meter.text = "";
                     Globals.rocketStatus = "inOrbit";
 
+                    return true;
                     //demoBtn.gameObject.SetActive(false);
                     //resetBtn.gameObject.SetActive(false);
                     //pushBtn.gameObject.SetActive(false);
+                }
+                else
+                {
+                    return false;
                 }
             }
             else
             {
                 //meter.text = "";
+                return false;
             }
-
+        }
+        else
+        {
+            return false;
         }
     }
 }

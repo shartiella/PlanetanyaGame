@@ -18,6 +18,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] private ParticleSystem fire;
     [SerializeField] private ParticleSystem smoke;
     [SerializeField] private ParticleSystem trail;
+    [SerializeField] private ParticleSystem trailSUCCESS;
     [SerializeField] private ParticleSystem explosion;
     private float launchTimer = 0.0f;
     private float pushTimer = 0.0f;
@@ -35,6 +36,8 @@ public class Rocket : MonoBehaviour
     public static int launchCounter = 0;
 
     [SerializeField] private GameObject pushBTN;
+    [SerializeField] private GameObject demoBTN;
+    [SerializeField] private GameObject resetBTN;
 
     //לבטל כשנדע מה טוב
     [SerializeField] private float Xforce;
@@ -170,9 +173,6 @@ public class Rocket : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
             rocket.transform.Rotate(0, 180, 90);
 
-            var trailEmission = trail.emission; // Stores the module in a local variable
-            trailEmission.enabled = true; // Applies the new value directly to the Particle System
-
             if (Globals.rocketStatus == "launching")
             {
                 var fireEmission = fire.emission;
@@ -183,6 +183,8 @@ public class Rocket : MonoBehaviour
                 smokeEmission.enabled = true;
                 smokeEmission.rateOverTime = 400;
 
+                var trailEmission = trail.emission;
+                trailEmission.enabled = true;
             }
             else if (Globals.rocketStatus == "pushed")
             {
@@ -194,6 +196,27 @@ public class Rocket : MonoBehaviour
                 smokeEmission.enabled = true;
                 smokeEmission.rateOverTime = 400;
 
+                var trailEmission = trail.emission;
+                trailEmission.enabled = true;
+            }
+            else if (Globals.rocketStatus == "inOrbit" && !Globals.demo)
+            {
+                var trailEmission = trail.emission;
+                trailEmission.enabled = false;
+
+                var trailOK = trailSUCCESS.emission;
+                trailOK.enabled = true;
+            }
+            else if (Globals.rocketStatus=="toLaunch")
+            {
+                var fireEmission = fire.emission;
+                fireEmission.enabled = false;
+
+                var smokeEmission = smoke.emission;
+                smokeEmission.enabled = false;
+
+                var trailEmission = trail.emission;
+                trailEmission.enabled = false;
             }
             else
             {
@@ -202,6 +225,15 @@ public class Rocket : MonoBehaviour
 
                 var smokeEmission = smoke.emission;
                 smokeEmission.enabled = false;
+            }
+
+            if (OrbitManager.showResetAfterLaunch && OrbitManager.counter<=39)
+            {
+                resetBTN.SetActive(true);
+            }
+            else
+            {
+                resetBTN.SetActive(false);
             }
         }
         else
@@ -212,17 +244,21 @@ public class Rocket : MonoBehaviour
 
         if (Globals.rocketStatus == "launching")
         {
+            if (OrbitManager.counter >= 20 && !Globals.demo)
+            {
+                pushBTN.SetActive(true);
+            }
+
             launchTimer += Time.deltaTime;
             //Debug.Log(launchTimer);
 
             if (launchTimer >= 1)
             {
                 Globals.rocketStatus = "launched";
-                if (OrbitManager.counter > 24)
-                {
-                    pushBTN.SetActive(true);
-                }
-                //MINearthRocketDistance = EarthRocketDistance;
+                //if (OrbitManager.counter > 24 && !Globals.demo)
+                //{
+                //    pushBTN.SetActive(true);
+                //}
                 launchTimer = 0;
             }
         }
@@ -339,10 +375,7 @@ public class Rocket : MonoBehaviour
             //MINearthRocketDistance = 0;
             //MAXearthRocketDistance = 0;
             //combinedDistancesFromEarth = 0;
-            if (OrbitManager.counter > 24)
-            {
-                pushBTN.SetActive(false);
-            }
+
 
             rocketRB.velocity = Vector3.zero;
             rocketRB.angularVelocity = Vector3.zero;
@@ -370,6 +403,9 @@ public class Rocket : MonoBehaviour
             {
                 launcher.SetActive(false);
             }
+
+            pushBTN.SetActive(false);
+            resetBTN.SetActive(false);
             //launcher.GetComponent<MeshRenderer>().enabled = true;
 
         }
@@ -396,7 +432,10 @@ public class Rocket : MonoBehaviour
     {
         if (Globals.ChosenSatellite.Orbit != "none")
         {
+            resetRocket();
+
             Globals.demo = true;
+            demoBTN.SetActive(false);
             demoTimer = 0.0f;
             //pushTime = 0.0f;
             Debug.Log(Globals.demo);

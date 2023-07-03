@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Planetanya Game</title>
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="jScripts/JavaScript.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+            <div id="pregame" class="hide">
+                <section id="guide" class="hide">
+                  <p>פה אפשר להכניס בדיקת מיקום כדי לוודא שהם בפלנתניה</p>
+                </section>
+                <section id="group" class="">
+                    <h2>שלום קבוצה!</h2>
+                    <p>הקלידו כאן את שם הקבוצה שלכם:</p>
+                    <input id="groupname" type="text" placeholder="שם קבוצה"> <br/>
+                    <input id="btn" type="button" value="כניסה למשחק" onclick="getgroupname()">
+                </section>
+            </div>
+
+    <div id="unity-container">
+      <div id="unity-canvas-container" style="width: 100%; height: 100%;">
+        <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
+      </div>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo" style="display:none"></div>
+        <button id="enterar" value="Enter AR" style="display:none" disabled>מסך מלא</button>
+        <div id="unity-webxr-link" style="display:none">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
+        <div id="unity-build-title" style="display:none">Planetanya Game</div>
+      </div>
+    </div>
+    <script>
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/Orbit.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/Orbit.data",
+        frameworkUrl: buildUrl + "/Orbit.framework.js",
+        codeUrl: buildUrl + "/Orbit.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Ella and Noa - HIT",
+        productName: "Planetanya Game",
+        productVersion: "0.1",
+      };
+
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var canvasContainer = document.querySelector("#unity-canvas-container");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var unityInstance = null;
+      
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((instance) => {
+          unityInstance = instance;
+          loadingBar.style.display = "none";
+          if (fullscreenButton)
+          {
+            fullscreenButton.onclick = () => {
+              unityInstance.SetFullscreen(1);
+            };
+          }
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+
+      let enterARButton = document.getElementById('enterar');
+
+      document.addEventListener('onARSupportedCheck', function (event) {
+        enterARButton.disabled = !event.detail.supported;
+      }, false);
+
+      enterARButton.addEventListener('click', function (event) {
+        unityInstance.Module.WebXR.toggleAR();
+      }, false);
+    </script>
+  </body>
+</html>
