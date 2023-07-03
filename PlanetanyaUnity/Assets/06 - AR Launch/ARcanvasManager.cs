@@ -11,10 +11,10 @@ public class ARcanvasManager : MonoBehaviour
     [SerializeField] private GameObject StoryWindow;
     [SerializeField] private bool showBtnStoryWin;
 
-    private TextMeshProUGUI InstructionTXT;
     [SerializeField] private GameObject InstructionBTN;
-    private TextMeshProUGUI StoryTXT;
     [SerializeField] private GameObject StoryBTN;
+    [SerializeField] private GameObject blackBG;
+    [SerializeField] private GameObject arrivedBTN;
 
     public static int counter = 0;
     public TextMeshProUGUI countext;
@@ -22,18 +22,10 @@ public class ARcanvasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
-        StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
+        //InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
+        //StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
 
-        if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
-        {
-            WebXRManager.Instance.ToggleAR();
-            Debug.Log("AR is ON");
-        }
-        else
-        {
-            Debug.Log("no AR");
-        }
+
     }
 
     // Update is called once per frame
@@ -44,36 +36,59 @@ public class ARcanvasManager : MonoBehaviour
         switch (counter)
         {
             case 0:
-                Globals.rocketStatus = "lookingAround";
-                showStoryWindow("הנה הטיל שישגר את הלוויין שלכם למסלול!");
-                showBtnStoryWin = true;
+                showInstructionWindow("כדי לשגר את הטיל, לכו לחלון בדרך לפלנטריום");
+                arrivedBTN.SetActive(true);
                 break;
 
             case 1:
-                hideStoryWindow();
-                advanceCounter();
+                //להגיע לכאן עם כפתור
+                blackBG.SetActive(false);
+                arrivedBTN.SetActive(false);
+                if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
+                {
+                    WebXRManager.Instance.ToggleAR();
+                    Debug.Log("AR is ON");
+                }
+                else
+                {
+                    Debug.Log("no AR");
+                }
+                hideInstructionWindow();
+                counter = 2;
                 break;
 
             case 2:
-                Globals.rocketStatus = "connectSat";
-                showInstructionWindow("חברו את הלוויין אל הטיל");
-                showBtnInstWin = false;
+                showInstructionWindow("לחצו על הטיל");
                 break;
 
-            case 3:
-                hideInstructionWindow();
-                advanceCounter();
-                break;
+            //case 0:
+            //    Globals.rocketStatus = "lookingAround";
+            //    showStoryWindow("הנה הטיל שישגר את הלוויין שלכם למסלול!",true);
+            //    break;
 
-            case 4:
-                showInstructionWindow("הטיל מוכן לשיגור");
-                showBtnInstWin = false;
-                break;
+            //case 1:
+            //    hideStoryWindow();
+            //    advanceCounter();
+            //    break;
 
-            case 5:
-                hideInstructionWindow();
-                advanceCounter();
-                break;
+            //case 2:
+            //    Globals.rocketStatus = "connectSat";
+            //    showInstructionWindow("חברו את הלוויין אל הטיל");
+            //    break;
+
+            //case 3:
+            //    hideInstructionWindow();
+            //    advanceCounter();
+            //    break;
+
+            //case 4:
+            //    showInstructionWindow("שגרו את הטיל");
+            //    break;
+
+            //case 5:
+            //    hideInstructionWindow();
+            //    advanceCounter();
+            //    break;
         }
     }
 
@@ -83,14 +98,14 @@ public class ARcanvasManager : MonoBehaviour
         Debug.Log("COUNTER: " + counter);
     }
 
-    void showStoryWindow(string textContent)
+    void showStoryWindow(string textContent, bool showBtn)
     {
         typewriterUI.TextToType = textContent;
         StoryBTN.SetActive(false);
         StoryWindow.SetActive(true);
-        if (showBtnStoryWin)
+        if (typewriterUI.TypeWriterIsFinished)
         {
-            if (typewriterUI.TypeWriterIsFinished)
+            if (showBtn)
             {
                 StoryBTN.SetActive(true);
             }
@@ -99,25 +114,29 @@ public class ARcanvasManager : MonoBehaviour
 
     void hideStoryWindow()
     {
-        WinAnimMove.exitAnimationTrigger = true;
+        if (!StoryWinAnim.exitAnimationTrigger)
+        {
+            if (!StoryWinAnim.activeAnimation)
+            {
+                StoryWinAnim.exitAnimationTrigger = true;
+            }
+        }
     }
 
     void showInstructionWindow(string textContent)
     {
         typewriterUI.TextToType = textContent;
-        InstructionBTN.SetActive(false);
         InstructionWindow.SetActive(true);
-        if (showBtnInstWin)
-        {
-            if (typewriterUI.TypeWriterIsFinished)
-            {
-                InstructionBTN.SetActive(true);
-            }
-        }
     }
 
     void hideInstructionWindow()
     {
-        WinAnimOpen.exitAnimationTrigger = true;
+        if (!SlideFromTop.exitAnimationTrigger)
+        {
+            if (!SlideFromTop.activeAnimation)
+            {
+                SlideFromTop.exitAnimationTrigger = true;
+            }
+        }
     }
 }

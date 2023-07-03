@@ -18,7 +18,10 @@ public class RocketLaunch : MonoBehaviour
     public float smokerate;
 
     [SerializeField] private GameObject SatelliteToRocket;
-    [SerializeField] private GameObject topCone;
+    [SerializeField] private GameObject rocketBottom;
+    [SerializeField] private GameObject rocketTop;
+    [SerializeField] private GameObject rocketFull;
+
     [SerializeField] private GameObject launchBTN;
     [SerializeField] private GameObject cineMachine;
 
@@ -80,14 +83,24 @@ public class RocketLaunch : MonoBehaviour
             //window3.SetActive(false);
             //window4.SetActive(true);
 
-            topCone.SetActive(true);
+            if (!rocketTop.activeSelf && !rocketFull.activeSelf)
+            {
+                rocketTop.SetActive(true);
+            }
+            else if (!WinAnimPopUp.activeAnimation)
+            {
+                rocketTop.SetActive(false);
+                rocketBottom.SetActive(false);
+                rocketFull.SetActive(true);
+                launchBTN.SetActive(true);
+            }
             SatelliteToRocket.SetActive(false);
-            launchBTN.SetActive(true);
         }
 
 
         if (rocketRB.position.y > 200)
         {
+            Debug.Log("ROCKET IS HIGH");
             //toNext.SetActive(true);
         }
 

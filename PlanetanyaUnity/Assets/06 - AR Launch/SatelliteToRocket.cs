@@ -27,11 +27,12 @@ public class SatelliteToRocket : MonoBehaviour
                 X = transform.position.x;
                 Y = transform.position.y;
                 Z = transform.position.z;
-                transform.transform.position = new Vector3(X + moveby.x, Y + moveby.y / 2.1f, Z + moveby.y);
+                transform.transform.position = new Vector3(X + moveby.x, Y + moveby.y * 1.3f, Z + moveby.y);
             }
 
-            if (transform.position.y > 3 & transform.position.x > -1 & transform.position.x < 1)
+            if (transform.position.y > 9.6f & transform.position.x > -1 & transform.position.x < 1)
             {
+                Debug.Log(transform.position.y);
                 Globals.rocketStatus = "ToLaunch";
                 ARcanvasManager.counter = 3;
             }
