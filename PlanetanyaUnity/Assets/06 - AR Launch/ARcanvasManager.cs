@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using WebXR;
 
 public class ARcanvasManager : MonoBehaviour
@@ -36,12 +37,23 @@ public class ARcanvasManager : MonoBehaviour
         switch (counter)
         {
             case 0:
-                showInstructionWindow("כדי לשגר את הטיל, לכו לחלון בדרך לפלנטריום");
-                arrivedBTN.SetActive(true);
+                Globals.rocketStatus = "lookingAround";
+                showStoryWindow("אחרי שבניתם לוויין ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויין שלכם לחלל!", false);
+                if (typewriterUI.TypeWriterIsFinished)
+                {
+                    counter = 1;
+                }
                 break;
 
             case 1:
-                //להגיע לכאן עם כפתור
+                showInstructionWindow("לכו לחלון בדרך לפלנטריום");
+                if (typewriterUI.TypeWriterIsFinished)
+                {
+                    arrivedBTN.SetActive(true);
+                }
+                break;
+
+            case 2:
                 blackBG.SetActive(false);
                 arrivedBTN.SetActive(false);
                 if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
@@ -54,41 +66,61 @@ public class ARcanvasManager : MonoBehaviour
                     Debug.Log("no AR");
                 }
                 hideInstructionWindow();
-                counter = 2;
+                hideStoryWindow();
+                counter = 3;
                 break;
 
-            case 2:
-                showInstructionWindow("לחצו על הטיל");
+            case 3:
+                showStoryWindow("זה הטיל שלכם - והוא כמעט מוכן לשיגור!", true);
                 break;
 
-            //case 0:
-            //    Globals.rocketStatus = "lookingAround";
-            //    showStoryWindow("הנה הטיל שישגר את הלוויין שלכם למסלול!",true);
-            //    break;
+            case 4:
+                hideStoryWindow();
+                counter = 5;
+                break;
 
-            //case 1:
-            //    hideStoryWindow();
-            //    advanceCounter();
-            //    break;
+            case 5:
+                showStoryWindow("כל מה שצריך זה רק לחבר אליו את הלוויין", false);
+                if (typewriterUI.TypeWriterIsFinished)
+                {
+                    showInstructionWindow("חפשו את הלוויין וגררו אותו אל הטיל");
+                    Globals.rocketStatus = "connectSat";
+                }
+                //אם עובר זמן מסוים והמצלמה עוד לא כוונה לכיוון הלוויין, שיופיע חץ שיצביע עליו
+                //חיברו אל הטיל
+                break;
 
-            //case 2:
-            //    Globals.rocketStatus = "connectSat";
-            //    showInstructionWindow("חברו את הלוויין אל הטיל");
-            //    break;
+            case 6:
+                hideInstructionWindow();
+                hideStoryWindow();
+                counter= 7;
+                break;
+            
+            case 7:
+                showStoryWindow("סוף סוף - הגעתם לרגע האמת! עכשיו נשאר רק ללחוץ על הכפתור...", false);
+                break;
 
-            //case 3:
-            //    hideInstructionWindow();
-            //    advanceCounter();
-            //    break;
+            case 8:
+                hideStoryWindow();
+                break;
 
-            //case 4:
-            //    showInstructionWindow("שגרו את הטיל");
-            //    break;
+            case 9:
+                StoryWinAnim.exitAnimationTrigger = false;
+                showStoryWindow("לאן הטיל נעלם?", true);
+                break;
 
-            //case 5:
-            //    hideInstructionWindow();
-            //    advanceCounter();
-            //    break;
+            case 10:
+                if (WebXRManager.Instance.XRState == WebXRState.AR)
+                {
+                    WebXRManager.Instance.ToggleAR();
+                    Debug.Log("AR is OFF");
+                }
+                else
+                {
+                    Debug.Log("no AR");
+                }
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                break;
         }
     }
 

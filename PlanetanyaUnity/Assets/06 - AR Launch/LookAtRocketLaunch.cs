@@ -11,7 +11,7 @@ public class LookAtRocketLaunch : MonoBehaviour
 
    void Update()
     {
-        if (Globals.rocketStatus == "lookingAround") {
+        if (Globals.rocketStatus != "connectSat") {
             if (Input.GetMouseButton(0))
             {
                 transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed, -Input.GetAxis("Mouse X") * speed, 0));
@@ -21,11 +21,11 @@ public class LookAtRocketLaunch : MonoBehaviour
                 //Debug.Log(transform.rotation.eulerAngles);
             }
 
-            if((transform.rotation.eulerAngles.y>178 || transform.rotation.eulerAngles.y<182)&& (transform.rotation.eulerAngles.x > 350 || transform.rotation.eulerAngles.x < 0))
-            {
-                Debug.Log("in view");
-                //Globals.rocketStatus = "LookAtRocket";
-            }
+            //if((transform.rotation.eulerAngles.y>178 || transform.rotation.eulerAngles.y<182)&& (transform.rotation.eulerAngles.x > 350 || transform.rotation.eulerAngles.x < 0))
+            //{
+            //    Debug.Log("in view");
+            //    //Globals.rocketStatus = "LookAtRocket";
+            //}
         }
 
         //if (Globals.rocketStatus == "launching")

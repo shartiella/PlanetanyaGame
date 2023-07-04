@@ -38,7 +38,7 @@ public class LaunchToSpace : MonoBehaviour
         if (timerToLaunch > 1)
         {
             //Globals.ChosenSatellite.Orbit = "MEO";
-            launchTest();
+            launchDemo();
             timerToLaunch = -2;
         }
 
@@ -114,6 +114,28 @@ public class LaunchToSpace : MonoBehaviour
                 pushAfter = 2.8f;
                 forceAmountonY = -24;
             }
+            rocketRB.AddForce(Xforce, Yforce, 0);
+        }
+    }
+
+    public void launchDemo()
+    {
+        if (Globals.ChosenSatellite.Orbit != "none")
+        {
+            Globals.demo = true;
+            demoTimer = 0.0f;
+            //pushTime = 0.0f;
+            Debug.Log(Globals.demo);
+
+            Globals.rocketStatus = "launching";
+            Debug.Log(Globals.rocketStatus);
+
+            Globals.Gravity = true;
+            Xforce = -92;
+            Yforce = 40;
+            pushAfter = 1;
+            forceAmountonY = -18;
+
             rocketRB.AddForce(Xforce, Yforce, 0);
         }
     }

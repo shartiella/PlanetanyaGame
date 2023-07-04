@@ -13,13 +13,13 @@ public class SatelliteToRocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //פה תהיה הצגה של חלקי הלוויין שרלוונטיים ללוויין שנבחר
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Globals.rocketStatus == "connectSat"&&ARcanvasManager.counter==2)
+        if (Globals.rocketStatus == "connectSat"&&ARcanvasManager.counter==5)
         {
             if (Input.GetMouseButton(0))
             {
@@ -34,7 +34,7 @@ public class SatelliteToRocket : MonoBehaviour
             {
                 Debug.Log(transform.position.y);
                 Globals.rocketStatus = "ToLaunch";
-                ARcanvasManager.counter = 3;
+                ARcanvasManager.counter = 6;
             }
         }
 

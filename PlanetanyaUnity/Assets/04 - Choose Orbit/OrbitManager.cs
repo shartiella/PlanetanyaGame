@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class OrbitManager : MonoBehaviour
 {
@@ -466,14 +467,18 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 41:
-                hideStoryWindow();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 counter = 42;
                 break;
+            //case 41:
+            //    hideStoryWindow();
+            //    counter = 42;
+            //    break;
 
-            case 42:
-                showStoryWindow("עכשיו אחרי שבניתם לוויין ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויון שלכם לחלל!", true);
+            //case 42:
+            //    showStoryWindow("עכשיו אחרי שבניתם לוויין ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויון שלכם לחלל!", true);
 
-                break;
+            //    break;
         }
 
 

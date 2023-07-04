@@ -67,11 +67,11 @@ public class RocketLaunch : MonoBehaviour
             SatelliteToRocket.SetActive(false);
 
         }
-        else if(Globals.rocketStatus== "LookAtRocket") //רואה את הטיל - עד שהוא לוחץ על כפתור חיבור הלווין
-        {
-            //window1.SetActive(false);
-            //window2.SetActive(true);
-        }
+        //else if(Globals.rocketStatus== "LookAtRocket") //רואה את הטיל - עד שהוא לוחץ על כפתור חיבור הלווין
+        //{
+        //    //window1.SetActive(false);
+        //    //window2.SetActive(true);
+        //}
         else if (Globals.rocketStatus == "connectSat") //חיבור הטיל ללווין - עד שהלוויין מחובר
         {
             SatelliteToRocket.SetActive(true);
@@ -98,9 +98,9 @@ public class RocketLaunch : MonoBehaviour
         }
 
 
-        if (rocketRB.position.y > 200)
+        if (rocketRB.position.y > 200 && ARcanvasManager.counter==8)
         {
-            Debug.Log("ROCKET IS HIGH");
+            ARcanvasManager.counter = 9;
             //toNext.SetActive(true);
         }
 
@@ -110,7 +110,8 @@ public class RocketLaunch : MonoBehaviour
     {
         if (Globals.rocketStatus == "launching") //משוגר
         {
-            ARcanvasManager.counter = 5;
+//            ARcanvasManager.counter = 5;
+
             //float angle = Mathf.Atan2(rocket.GetComponent<Rigidbody>().velocity.y, rocket.GetComponent<Rigidbody>().velocity.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.Euler(0, 0, angle);
             //rocket.transform.Rotate(0, 180, 90);
@@ -183,10 +184,10 @@ public class RocketLaunch : MonoBehaviour
     }
 
 
-    private void OnMouseUp()
-    {
-        Globals.rocketStatus = "LookAtRocket";
-    }
+    //private void OnMouseUp()
+    //{
+    //    Globals.rocketStatus = "LookAtRocket";
+    //}
 
     public void ARon()
     {
@@ -205,4 +206,8 @@ public class RocketLaunch : MonoBehaviour
         }
     }
 
+    //private void OnMouseDown()
+    //{
+    //    ARcanvasManager.counter++;
+    //}
 }
