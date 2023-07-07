@@ -8,8 +8,9 @@ public class AllObjects : MonoBehaviour
 {
     public static string BuildingState = "";
 
-    public List<SatPart> satParts;
-    public static SatPart currentSatPart;
+    public List<SatPart> satParts; //התוכן מוגדר באינספקטור
+    public static SatPart newestPartTouching = null;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +21,20 @@ public class AllObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+ 
     }
 
-    private void OnMouseDown()
+
+    public static void connectedPart(SatPart newestPart)
     {
-        //GetComponent<Renderer>().material = holdingFeedback; //צביעת העיגול בצהוב
-
+        newestPartTouching = newestPart;
+        newestPartTouching.isConnected = true;
     }
-
+    public static void disConnectedPart(SatPart newestPart)
+    {
+        newestPartTouching = newestPart;
+        newestPartTouching.isConnected = false;
+    }
 }
 
 [System.Serializable]
@@ -36,6 +42,11 @@ public class SatPart
 {
     public string Name;
     public string Description;
+    public string WhatItDoes;
     public GameObject gObject;
     public List<string> relatedSatellites;
+    public bool isCorrect;
+    public bool isConnected;
 }
+
+

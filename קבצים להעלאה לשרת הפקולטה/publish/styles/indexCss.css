@@ -1,0 +1,291 @@
+@font-face{
+    font-family: 'brutalistBold';
+    src: url('../fonts/TelAviv-BrutalistBold.ttf');
+}
+@font-face{
+    font-family: 'brutalist';
+    src: url('../fonts/TelAviv-BrutalistRegular.ttf');
+}
+@font-face{
+    font-family: 'brutalistLight';
+    src: url('../fonts/TelAviv-BrutalistLight.ttf');
+}
+@import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap');
+
+body {
+    direction: rtl;
+    background-color: #000000;
+    font-family: 'brutalist', sans-serif;
+}
+
+#unity-warning {
+display: none;
+}
+
+nav {
+    background-color: #33428F;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+    nav h1 {
+        display: inline;
+        font-family: 'brutalistBold';
+        font-size: 1.5em;
+        vertical-align: top;
+        margin-right: 10px;
+        color: white;
+    }
+
+    nav #right {
+        text-align: right;
+        display: inline;
+        padding-right: 5px;
+        vertical-align: sub;
+    }
+
+    nav #right img{
+        height: 30px;
+    }
+
+    nav #left {
+        position: absolute;
+        left: 0;
+        margin: 8px;
+    }
+
+    nav a {
+        color: #FFFFFF;
+        font-family: 'brutalistBold';
+        font-size: small;
+        padding-left: 20px;
+    }
+
+main {
+    width: 100%;
+    height: 500px;
+}
+
+    main iframe {
+        width: 100%;
+        height: 94%;
+        position: absolute;
+    }
+
+.aboutPopUpClosed {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.aboutPopUpOpen {
+    display: block;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(37,34,76,0.6);
+}
+
+.aboutPopUpBox {
+    background: linear-gradient( 0.25turn, #25224C, #383E87);
+    margin: 0 auto;
+    padding: 20px;
+    width: 607px;
+    border-radius: 55px;
+    text-align: center;
+    color: white;
+    font-size: 16pt;
+    margin-top: 200px;
+    line-height: 1.4em;
+    box-shadow: 0px 0px 30px white;
+}
+
+.aboutPopUpXclosed {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 366px;
+    bottom: 206px;
+    display: none;
+}
+
+.aboutPopUpXopen {
+    display: block;
+    position: relative;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    margin-bottom: -30px;
+}
+
+.aboutH2 {
+    display: inline-block;
+    font-size: 35pt;
+    font-weight: bold;
+}
+
+#aboutPopUpContent {
+    margin-top: 20px;
+}
+
+    #aboutPopUpContent p {
+        margin-bottom: 20px;
+    }
+
+    #aboutPopUpContent a {
+        background-color: white;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding: 5px;
+        display: inline-block;
+        border-radius: 70px;
+        width: fit-content;
+    }
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#faculta img {
+    width: 90%;
+    vertical-align: middle;
+}
+
+.howPopUpClosed {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.howPopUpOpen {
+    display: block;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(37,34,76,0.6);
+}
+
+.howPopUpBox {
+    background: linear-gradient( 0.25turn, #25224C, #383E87);
+    margin: 0 auto;
+    padding: 20px;
+    width: 650px;
+    border-radius: 55px;
+    text-align: center;
+    color: white;
+    font-size: 13pt;
+    margin-top: 140px;
+    line-height: 1.4em;
+    box-shadow: 0px 0px 30px white;
+}
+
+.howPopUpXclosed {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 366px;
+    bottom: 206px;
+    display: none;
+}
+
+.howPopUpXopen {
+    display: block;
+    position: relative;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    margin-bottom: -30px;
+}
+
+.howH2 {
+    display: inline-block;
+    font-size: 35pt;
+    font-weight: bold;
+}
+
+#howPopUpContent {
+    margin-top: 20px;
+}
+
+    #howPopUpContent p {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    #howPopUpContent a {
+        background-color: white;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding: 5px;
+        display: inline-block;
+        border-radius: 70px;
+        width: fit-content;
+    }
+
+    #howPopUpContent table {
+        text-align: right;
+    }
+
+
+
+        #howPopUpContent table tr td {
+            padding-right: 13px;
+            vertical-align: middle;
+        }
+
+        #howPopUpContent table tr th {
+            padding-right: 13px;
+            vertical-align: middle;
+            text-align: center;
+        } 
+#howPopUpContent > img {
+    margin:5px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    nav a {
+        color: #FFFFFF;
+        font-family: 'brutalistBold';
+        font-size: large;
+        padding-left: 20px;
+    }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

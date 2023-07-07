@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class MoveCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float speed = 3.5f;
+    public float speed = 1;
     private float X;
     private float Y;
     public float zoomOutMin;
@@ -17,23 +17,47 @@ public class MoveCamera : MonoBehaviour
     public static string deviceClicked = "";
     public static bool finalPart = false;
 
-    [SerializeField] private GameObject window1;
-    [SerializeField] private GameObject window2;
-    [SerializeField] private GameObject window3;
+    //[SerializeField] private GameObject Story1;
+    //[SerializeField] private GameObject Story2;
+
+    //[SerializeField] private GameObject Inst1;
+    //[SerializeField] private GameObject window2;
+    //[SerializeField] private GameObject window3;
 
     [SerializeField] private GameObject cineMachine;
 
+    [SerializeField] private GameObject pointerPrefab;
 
+
+    [SerializeField] private TextMeshProUGUI fingers1;
+    [SerializeField] private TextMeshProUGUI fingers2;
 
     private void Start()
     {
-        window1.SetActive(true);
+        //Inst1.SetActive(true);
     }
 
     void Update()
     {
+        //var fingerCount = 0;
+        //foreach (Touch touch in Input.touches)
+        //{
+        //    if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled)
+        //    {
+        //        fingerCount++;
+        //    }
+        //}
+        //if (fingerCount > 0)
+        //{
+        //    //print("User has " + fingerCount + " finger(s) touching the screen");
+        //    fingers1.text=fingerCount.ToString();
+        //}
+
         if (Input.touchCount == 2)
         {
+            //Debug.Log(Input.touchCount);
+            fingers1.text = Input.touchCount.ToString();
+
             Touch touchZero = Input.GetTouch(0);
             Touch touchOne = Input.GetTouch(1);
 
@@ -42,32 +66,37 @@ public class MoveCamera : MonoBehaviour
             float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
             float currentMaginitude = (touchZero.position - touchOne.position).magnitude;
             float difference = currentMaginitude - prevMagnitude;
-            zoom(difference * 0.01f);
+
+            fingers2.text = difference.ToString();
+
+            zoom(difference * -0.01f);
         }
-        if (Input.GetMouseButton(0))
+        else if (Input.touchCount == 1 || Input.GetMouseButton(0))
         {
-           // Debug.Log("i'm being clicked");
-            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed, -Input.GetAxis("Mouse X") * speed, 0));
+            float FOVfactor = Camera.main.fieldOfView / 60;
+            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed * FOVfactor, -Input.GetAxis("Mouse X") * speed * FOVfactor, 0));
             X = transform.rotation.eulerAngles.x;
             Y = transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(X, Y, 0);
         }
-
-        if (Input.GetAxis("Mouse ScrollWheel")!=0)
+        else if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
-            zoom( Input.GetAxis("Mouse ScrollWheel")* morescroll);
+            zoom(Input.GetAxis("Mouse ScrollWheel") * morescroll);
         }
+
+
+
 
         if (deviceClicked != "")
         {
             //OnDeviceClick();
-            window1.SetActive(false);
-            window2.SetActive(true);
+            //Inst1.SetActive(false);
+            //window2.SetActive(true);
 
         }
         if (finalPart == true)
         {
-            window2.SetActive(false);
+            //window2.SetActive(false);
         }
         //else if (deviceClicked == "TV")
         //{
@@ -98,6 +127,6 @@ public class MoveCamera : MonoBehaviour
     {
         finalPart = true;
         //window2.SetActive(false);
-        window3.SetActive(true);
+       // window3.SetActive(true);
     }
 }

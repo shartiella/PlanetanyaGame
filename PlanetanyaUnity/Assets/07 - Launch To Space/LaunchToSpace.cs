@@ -37,8 +37,8 @@ public class LaunchToSpace : MonoBehaviour
         }
         if (timerToLaunch > 1)
         {
-            Globals.correctOrbit = "MEO";
-            launchTest();
+            //Globals.ChosenSatellite.Orbit = "MEO";
+            launchDemo();
             timerToLaunch = -2;
         }
 
@@ -72,14 +72,14 @@ public class LaunchToSpace : MonoBehaviour
         //demoTimer = 0.0f;
         //pushTime = 0.0f;
         //Globals.demo = false;
-        Globals.correctOrbit = "none";
+        //Globals.ChosenSatellite.Orbit = "none";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     //שיגורי דמו
     public void launchTest()
     {
-        if (Globals.correctOrbit != "none")
+        if (Globals.ChosenSatellite.Orbit != "none")
         {
             Globals.demo = true;
             demoTimer = 0.0f;
@@ -89,7 +89,7 @@ public class LaunchToSpace : MonoBehaviour
             Globals.rocketStatus = "launching";
             Debug.Log(Globals.rocketStatus);
 
-            if (Globals.correctOrbit == "LEO")
+            if (Globals.ChosenSatellite.Orbit == "LEO")
             {
                 Globals.Gravity = true;
                 Xforce = -92;
@@ -97,7 +97,7 @@ public class LaunchToSpace : MonoBehaviour
                 pushAfter = 1;
                 forceAmountonY = -18;
             }
-            else if (Globals.correctOrbit == "MEO")
+            else if (Globals.ChosenSatellite.Orbit == "MEO")
             {
                 Globals.Gravity = true;
                 Xforce = -93;
@@ -106,7 +106,7 @@ public class LaunchToSpace : MonoBehaviour
                 forceAmountonY = -23;
 
             }
-            else if (Globals.correctOrbit == "GEO")
+            else if (Globals.ChosenSatellite.Orbit == "GEO")
             {
                 Globals.Gravity = true;
                 Xforce = -94;
@@ -114,6 +114,28 @@ public class LaunchToSpace : MonoBehaviour
                 pushAfter = 2.8f;
                 forceAmountonY = -24;
             }
+            rocketRB.AddForce(Xforce, Yforce, 0);
+        }
+    }
+
+    public void launchDemo()
+    {
+        if (Globals.ChosenSatellite.Orbit != "none")
+        {
+            Globals.demo = true;
+            demoTimer = 0.0f;
+            //pushTime = 0.0f;
+            Debug.Log(Globals.demo);
+
+            Globals.rocketStatus = "launching";
+            Debug.Log(Globals.rocketStatus);
+
+            Globals.Gravity = true;
+            Xforce = -92;
+            Yforce = 40;
+            pushAfter = 1;
+            forceAmountonY = -18;
+
             rocketRB.AddForce(Xforce, Yforce, 0);
         }
     }

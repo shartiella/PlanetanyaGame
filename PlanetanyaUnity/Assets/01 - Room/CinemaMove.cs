@@ -43,9 +43,9 @@ public class CinemaMove : MonoBehaviour
 
         //Debug.Log("I feel the scroll " + increment);
 
-        if (increment < 0 && MoveCamera.finalPart)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        //if (increment < 0 && MoveCamera.finalPart)
+        //{
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //}
     }
 }

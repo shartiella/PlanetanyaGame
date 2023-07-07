@@ -31,9 +31,19 @@ public class launcher : MonoBehaviour
 
     [SerializeField] private float timeFactor;
 
+    private Vector3 fullScale;
+
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    private void OnEnable()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+
+        transform.localScale = new Vector3(0, 0, 0);
+        transform.LeanScale(fullScale, 0.5f).setDelay(0.5f).setEaseOutElastic();
     }
 
     // Update is called once per frame
@@ -48,20 +58,18 @@ public class launcher : MonoBehaviour
 
         float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         Globals.currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
-
     }
+
 
     private void Awake()
     {
-        gameObject.SetActive(true);
-        GetComponent<MeshRenderer>().enabled = true;
+        //gameObject.SetActive(true);
 
         initialLauncherPosition = transform.position; //קביעת המיקום ההתחלתי של העיגול
-            initialrocketPosition = new Vector3(0, 1.7f, 0); //קביעת המיקום ההתחלתי של הטיל
+        fullScale = transform.localScale;
+        initialrocketPosition = new Vector3(0, 1.7f, 0); //קביעת המיקום ההתחלתי של הטיל
 
-
-            TrajectoryDots = new GameObject[dotNumber]; //יצירת מערך נקודות הסימון
-
+        TrajectoryDots = new GameObject[dotNumber]; //יצירת מערך נקודות הסימון
     }
 
     private void OnMouseDown()
@@ -72,8 +80,9 @@ public class launcher : MonoBehaviour
         for (int i = 1; i < dotNumber; i++)
         {
             TrajectoryDots[i] = Instantiate(dotPrefab, trajectoryDotsParent.transform);
-            //TrajectoryDots[i].transform.localScale = new Vector3(1/i, 0.01f, 1/i);
-            Debug.Log(TrajectoryDots[i].transform.position);
+            float relativeScale = (float)(dotNumber - i) / (float)dotNumber;
+            TrajectoryDots[i].transform.localScale = new Vector3(relativeScale, 0.01f, relativeScale);
+            //Debug.Log(TrajectoryDots[i].transform.localScale);
         }
 
     }
@@ -83,7 +92,6 @@ public class launcher : MonoBehaviour
         if (Globals.rocketStatus == "toLaunch")
         {
             transform.position = Globals.currentMousePosition; //גרירה - העיגול עוקב אחרי העכבר
-
             //לצורך השיגור
             //distanceBetweenInitialToRelease = Vector3.Distance(initialPosition, Globals.currentMousePosition);
             //directionFromInitialPosition = (initialPosition - currentMousePosition).normalized;
@@ -109,22 +117,48 @@ public class launcher : MonoBehaviour
             }
             rocket.transform.LookAt(TrajectoryDots[3].transform);
             rocket.transform.Rotate(-90, 180, 0);
+
+            Debug.Log(rocket.transform.rotation.eulerAngles);
+
+            if (rocket.transform.rotation.eulerAngles.z == 180 && rocket.transform.rotation.eulerAngles.x > 300 && (rocket.transform.rotation.eulerAngles.y < 269 || rocket.transform.rotation.eulerAngles.y > 90))
+            {
+                OrbitManager.LaunchTowardsEarth = true;
+            }
+            else
+            {
+                OrbitManager.LaunchTowardsEarth = false;
+            }
         }
     }
 
     private void OnMouseUp()
     {
+        if (OrbitManager.LaunchTowardsEarth)
+        {
+            OrbitManager.lastLaunchWasTowardsEarth = true;
+            Debug.Log("LaunchedTowardsEarth");
+        }
+        else
+        {
+            OrbitManager.lastLaunchWasTowardsEarth = false;
+        }
+
+        //Debug.Log(Globals.currentMousePosition.ToString());
+        Globals.lastLaunchForce=Globals.launchForce;
+        Debug.Log("launch force: " + Globals.launchForce);
+
         GetComponent<Renderer>().material = defaultColor;
         if (Globals.demo==false)
         {
-            Globals.numberOfLaunches++;
+            //Globals.numberOfLaunches++;
+            Rocket.launchCounter++;
         }
 
         if (Globals.rocketStatus == "toLaunch")
         {
             //Globals.launchForce = forceAtPlayer * forceFactor;
 
-            Globals.lastFingerRelease = Globals.currentMousePosition; //שמירת המיקום האחרון של העכבר
+            OrbitManager.lastFingerRelease = Globals.currentMousePosition; //שמירת המיקום האחרון של העכבר
             Globals.rocketStatus = "LAUNCH"; //קריאה לשיגור
             transform.position = initialLauncherPosition; //חזרה למיקום ההתחלתי
             GetComponent<MeshRenderer>().enabled = false; //הסתרה

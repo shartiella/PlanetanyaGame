@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class MoveMap : MonoBehaviour
 {
+    //[DllImport("__Internal")]
+    //private static extern void Hello();
+
+    [DllImport("__Internal")]
+    private static extern void LocateTheDevice();
+    //[DllImport("__Internal")]
+    //private static extern void success(string[] array);
+    //[DllImport("__Internal")]
+    //private static extern void error(string[] array);
+
     public float speed;
     private float X;
     private float Y;
@@ -15,10 +27,12 @@ public class MoveMap : MonoBehaviour
     [SerializeField] private GameObject window2;
     [SerializeField] private GameObject arrivalBTN;
 
+    [SerializeField] private TextMeshProUGUI txt;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        getLocation();
     }
 
     // Update is called once per frame
@@ -62,5 +76,15 @@ public class MoveMap : MonoBehaviour
     {
         window2.SetActive(false);
         window1.SetActive(true);
+    }
+
+    public void getLocation()
+    {
+        LocateTheDevice();
+    }
+
+    public void coor(string message)
+    {
+        txt.text = message;
     }
 }

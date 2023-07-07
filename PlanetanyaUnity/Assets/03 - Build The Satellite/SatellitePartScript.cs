@@ -9,80 +9,150 @@ using UnityEngine.UIElements;
 
 public class SatellitePartScript : MonoBehaviour
 {
-    //הערה חדשה בעברית
     private Vector3 initialobjectPosition; //המיקום ההתחלתי של האובייקט
     private float dragTimer;
-    private bool isCorrect = false;
     [SerializeField] private AllObjects _allObjects;
     [SerializeField] private Globals _globals;
     private SatPart thisSatPart;
-
 
     // Start is called before the first frame update
     void Start()
     {
         initialobjectPosition = transform.position; //קביעת המיקום ההתחלתי של האובייקט
-
-        //איזה חלק אני
-        //עובר על רשימת החלקים המלאה ומכניס למשתנה החלק הזה את החלק שהוא
-        foreach (SatPart sp in _allObjects.satParts)
-        {
-            //Debug.Log("checking " + sp.Name + " in sat Parts");
-            if (sp.Name == transform.name)
-            {
-                Debug.Log("found myself: "+transform.name);
-                thisSatPart = sp;
-
-
-                //האם אני שייך ללוויין המדובר
-                foreach (string sat in sp.relatedSatellites)
-                {
-                    Debug.Log("looking up " + sat + " in sats of "+ sp.Name);
-                    if (Globals.ChosenSatelliteName == sat)
-                    {
-                        isCorrect = true;
-                    }
-                    Debug.Log("I'm " + transform.name + " and I'm " + isCorrect);
-                }
-            }
-        }
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        Globals.currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
+        IdentifySelf();
+    }
 
-        if (AllObjects.BuildingState == "feedback")
+
+    private void OnMouseDown()
+    {
+
+    }
+
+    private void OnMouseDrag()
+    {
+        dragTimer += Time.deltaTime;
+        if (AllObjects.BuildingState == "building")
         {
-            //if (isCorrect)
-            //{
-            //    GetComponent<MeshRenderer>().material.color = Color.green;
-            //}
-            //else
-            //{
-            //GetComponent<MeshRenderer>().material.color = Color.red;
-            //}
-
-            //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
-
-            List<MeshRenderer> renderers = GetComponentsInChildren<MeshRenderer>().ToList();
-            foreach (MeshRenderer ren in renderers)
+            if (dragTimer >= 0.2f)//גרירה
             {
-                if (isCorrect)
+                float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+                Globals.currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
+
+                transform.position = Globals.currentMousePosition; //גרירה - האובייקט עוקב אחרי העכבר
+            }
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        if (AllObjects.BuildingState == "building")
+        {
+            if (dragTimer >= 0.2f)//אם זו הייתה גרירה
+            {
+                
+            }
+            else //אם זו הייתה לחיצה
+            {
+                
+            }
+            dragTimer = 0; //איפוס טיימר הגרירה
+
+            //בדיקה האם נוגע ואז האם נכון
+            if (thisSatPart.isConnected) //אם משחררים אותו בפנים
+            {
+                //Debug.Log("I'm In");
+
+                if (thisSatPart.isCorrect)
                 {
-                    ren.material.color = Color.green;
+                    //Debug.Log("I'm correct");
+                    //BuildIU.numberOfCorrectObjectsConnected++;
+                    //Debug.Log("correct "+BuildIU.numberOfCorrectObjectsConnected);
                 }
                 else
                 {
-                    ren.material.color = Color.red;
+                    //Debug.Log("I'm wrong");
+                    //BuildIU.numberOfWrongObjectsConnected++;
+                    //Debug.Log("wrong " + BuildIU.numberOfWrongObjectsConnected);
+
                 }
             }
+            else //אם משחררים אותו בחוץ
+            {
 
-            //GetComponent<Renderer>().material = defaultColor;
+                if (thisSatPart.isCorrect)
+                {
+                    //Debug.Log("I'm correct");
+                    //BuildIU.numberOfCorrectObjectsConnected--;
+                    //Debug.Log("correct " + BuildIU.numberOfCorrectObjectsConnected);
+
+                }
+                else
+                {
+                    //Debug.Log("I'm wrong");
+                    //BuildIU.numberOfWrongObjectsConnected--;
+                    //Debug.Log("wrong " + BuildIU.numberOfWrongObjectsConnected);
+
+                }
+                //Debug.Log("I'm out");
+                transform.position = initialobjectPosition;
+            }
+        }
+
+    }
+
+    private void IdentifySelf()
+    {
+        //Debug.Log("IDENTIFY " + transform.name);
+
+        //איזה חלק אני והאם אני נכון
+        foreach (SatPart sp in _allObjects.satParts)
+        {
+            if (sp.Name == transform.name)
+            {
+                //כשהוא מוצא את עצמו לפי שם האובייקט, הוא מגדיר את עצמו כאובייקט ה"נוכחי" כדי לזהות את עצמו
+                thisSatPart = sp;
+
+
+                //האם אני שייך ללוויין שנבחר
+                foreach (string sat in sp.relatedSatellites)
+                {
+                    if (Globals.ChosenSatellite.Name == sat)
+                    {
+                        thisSatPart.isCorrect= true;
+
+                    }
+                    colorMe(); //להוריד
+                }
+            }
+        }
+    }
+
+    private void colorMe()
+    {
+        List<MeshRenderer> renderers = GetComponentsInChildren<MeshRenderer>().ToList();
+        foreach (MeshRenderer ren in renderers)
+        {
+            if (thisSatPart.isCorrect)
+            {
+                ren.material.color = Color.green;
+            }
+            else
+            {
+                ren.material.color = Color.red;
+            }
+        }
+    }
+
+    private void giveFeedback()
+    {
+        if (AllObjects.BuildingState == "feedback")
+        {
+            colorMe();
         }
         else
         {
@@ -93,73 +163,4 @@ public class SatellitePartScript : MonoBehaviour
             }
         }
     }
-
-    private void OnMouseDown()
-    {
-        //GetComponent<Renderer>().material = holdingFeedback; //צביעת העיגול בצהוב
-        if (AllObjects.BuildingState== "building")
-        {
-            dragTimer = 0;
-
-            AllObjects.currentSatPart = thisSatPart;
-
-            //קריאה להפעלת חלונית המידע
-            if (BuildIU.showInfoPanel)
-            {
-                BuildIU.showInfoPanel = false;
-            }
-            else
-            {
-                BuildIU.showInfoPanel = true;
-
-            }
-        }
-
-    }
-
-    private void OnMouseDrag()
-    {
-        if (AllObjects.BuildingState == "building")
-        {
-        transform.position = Globals.currentMousePosition; //גרירה - העיגול עוקב אחרי העכבר
-
-        dragTimer += Time.deltaTime;
-
-        if (dragTimer >= 0.2f)
-        {
-            BuildIU.showInfoPanel = false;
-        }
-        }
-
-    }
-
-    private void OnMouseUp()
-    {
-        //GetComponent<Renderer>().material = defaultColor;
-
-        if (AllObjects.BuildingState == "building")
-        {
-        //בדיקה האם נוגע ואז האם נכון
-        if (BuildIU.isTouchingSatBody)
-        {
-            Debug.Log("I'm In");
-
-            if (isCorrect)
-            {
-                Debug.Log("I'm correct");
-            }
-            else
-            {
-                Debug.Log("I'm wrong");
-            }
-        }
-        else
-        {
-            Debug.Log("I'm out");
-            transform.position = initialobjectPosition;
-        }
-        }
-
-    }
-
 }

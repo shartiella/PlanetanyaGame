@@ -12,10 +12,19 @@ public class antiLauncher : MonoBehaviour
     [SerializeField] private TextMeshProUGUI instructionHowToLaunch;
     [SerializeField] private TextMeshProUGUI demoInProgress;
 
+    private Vector3 fullScale;
+
+
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    private void OnEnable()
+    {
+        transform.localScale = new Vector3(0, 0, 0);
+        transform.LeanScale(fullScale, 0.5f).setDelay(2).setEaseOutElastic();
     }
 
     // Update is called once per frame
@@ -43,15 +52,15 @@ public class antiLauncher : MonoBehaviour
         if (Globals.demo)
         {
             demoInProgress.enabled = true;
-            demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.correctOrbit + " לולסמל המגודל רוגיש";
+            demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.ChosenSatellite.Orbit + " לולסמל המגודל רוגיש";
         }
         else
         {
-            if (Globals.numberOfLaunches == 0)
+            if (Rocket.launchCounter == 0)
             {
                 GetComponent<MeshRenderer>().enabled = false;
                 //instruction.GetComponent<MeshRenderer>().enabled = true;
-                if (Globals.correctOrbit == "none")
+                if (Globals.ChosenSatellite.Orbit == "none")
                 {
                     instructionChooseOrbit.enabled = true;
                     instructionHowToLaunch.enabled = false;
@@ -70,7 +79,7 @@ public class antiLauncher : MonoBehaviour
                 if (Globals.rocketStatus == "toLaunch")
                 {
                     GetComponent<MeshRenderer>().enabled = true;
-                    transform.position = Globals.lastFingerRelease;
+                    transform.position = OrbitManager.lastFingerRelease;
                 }
                 else if (Globals.rocketStatus == "inOrbit")
                 {
@@ -91,6 +100,7 @@ public class antiLauncher : MonoBehaviour
         //GetComponent<MeshRenderer>().enabled = true;
         //initialPosition = transform.position;
 
+        fullScale = transform.localScale;
 
     }
 
