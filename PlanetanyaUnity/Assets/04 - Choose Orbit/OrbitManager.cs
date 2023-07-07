@@ -339,6 +339,7 @@ public class OrbitManager : MonoBehaviour
 
             case 29:
                 showStoryWindow("כל הכבוד - אתם יודעים עכשיו לשגר טיל למסלול!", true);
+                resetBTN.SetActive(false);
                 break;
 
             case 30:
@@ -448,10 +449,12 @@ public class OrbitManager : MonoBehaviour
                 demoBTN.SetActive(false);
                 Orbits.SetActive(false);
                 resetBTN.SetActive(false);
+                OrbitsNames.SetActive(false);
                 counter = 40;
                 break;
 
             case 40:
+                StoryWinAnim.exitAnimationTrigger = false;
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
                     showStoryWindow("כל הכבוד! הצלחתם לשגר טיל למסלול לווייני נמוך", true);

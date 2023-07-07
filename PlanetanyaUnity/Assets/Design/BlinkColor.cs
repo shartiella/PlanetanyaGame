@@ -15,7 +15,7 @@ public class BlinkColor : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(MoveCamera.deviceClicked+ "deviceClicked");
+        //Debug.Log(MoveCamera.deviceClicked+ "deviceClicked");
         //ren = GetComponent<Renderer>();
         renlist = GetComponents<MeshRenderer>().ToList();
     }

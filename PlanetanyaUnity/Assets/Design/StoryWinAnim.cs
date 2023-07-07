@@ -30,7 +30,7 @@ public class StoryWinAnim : MonoBehaviour
     {
         if (exitAnimationTrigger && !activeAnimation)
         {
-            Debug.Log("TRUE");
+            //Debug.Log("TRUE");
             exitAnimationTrigger = false;
             //textGameObject.SetActive(false);
             exitAnimation();
@@ -48,7 +48,7 @@ public class StoryWinAnim : MonoBehaviour
     private void exitAnimation()
     {
         //זה כנראה קורה יותר מפעם אחת וזו הבעיה
-        Debug.Log("EXIT");
+        //Debug.Log("EXIT");
         typewriterUI.TypeWriterIsFinished = false;
         activeAnimation = true;
 

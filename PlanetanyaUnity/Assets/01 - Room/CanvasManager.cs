@@ -1,6 +1,7 @@
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class CanvasManager : MonoBehaviour
 
             case 1:
                 hideStoryWindow();
-                advanceCounter();
+                counter = 2;
                 break;
 
             case 2:
@@ -79,7 +80,7 @@ public class CanvasManager : MonoBehaviour
 
             case 4:
                 hideStoryWindow();
-                advanceCounter();
+                counter = 5;
                 break;
 
             case 5:
@@ -90,7 +91,7 @@ public class CanvasManager : MonoBehaviour
 
             case 6:
                 hideInstructionWindow();
-                advanceCounter();
+                counter = 7;
                 break;
 
             case 7:
@@ -110,7 +111,7 @@ public class CanvasManager : MonoBehaviour
 
             case 8:
                 hideStoryWindow();
-                advanceCounter();
+                counter = 9;
                 break;
 
             case 9:
@@ -130,7 +131,7 @@ public class CanvasManager : MonoBehaviour
 
             case 10:
                 hideStoryWindow();
-                advanceCounter();
+                counter = 11;
                 break;
 
             case 11:
@@ -150,12 +151,18 @@ public class CanvasManager : MonoBehaviour
 
             case 12:
                 hideStoryWindow();
-                advanceCounter();
+                counter = 13;
                 break;
 
             case 13:
                 showStoryWindow("כדי להבין את זה, בואו נקפוץ רגע לחלל...");
                 break;
+
+                case 14:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                counter = 15;
+                break;
+
         }
     }
 
@@ -170,9 +177,9 @@ public class CanvasManager : MonoBehaviour
         typewriterUI.TextToType = textContent;
         StoryBTN.SetActive(false);
         StoryWindow.SetActive(true);
-        if (showBtnStoryWin)
+        if (typewriterUI.TypeWriterIsFinished)
         {
-            if (typewriterUI.TypeWriterIsFinished)
+            if (showBtnStoryWin)
             {
                 StoryBTN.SetActive(true);
             }
@@ -181,26 +188,30 @@ public class CanvasManager : MonoBehaviour
 
     void hideStoryWindow()
     {
-        WinAnimMove.exitAnimationTrigger = true;
+        if (!StoryWinAnim.exitAnimationTrigger)
+        {
+            if (!StoryWinAnim.activeAnimation)
+            {
+                StoryWinAnim.exitAnimationTrigger = true;
+            }
+        }
     }
 
     void showInstructionWindow(string textContent)
     {
         typewriterUI.TextToType = textContent;
-        InstructionBTN.SetActive(false);
         InstructionWindow.SetActive(true);
-        if (showBtnInstWin)
-        {
-            if (typewriterUI.TypeWriterIsFinished)
-            {
-                InstructionBTN.SetActive(true);
-            }
-        }
     }
 
     void hideInstructionWindow()
     {
-        SlideFromTop.exitAnimationTrigger = true;
+        if (!SlideFromTop.exitAnimationTrigger)
+        {
+            if (!SlideFromTop.activeAnimation)
+            {
+                SlideFromTop.exitAnimationTrigger = true;
+            }
+        }
     }
 
     void changeCameraPosition1stTime()

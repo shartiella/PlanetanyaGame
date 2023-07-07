@@ -23,7 +23,7 @@ public class WinAnimMove : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Debug.Log("AWAKE");
+        //Debug.Log("AWAKE");
 
         initialPosition = transform.localPosition;
         //lowerPosition = new Vector3(0, initialPosition.y - 500, 0);
@@ -41,7 +41,7 @@ public class WinAnimMove : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log("START");
+        //Debug.Log("START");
     }
     // Update is called once per frame
     void Update()
@@ -54,7 +54,7 @@ public class WinAnimMove : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("I move from " + lowerPosition + " to " + initialPosition);
+        //Debug.Log("I move from " + lowerPosition + " to " + initialPosition);
 
         window.localPosition = lowerPosition.localPosition;
         activeAnimation = true;
@@ -67,7 +67,7 @@ public class WinAnimMove : MonoBehaviour
 
         if (exitAnimationTrigger == false)
         {
-            Debug.Log("I move from " + initialPosition + " to " + lowerPosition);
+            //Debug.Log("I move from " + initialPosition + " to " + lowerPosition);
 
             window.localPosition = initialPosition;
             activeAnimation = true;

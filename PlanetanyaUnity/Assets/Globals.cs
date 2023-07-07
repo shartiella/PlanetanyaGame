@@ -43,7 +43,19 @@ public class Globals : MonoBehaviour
         GroupName = "";
 
         FillSatList();
-        ChooseSat(ChosenSatelliteName);  //לבטל כשצריך
+        if (ChosenSatelliteName!= null)
+        {
+            ChooseSat(ChosenSatelliteName);  //לבטל כשצריך
+            Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+        }
+        else if (ChosenSatellite!= null)
+        {
+            Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+        }
+        else
+        {
+            Debug.Log("NO chosen satellite");
+        }
     }
 
     private void Awake()
@@ -101,7 +113,7 @@ public class Globals : MonoBehaviour
         GPS.Name = "GPS";
         GPS.Kind = "ניווט";
         GPS.Orbit = "MEO";
-        GPS.Object = "phone";
+        GPS.Object = "Phone";
         SatellitesList.Add(GPS);
 
         Satellite TV = new Satellite();
@@ -115,7 +127,7 @@ public class Globals : MonoBehaviour
         MAP.Name = "MAP";
         MAP.Kind = "מיפוי";
         MAP.Orbit = "LEO";
-        MAP.Object = "computer";
+        MAP.Object = "Computer";
         SatellitesList.Add(MAP);
     }
 

@@ -54,7 +54,7 @@ public class RoomCamera : MonoBehaviour
 
                 zoom(difference * -0.05f);
             }
-            else if (Input.touchCount == 1 || Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0))
             {
                 float FOVfactor = Camera.main.fieldOfView / 60;
                 transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * speed * FOVfactor, -Input.GetAxis("Mouse X") * speed * FOVfactor, 0));

@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class DeviceClick : MonoBehaviour
     //[SerializeField] private GameObject regularCam;
     //[SerializeField] private GameObject CineCam;
     [SerializeField] private GameObject LookAtTarget;
+    [SerializeField] private Globals _globals;
+
 
     [SerializeField] private GameObject Cam;
     [SerializeField] private Vector3 CamPositionAfterClick;
@@ -47,8 +50,15 @@ public class DeviceClick : MonoBehaviour
         RoomCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
         Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
 
+        foreach (Satellite sat in _globals.SatellitesList)
+        {
+            if (sat.Object == thisDevice)
+            {
+                Globals.ChosenSatellite = sat;
+            }
+        }
 
-        WinAnimOpen.exitAnimationTrigger = true;
+        StoryWinAnim.exitAnimationTrigger = true;
         //בחירת לוויין
         //Globals.ChosenSatellite.Name = "GPS";//לבטל כדי לבחור לוויין
 
