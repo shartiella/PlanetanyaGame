@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/00 - introScreen.unity
+    path: Assets/Scenes/Delete Scenes/00 - introScreen.unity
     guid: f74f14d1f27d82049a76f3473c1afdd3
   - enabled: 0
     path: Assets/Scenes/00 - Logo.unity
@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/04 - OrbitChoice.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/05 - Map.unity
+    path: Assets/Scenes/Delete Scenes/05 - Map.unity
     guid: 0f9c800644652554cbf3b86147533cca
   - enabled: 0
     path: Assets/Scenes/06 - LaunchFinale.unity

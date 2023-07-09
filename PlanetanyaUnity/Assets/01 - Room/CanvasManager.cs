@@ -98,6 +98,7 @@ public class CanvasManager : MonoBehaviour
                 if (RoomCamera.deviceClicked == "Phone")
                 {
                     showStoryWindow("החלטתם משום מה להזמין המבורגר לארוחת בוקר. אנחנו לא שופטים...");
+                   
                 }
                 else if (RoomCamera.deviceClicked == "Computer")
                 {

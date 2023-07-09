@@ -16,7 +16,7 @@ public class WinAnimPopUp : MonoBehaviour
     {
         window = GetComponent<Transform>();
         winScale = window.localScale;
-        startScale = new Vector3(0, 0, winScale.z);
+        startScale = new Vector3(0,0, winScale.z);
     }
 
     // Update is called once per frame
@@ -36,4 +36,5 @@ public class WinAnimPopUp : MonoBehaviour
     {
         activeAnimation= false;
     }
+
 }
