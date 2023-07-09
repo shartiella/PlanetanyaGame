@@ -1,4 +1,4 @@
-using Cinemachine;
+ן»¿using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,21 +33,21 @@ public class DeviceClick : MonoBehaviour
         Cam.GetComponent<CinemachineVirtualCamera>().enabled = false;
     }
 
-    //לחיצה על אובייקט
+    //׳׳—׳™׳¦׳” ׳¢׳ ׳׳•׳‘׳™׳™׳§׳˜
     public void OnMouseDown()
     {
         //Vector3 camPos = regularCam.transform.position;
         //Quaternion camRot = regularCam.transform.rotation;
         //CineCam.transform.position = camPos;
         //CineCam.transform.rotation = camRot;
-        //CineCam.GetComponent<Animator>().enabled = true; //הפעלת אנימציית המצלמה
-        //CineCam.GetComponent<CinemachineVirtualCamera>().enabled = true; //הפעלת מעקב המצלמה אחרי האובייקט
+        //CineCam.GetComponent<Animator>().enabled = true; //׳”׳₪׳¢׳׳× ׳׳ ׳™׳׳¦׳™׳™׳× ׳”׳׳¦׳׳׳”
+        //CineCam.GetComponent<CinemachineVirtualCamera>().enabled = true; //׳”׳₪׳¢׳׳× ׳׳¢׳§׳‘ ׳”׳׳¦׳׳׳” ׳׳—׳¨׳™ ׳”׳׳•׳‘׳™׳™׳§׳˜
     }
     public void OnMouseUp()
     {
         CanvasManager.counter++;
 
-        RoomCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
+        RoomCamera.deviceClicked = thisDevice; //׳”׳’׳“׳¨׳× ׳”׳׳•׳‘׳™׳™׳§׳˜ ׳”׳׳¡׳•׳׳
         Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
 
         foreach (Satellite sat in _globals.SatellitesList)
@@ -59,15 +59,15 @@ public class DeviceClick : MonoBehaviour
         }
 
         StoryWinAnim.exitAnimationTrigger = true;
-        //בחירת לוויין
-        //Globals.ChosenSatellite.Name = "GPS";//לבטל כדי לבחור לוויין
+        //׳‘׳—׳™׳¨׳× ׳׳•׳•׳™׳™׳
+        //Globals.ChosenSatellite.Name = "GPS";//׳׳‘׳˜׳ ׳›׳“׳™ ׳׳‘׳—׳•׳¨ ׳׳•׳•׳™׳™׳
 
         Vector3 myPos = transform.position;
 
 
         if (RoomCamera.deviceClicked == thisDevice)
         {
-            LookAtTarget.transform.position = transform.position ; //הגדרת מיקום המעקב כמיקום האובייקט הלחוץ
+            LookAtTarget.transform.position = transform.position ; //׳”׳’׳“׳¨׳× ׳׳™׳§׳•׳ ׳”׳׳¢׳§׳‘ ׳›׳׳™׳§׳•׳ ׳”׳׳•׳‘׳™׳™׳§׳˜ ׳”׳׳—׳•׳¥
                                                                    //LookAtTarget.transform.LeanMove(myPos, 1);
             Cam.transform.LeanMove(CamPositionAfterClick, 2).setEaseInOutQuad().setOnComplete(stopMovingCamera);
 

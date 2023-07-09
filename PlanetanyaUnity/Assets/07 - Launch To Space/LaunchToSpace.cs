@@ -1,4 +1,4 @@
-using System;
+ο»Ώusing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -15,7 +15,7 @@ public class LaunchToSpace : MonoBehaviour
     private float demoTimer = 0.0f;
     private int pushTimes = 0;
 
-    //μαθμ λωπγς ξδ θεα
+    //ΧΧ‘ΧΧ Χ›Χ©Χ Χ“ΧΆ ΧΧ” ΧΧ•Χ‘
     [SerializeField] private float Xforce;
     [SerializeField] private float Yforce;
     [SerializeField] private float pushAfter;
@@ -76,7 +76,7 @@ public class LaunchToSpace : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    //ωιβεψι γξε
+    //Χ©Χ™Χ’Χ•Χ¨Χ™ Χ“ΧΧ•
     public void launchTest()
     {
         if (Globals.ChosenSatellite.Orbit != "none")

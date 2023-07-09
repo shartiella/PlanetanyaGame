@@ -1,4 +1,4 @@
-
+п»ї
 using UnityEngine;
 using TMPro;
 
@@ -43,7 +43,7 @@ public class gyroControl : MonoBehaviour
 
             transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
             transform.Rotate(new Vector3(0, 1, 0), -direction.x * 180, Space.World);
-            transform.Translate(new Vector3(0, 0, -10)); //ойчен доцмод
+            transform.Translate(new Vector3(0, 0, -10)); //ЧћЧ™Ч§Ч•Чќ Ч”ЧћЧ¦ЧњЧћЧ”
 
             X = Input.gyro.attitude.eulerAngles.x;
             Y = Input.gyro.attitude.eulerAngles.y;

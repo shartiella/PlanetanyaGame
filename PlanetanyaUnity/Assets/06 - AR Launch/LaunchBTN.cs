@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -42,7 +42,7 @@ public class LaunchBTN : MonoBehaviour
             }
             else if (launchCountdown <= 4)
             {
-                showNumber("ùéâåø!");
+                showNumber("×©×™×’×•×¨!");
             }
             else
             {
@@ -109,7 +109,7 @@ public class LaunchBTN : MonoBehaviour
         });
         countdownText.transform.LeanScale(Vector3.zero, 0.5f).setEaseOutBack();
 
-        cineMachine.SetActive(true); //ìáèì ëùðöìéç ìäèîéò îöéàåú øáåãä
+        cineMachine.SetActive(true); //×œ×‘×˜×œ ×›×©× ×¦×œ×™×— ×œ×”×˜×ž×™×¢ ×ž×¦×™××•×ª ×¨×‘×•×“×”
         Globals.rocketStatus = "launching";
         gameObject.SetActive(false);
     }
