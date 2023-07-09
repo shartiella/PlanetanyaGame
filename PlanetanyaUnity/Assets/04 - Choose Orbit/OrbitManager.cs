@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -56,7 +56,7 @@ public class OrbitManager : MonoBehaviour
         switch (counter)
         {
             case 0:
-                showStoryWindow("ΰικ ωεμηιν μεειιο μημμ?\nξωβψιν ΰεϊε αΰξφςεϊ θιμ", true);
+                showStoryWindow("ΧΧ™Χ Χ©Χ•ΧΧ—Χ™Χ ΧΧ•Χ•Χ™Χ™Χ ΧΧ—ΧΧ?\nΧΧ©Χ’Χ¨Χ™Χ ΧΧ•ΧªΧ• Χ‘ΧΧΧ¦ΧΆΧ•Χª ΧΧ™Χ", true);
                 break;
 
             case 1:
@@ -67,7 +67,7 @@ public class OrbitManager : MonoBehaviour
             case 2:
                 if (StoryWindow.activeSelf == false)
                 {
-                    showStoryWindow("πρε μωβψ ΰϊ δθιμ αςφξλν!", false);
+                    showStoryWindow("Χ Χ΅Χ• ΧΧ©Χ’Χ¨ ΧΧª Χ”ΧΧ™Χ Χ‘ΧΆΧ¦ΧΧ›Χ!", false);
                     counter = 3;
                 }
                 break;
@@ -75,7 +75,7 @@ public class OrbitManager : MonoBehaviour
             case 3:
                 if (typewriterUI.TypeWriterIsFinished)
                 {
-                    showInstructionWindow("λγι μχαες ΰϊ λιεεο εςεφξϊ δωιβεψ, ξωλε ΰϊ δςιβεμ δληεμ");
+                    showInstructionWindow("Χ›Χ“Χ™ ΧΧ§Χ‘Χ•ΧΆ ΧΧª Χ›Χ™Χ•Χ•Χ Χ•ΧΆΧ•Χ¦ΧΧª Χ”Χ©Χ™Χ’Χ•Χ¨, ΧΧ©Χ›Χ• ΧΧª Χ”ΧΆΧ™Χ’Χ•Χ Χ”Χ›Χ—Χ•Χ");
                     counter = 4;
                 }
                 break;
@@ -100,7 +100,7 @@ public class OrbitManager : MonoBehaviour
             case 6:
                 if (Globals.rocketStatus == "toLaunch" && Rocket.launchCounter == 1)
                 {
-                    showStoryWindow("δςιβεμ δχθο ξρξο ΰιτδ ωηψψϊν ΰϊ δΰφας αωιβεψ δχεγν. ςλωιε πρε ωεα!",false);
+                    showStoryWindow("Χ”ΧΆΧ™Χ’Χ•Χ Χ”Χ§ΧΧ ΧΧ΅ΧΧ ΧΧ™Χ¤Χ” Χ©Χ—Χ¨Χ¨ΧªΧ ΧΧª Χ”ΧΧ¦Χ‘ΧΆ Χ‘Χ©Χ™Χ’Χ•Χ¨ Χ”Χ§Χ•Χ“Χ. ΧΆΧ›Χ©Χ™Χ• Χ Χ΅Χ• Χ©Χ•Χ‘!",false);
                     antiLauncher.SetActive(true);
                     if (typewriterUI.TypeWriterIsFinished)
                     {
@@ -110,7 +110,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 7:
-                showInstructionWindow("ωβψε ΰϊ δθιμ λγι μδξωικ");
+                showInstructionWindow("Χ©Χ’Χ¨Χ• ΧΧª Χ”ΧΧ™Χ Χ›Χ“Χ™ ΧΧ”ΧΧ©Χ™Χ");
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     launcher.SetActive(true);
@@ -127,7 +127,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 9:
-                showStoryWindow("λγι μδφμιη μωβψ μεειιο μξρμεμ ραια λγεψ δΰψυ...", false);
+                showStoryWindow("Χ›Χ“Χ™ ΧΧ”Χ¦ΧΧ™Χ— ΧΧ©Χ’Χ¨ ΧΧ•Χ•Χ™Χ™Χ ΧΧΧ΅ΧΧ•Χ Χ΅Χ‘Χ™Χ‘ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥...", false);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     launcher.SetActive(true);
@@ -144,7 +144,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 11:
-                showStoryWindow("φψικ μωβψ ΰεϊε αςεφξδ ξϊΰιξδ – μΰ πξελδ ξιγι, εμΰ βαεδδ ξιγι", false);
+                showStoryWindow("Χ¦Χ¨Χ™Χ ΧΧ©Χ’Χ¨ ΧΧ•ΧªΧ• Χ‘ΧΆΧ•Χ¦ΧΧ” ΧΧªΧΧ™ΧΧ” β€“ ΧΧ Χ ΧΧ•Χ›Χ” ΧΧ™Χ“Χ™, Χ•ΧΧ Χ’Χ‘Χ•Χ”Χ” ΧΧ™Χ“Χ™", false);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     hideInstructionWindow();
@@ -153,7 +153,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 12:
-                showInstructionWindow("ωβψε ΰϊ δθιμ αςεφξδ δξϊΰιξδ");
+                showInstructionWindow("Χ©Χ’Χ¨Χ• ΧΧª Χ”ΧΧ™Χ Χ‘ΧΆΧ•Χ¦ΧΧ” Χ”ΧΧªΧΧ™ΧΧ”");
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     launcher.SetActive(true);
@@ -169,36 +169,36 @@ public class OrbitManager : MonoBehaviour
                 }
                 break;
 
-            case 14: //ξωεα ςμ ςεφξϊ δωιβεψ
+            case 14: //ΧΧ©Χ•Χ‘ ΧΆΧ ΧΆΧ•Χ¦ΧΧª Χ”Χ©Χ™Χ’Χ•Χ¨
                 launcher.SetActive(true);
 
                 if (lastLaunchWasTowardsEarth)
                 {
-                    //μϊεκ δΰγξδ
-                    showStoryWindow("λγΰι μζλεψ ωμωβψ θιμιν λμτι δΰγξδ ζδ μΰ ξΰεγ ΰτχθιαι...", false);
+                    //ΧΧªΧ•Χ Χ”ΧΧ“ΧΧ”
+                    showStoryWindow("Χ›Χ“ΧΧ™ ΧΧ–Χ›Χ•Χ¨ Χ©ΧΧ©Χ’Χ¨ ΧΧ™ΧΧ™Χ Χ›ΧΧ¤Χ™ Χ”ΧΧ“ΧΧ” Χ–Χ” ΧΧ ΧΧΧ•Χ“ ΧΧ¤Χ§ΧΧ™Χ‘Χ™...", false);
                 }
                 else if (Globals.lastLaunchForce.magnitude <= 4)
                 {
-                    //ημω ξιγι
-                    showStoryWindow("ωιβψϊν ΰϊ δθιμ ςν ςεφξδ πξελδ ξιγι. λεη δξωιλδ ωμ λγεψ δΰψυ βψν μθιμ μιτεμ αηζψδ.", false);
+                    //Χ—ΧΧ© ΧΧ™Χ“Χ™
+                    showStoryWindow("Χ©Χ™Χ’Χ¨ΧªΧ ΧΧª Χ”ΧΧ™Χ ΧΆΧ ΧΆΧ•Χ¦ΧΧ” Χ ΧΧ•Χ›Χ” ΧΧ™Χ“Χ™. Χ›Χ•Χ— Χ”ΧΧ©Χ™Χ›Χ” Χ©Χ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥ Χ’Χ¨Χ ΧΧΧ™Χ ΧΧ™Χ¤Χ•Χ Χ‘Χ—Χ–Χ¨Χ”.", false);
                 }
                 else if (Globals.lastLaunchForce.magnitude >= 5)
                 {
-                    //ηζχ ξιγι
+                    //Χ—Χ–Χ§ ΧΧ™Χ“Χ™
                     if (crashFromEarthCollision)
                     {
-                        showStoryWindow("ωιβψϊν ΰϊ δθιμ ςν ςεφξδ ηζχδ ξιγι. δθιμ δφμιη μδϊψεξν ξλγεψ δΰψυ, ΰαμ αρεσ πτμ αηζψδ.", false);
+                        showStoryWindow("Χ©Χ™Χ’Χ¨ΧªΧ ΧΧª Χ”ΧΧ™Χ ΧΆΧ ΧΆΧ•Χ¦ΧΧ” Χ—Χ–Χ§Χ” ΧΧ™Χ“Χ™. Χ”ΧΧ™Χ Χ”Χ¦ΧΧ™Χ— ΧΧ”ΧªΧ¨Χ•ΧΧ ΧΧ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥, ΧΧ‘Χ Χ‘Χ΅Χ•Χ£ Χ Χ¤Χ Χ‘Χ—Χ–Χ¨Χ”.", false);
                     }
                     else
                     {
-                        showStoryWindow("ωιβψϊν ΰϊ δθιμ ςν ςεφξδ ηζχδ ξιγι. δθιμ δϊβαψ ςμ λεη δξωιλδ ωμ λγεψ δΰψυ, εθρ μημμ.", false);
+                        showStoryWindow("Χ©Χ™Χ’Χ¨ΧªΧ ΧΧª Χ”ΧΧ™Χ ΧΆΧ ΧΆΧ•Χ¦ΧΧ” Χ—Χ–Χ§Χ” ΧΧ™Χ“Χ™. Χ”ΧΧ™Χ Χ”ΧªΧ’Χ‘Χ¨ ΧΆΧ Χ›Χ•Χ— Χ”ΧΧ©Χ™Χ›Χ” Χ©Χ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥, Χ•ΧΧ΅ ΧΧ—ΧΧ.", false);
                     }
                 }
                 else
                 {
-                    //αιπεπι
+                    //Χ‘Χ™Χ Χ•Χ Χ™
                     hideInstructionWindow();
-                    showStoryWindow("λμ δλαεγ! ωιβψϊν ΰϊ δθιμ αςεφξδ ξϊΰιξδ.", true);
+                    showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“! Χ©Χ™Χ’Χ¨ΧªΧ ΧΧª Χ”ΧΧ™Χ Χ‘ΧΆΧ•Χ¦ΧΧ” ΧΧªΧΧ™ΧΧ”.", true);
                 }
 
                 if (typewriterUI.TypeWriterIsFinished)
@@ -225,7 +225,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 16:
-                showStoryWindow("ΰαμ, βν ςλωιε - δθιμ ςγιιο ξϊψρχ αρεσ. μξδ αςφν?", true);
+                showStoryWindow("ΧΧ‘Χ, Χ’Χ ΧΆΧ›Χ©Χ™Χ• - Χ”ΧΧ™Χ ΧΆΧ“Χ™Χ™Χ ΧΧªΧ¨Χ΅Χ§ Χ‘Χ΅Χ•Χ£. ΧΧΧ” Χ‘ΧΆΧ¦Χ?", true);
                 break;
 
             case 17:
@@ -234,7 +234,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 18:
-                showStoryWindow("δωιβεψ ξλπιρ ΰϊ δθιμ μξρμεμ αφεψϊ ΰμιτρδ ωαρετδ δθιμ ηεζψ μπχεγδ ωαδ δϊηιμ – λγεψ δΰψυ", true);
+                showStoryWindow("Χ”Χ©Χ™Χ’Χ•Χ¨ ΧΧ›Χ Χ™Χ΅ ΧΧª Χ”ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ Χ‘Χ¦Χ•Χ¨Χª ΧΧΧ™Χ¤Χ΅Χ” Χ©Χ‘Χ΅Χ•Χ¤Χ” Χ”ΧΧ™Χ Χ—Χ•Χ–Χ¨ ΧΧ Χ§Χ•Χ“Χ” Χ©Χ‘Χ” Χ”ΧªΧ—Χ™Χ β€“ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥", true);
                 break;
 
             case 19:
@@ -243,7 +243,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 20:
-                showStoryWindow("λγι μδτεκ ΰϊ δξρμεμ δΰμιτθι μξρμεμ ξςβμι ειφια, φψικ μϊϊ μθιμ γηιτδ χμδ ΰηψι δωιβεψ", false);
+                showStoryWindow("Χ›Χ“Χ™ ΧΧ”Χ¤Χ•Χ ΧΧª Χ”ΧΧ΅ΧΧ•Χ Χ”ΧΧΧ™Χ¤ΧΧ™ ΧΧΧ΅ΧΧ•Χ ΧΧΆΧ’ΧΧ™ Χ•Χ™Χ¦Χ™Χ‘, Χ¦Χ¨Χ™Χ ΧΧªΧª ΧΧΧ™Χ Χ“Χ—Χ™Χ¤Χ” Χ§ΧΧ” ΧΧ—Χ¨Χ™ Χ”Χ©Χ™Χ’Χ•Χ¨", false);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     counter = 21;
@@ -251,7 +251,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 21:
-                showInstructionWindow("δλπιρε ΰϊ δθιμ μξρμεμ ξςβμι ειφια αςζψϊ γηιτδ");
+                showInstructionWindow("Χ”Χ›Χ Χ™Χ΅Χ• ΧΧª Χ”ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ ΧΧΆΧ’ΧΧ™ Χ•Χ™Χ¦Χ™Χ‘ Χ‘ΧΆΧ–Χ¨Χª Χ“Χ—Χ™Χ¤Χ”");
                 SlideFromTop.exitAnimationTrigger = false;
                 if (typewriterUI.TypeWriterIsFinished && Globals.rocketStatus=="pushed")
                 {
@@ -266,7 +266,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 23:
-                showStoryWindow("γηιτδ αψβς δπλεο ϊψηιχ ΰϊ δξρμεμ ωμ δθιμ ξλγεψ δΰψυ εϊβψεν μξρμεμ μδϊςβμ", true);
+                showStoryWindow("Χ“Χ—Χ™Χ¤Χ” Χ‘Χ¨Χ’ΧΆ Χ”Χ Χ›Χ•Χ ΧªΧ¨Χ—Χ™Χ§ ΧΧª Χ”ΧΧ΅ΧΧ•Χ Χ©Χ Χ”ΧΧ™Χ ΧΧ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥ Χ•ΧªΧ’Χ¨Χ•Χ ΧΧΧ΅ΧΧ•Χ ΧΧ”ΧªΧΆΧ’Χ", true);
                 break;
 
             case 24:
@@ -275,7 +275,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 25:
-                showStoryWindow("ΰϊ δγηιτδ φψικ μϊϊ λωδθιμ πξφΰ απχεγδ δψηεχδ αιεϊψ ωμ δΰμιτρδ ξλγεψ δΰψυ", false);
+                showStoryWindow("ΧΧª Χ”Χ“Χ—Χ™Χ¤Χ” Χ¦Χ¨Χ™Χ ΧΧªΧª Χ›Χ©Χ”ΧΧ™Χ Χ ΧΧ¦Χ Χ‘Χ Χ§Χ•Χ“Χ” Χ”Χ¨Χ—Χ•Χ§Χ” Χ‘Χ™Χ•ΧªΧ¨ Χ©Χ Χ”ΧΧΧ™Χ¤Χ΅Χ” ΧΧ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥", false);
                 if (typewriterUI.TypeWriterIsFinished && Globals.rocketStatus == "pushed")
                 {
                     counter= 26;
@@ -289,14 +289,14 @@ public class OrbitManager : MonoBehaviour
 
                 case 27:
                 //eccentricityPercent = Mathf.Round((1 - Rocket.Eccentricity) * 10);
-                //eccentricityFeedback = "δξρμεμ ωμλν ξςβμι α-%0" + eccentricityPercent.ToString();
+                //eccentricityFeedback = "Χ”ΧΧ΅ΧΧ•Χ Χ©ΧΧ›Χ ΧΧΆΧ’ΧΧ™ Χ‘-%0" + eccentricityPercent.ToString();
                 if (Rocket.Eccentricity > 1)
                 {
-                    eccentricityFeedback = "δθιμ ωμλν μΰ αξρμεμ αλμμ";
+                    eccentricityFeedback = "Χ”ΧΧ™Χ Χ©ΧΧ›Χ ΧΧ Χ‘ΧΧ΅ΧΧ•Χ Χ‘Χ›ΧΧ";
                 }
                 else if (Rocket.Eccentricity > 0.15)
                 {
-                    eccentricityFeedback = "δθιμ ωμλν αξρμεμ ΰμιτθι ξιγι";
+                    eccentricityFeedback = "Χ”ΧΧ™Χ Χ©ΧΧ›Χ Χ‘ΧΧ΅ΧΧ•Χ ΧΧΧ™Χ¤ΧΧ™ ΧΧ™Χ“Χ™";
                 }
                 else
                 {
@@ -315,15 +315,15 @@ public class OrbitManager : MonoBehaviour
 
             case 28:
                 //eccentricityPercent = Mathf.Round((1 - Rocket.Eccentricity) * 10);
-                //eccentricityFeedback = "δξρμεμ ωμλν ξςβμι α-%0" + eccentricityPercent.ToString();
+                //eccentricityFeedback = "Χ”ΧΧ΅ΧΧ•Χ Χ©ΧΧ›Χ ΧΧΆΧ’ΧΧ™ Χ‘-%0" + eccentricityPercent.ToString();
 
                 if (Rocket.Eccentricity > 1)
                 {
-                    eccentricityFeedback = "δθιμ ωμλν μΰ αξρμεμ αλμμ";
+                    eccentricityFeedback = "Χ”ΧΧ™Χ Χ©ΧΧ›Χ ΧΧ Χ‘ΧΧ΅ΧΧ•Χ Χ‘Χ›ΧΧ";
                 }
                 else if (Rocket.Eccentricity > 0.15)
                 {
-                    eccentricityFeedback = "δθιμ ωμλν αξρμεμ ΰμιτθι ξιγι";
+                    eccentricityFeedback = "Χ”ΧΧ™Χ Χ©ΧΧ›Χ Χ‘ΧΧ΅ΧΧ•Χ ΧΧΧ™Χ¤ΧΧ™ ΧΧ™Χ“Χ™";
                 }
                 else
                 {
@@ -338,7 +338,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 29:
-                showStoryWindow("λμ δλαεγ - ΰϊν ιεγςιν ςλωιε μωβψ θιμ μξρμεμ!", true);
+                showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“ - ΧΧªΧ Χ™Χ•Χ“ΧΆΧ™Χ ΧΆΧ›Χ©Χ™Χ• ΧΧ©Χ’Χ¨ ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ!", true);
                 resetBTN.SetActive(false);
                 break;
 
@@ -350,13 +350,13 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 31:
-                showStoryWindow("ραια λγεψ δΰψυ ιω λξδ ξρμεμιν ωεπιν ωμ μεειιπιν", true);
+                showStoryWindow("Χ΅Χ‘Χ™Χ‘ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥ Χ™Χ© Χ›ΧΧ” ΧΧ΅ΧΧ•ΧΧ™Χ Χ©Χ•Χ Χ™Χ Χ©Χ ΧΧ•Χ•Χ™Χ™Χ Χ™Χ", true);
                 Orbits.SetActive(true);
                 break;
 
             case 32:
                 hideStoryWindow();
-                typewriterUI.TextToType = "πξεκ\nαιπεπι\nβιΰεριπλψεπι";
+                typewriterUI.TextToType = "Χ ΧΧ•Χ\nΧ‘Χ™Χ Χ•Χ Χ™\nΧ’Χ™ΧΧ•Χ΅Χ™Χ Χ›Χ¨Χ•Χ Χ™";
                 OrbitsNames.SetActive(true);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
@@ -365,7 +365,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 33:
-                showStoryWindow("ΰμδ ωμεωϊ δξρμεμιν δςιχψιιν", true);
+                showStoryWindow("ΧΧΧ” Χ©ΧΧ•Χ©Χª Χ”ΧΧ΅ΧΧ•ΧΧ™Χ Χ”ΧΆΧ™Χ§Χ¨Χ™Χ™Χ", true);
                 StoryWinAnim.exitAnimationTrigger = false;
                 break;
 
@@ -377,15 +377,15 @@ public class OrbitManager : MonoBehaviour
             case 35:
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
-                    showStoryWindow("μεειιο δξιτει ωαπιϊν φψικ μψΰεϊ ΰϊ λγεψ δΰψυ ξχψεα, εμλο...", true);
+                    showStoryWindow("ΧΧ•Χ•Χ™Χ™Χ Χ”ΧΧ™Χ¤Χ•Χ™ Χ©Χ‘Χ Χ™ΧªΧ Χ¦Χ¨Χ™Χ ΧΧ¨ΧΧ•Χª ΧΧª Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥ ΧΧ§Χ¨Χ•Χ‘, Χ•ΧΧ›Χ...", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "MEO")
                 {
-                    showStoryWindow("μεειιο δπιεεθ ωαπιϊν φψικ μδχισ ΰϊ λγεψ δΰψυ τςξιιν αιεν, εμλο...", true);
+                    showStoryWindow("ΧΧ•Χ•Χ™Χ™Χ Χ”Χ Χ™Χ•Χ•Χ Χ©Χ‘Χ Χ™ΧªΧ Χ¦Χ¨Χ™Χ ΧΧ”Χ§Χ™Χ£ ΧΧª Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥ Χ¤ΧΆΧΧ™Χ™Χ Χ‘Χ™Χ•Χ, Χ•ΧΧ›Χ...", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "GEO")
                 {
-                    showStoryWindow("μεειιο δϊχωεψϊ ωαπιϊν φψικ μδιεϊ ξρεπλψο ςν ριαεα λγεψ δΰψυ, εμλο...", true);
+                    showStoryWindow("ΧΧ•Χ•Χ™Χ™Χ Χ”ΧªΧ§Χ©Χ•Χ¨Χª Χ©Χ‘Χ Χ™ΧªΧ Χ¦Χ¨Χ™Χ ΧΧ”Χ™Χ•Χª ΧΧ΅Χ•Χ Χ›Χ¨Χ ΧΆΧ Χ΅Χ™Χ‘Χ•Χ‘ Χ›Χ“Χ•Χ¨ Χ”ΧΧ¨Χ¥, Χ•ΧΧ›Χ...", true);
                 }
                 break;
 
@@ -400,15 +400,15 @@ public class OrbitManager : MonoBehaviour
                 Rocket.launchCounter = 0;
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
-                    showInstructionWindow("ωβψε ΰϊ δθιμ μξρμεμ μεειιπι πξεκ");
+                    showInstructionWindow("Χ©Χ’Χ¨Χ• ΧΧª Χ”ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ ΧΧ•Χ•Χ™Χ™Χ Χ™ Χ ΧΧ•Χ");
                 }
                 else if (Globals.ChosenSatellite.Orbit == "MEO")
                 {
-                    showInstructionWindow("ωβψε ΰϊ δθιμ μξρμεμ μεειιπι αιπεπι");
+                    showInstructionWindow("Χ©Χ’Χ¨Χ• ΧΧª Χ”ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ ΧΧ•Χ•Χ™Χ™Χ Χ™ Χ‘Χ™Χ Χ•Χ Χ™");
                 }
                 else if (Globals.ChosenSatellite.Orbit == "GEO")
                 {
-                    showInstructionWindow("ωβψε ΰϊ δθιμ μξρμεμ μεειιπι βιΰεριπλψεπι");
+                    showInstructionWindow("Χ©Χ’Χ¨Χ• ΧΧª Χ”ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ ΧΧ•Χ•Χ™Χ™Χ Χ™ Χ’Χ™ΧΧ•Χ΅Χ™Χ Χ›Χ¨Χ•Χ Χ™");
                 }
                 SlideFromTop.exitAnimationTrigger = false;
                 if (typewriterUI.TypeWriterIsFinished)
@@ -457,15 +457,15 @@ public class OrbitManager : MonoBehaviour
                 StoryWinAnim.exitAnimationTrigger = false;
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
-                    showStoryWindow("λμ δλαεγ! δφμηϊν μωβψ θιμ μξρμεμ μεειιπι πξεκ", true);
+                    showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“! Χ”Χ¦ΧΧ—ΧªΧ ΧΧ©Χ’Χ¨ ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ ΧΧ•Χ•Χ™Χ™Χ Χ™ Χ ΧΧ•Χ", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "MEO")
                 {
-                    showStoryWindow("λμ δλαεγ! δφμηϊν μωβψ θιμ μξρμεμ μεειιπι αιπεπι", true);
+                    showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“! Χ”Χ¦ΧΧ—ΧªΧ ΧΧ©Χ’Χ¨ ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ ΧΧ•Χ•Χ™Χ™Χ Χ™ Χ‘Χ™Χ Χ•Χ Χ™", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "GEO")
                 {
-                    showStoryWindow("λμ δλαεγ! δφμηϊν μωβψ θιμ μξρμεμ μεειιπι βιΰεριπλψεπι", true);
+                    showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“! Χ”Χ¦ΧΧ—ΧªΧ ΧΧ©Χ’Χ¨ ΧΧ™Χ ΧΧΧ΅ΧΧ•Χ ΧΧ•Χ•Χ™Χ™Χ Χ™ Χ’Χ™ΧΧ•Χ΅Χ™Χ Χ›Χ¨Χ•Χ Χ™", true);
                 }
                 break;
 
@@ -479,7 +479,7 @@ public class OrbitManager : MonoBehaviour
             //    break;
 
             //case 42:
-            //    showStoryWindow("ςλωιε ΰηψι ωαπιϊν μεειιο εμξγϊν μωβψ ΰεϊε, δβις δζξο μωβψ ΰϊ δμεειεο ωμλν μημμ!", true);
+            //    showStoryWindow("ΧΆΧ›Χ©Χ™Χ• ΧΧ—Χ¨Χ™ Χ©Χ‘Χ Χ™ΧªΧ ΧΧ•Χ•Χ™Χ™Χ Χ•ΧΧΧ“ΧªΧ ΧΧ©Χ’Χ¨ ΧΧ•ΧªΧ•, Χ”Χ’Χ™ΧΆ Χ”Χ–ΧΧ ΧΧ©Χ’Χ¨ ΧΧª Χ”ΧΧ•Χ•Χ™Χ•Χ Χ©ΧΧ›Χ ΧΧ—ΧΧ!", true);
 
             //    break;
         }
@@ -552,16 +552,16 @@ public class OrbitManager : MonoBehaviour
     {
         if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching" || Globals.rocketStatus == "pushed")
         {
-            //αγιχϊ ξρμεμ
+            //Χ‘Χ“Χ™Χ§Χª ΧΧ΅ΧΧ•Χ
             if (Globals.orbit == Globals.ChosenSatellite.Orbit && Globals.demo == false)
             {
                 Globals.orbitTime += Time.deltaTime;
-                Debug.Log(" :οελπδ μεμρξα οξζ" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString());
+                Debug.Log(" :ΧΧ•Χ›Χ Χ” ΧΧ•ΧΧ΅ΧΧ‘ ΧΧΧ–" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString());
 
                 if (Globals.orbitTime >= neededOrbitTime)
                 {
                     //winPanel.SetActive(true);
-                    //winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "!νϊημφδ" + Environment.NewLine + "μεμρξμ νϊςβδ" + Environment.NewLine + "!" + Globals.ChosenSatellite.Orbit;
+                    //winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "!ΧΧªΧ—ΧΧ¦Χ”" + Environment.NewLine + "ΧΧ•ΧΧ΅ΧΧ ΧΧªΧΆΧ’Χ”" + Environment.NewLine + "!" + Globals.ChosenSatellite.Orbit;
                     //meter.text = "";
                     Globals.rocketStatus = "inOrbit";
 

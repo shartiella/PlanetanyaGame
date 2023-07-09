@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +47,7 @@ public class StoryWinAnim : MonoBehaviour
 
     private void exitAnimation()
     {
-        //ζδ λπψΰδ χεψδ ιεϊψ ξτςν ΰηϊ εζε δαςιδ
+        //Χ–Χ” Χ›Χ Χ¨ΧΧ” Χ§Χ•Χ¨Χ” Χ™Χ•ΧªΧ¨ ΧΧ¤ΧΆΧ ΧΧ—Χª Χ•Χ–Χ• Χ”Χ‘ΧΆΧ™Χ”
         //Debug.Log("EXIT");
         typewriterUI.TypeWriterIsFinished = false;
         activeAnimation = true;

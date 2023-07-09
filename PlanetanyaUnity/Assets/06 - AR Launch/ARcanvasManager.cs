@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -38,7 +38,7 @@ public class ARcanvasManager : MonoBehaviour
         {
             case 0:
                 Globals.rocketStatus = "lookingAround";
-                showStoryWindow("ΰηψι ωαπιϊν μεειιο εμξγϊν μωβψ ΰεϊε, δβις δζξο μωβψ ΰϊ δμεειιο ωμλν μημμ!", false);
+                showStoryWindow("ΧΧ—Χ¨Χ™ Χ©Χ‘Χ Χ™ΧªΧ ΧΧ•Χ•Χ™Χ™Χ Χ•ΧΧΧ“ΧªΧ ΧΧ©Χ’Χ¨ ΧΧ•ΧªΧ•, Χ”Χ’Χ™ΧΆ Χ”Χ–ΧΧ ΧΧ©Χ’Χ¨ ΧΧª Χ”ΧΧ•Χ•Χ™Χ™Χ Χ©ΧΧ›Χ ΧΧ—ΧΧ!", false);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     counter = 1;
@@ -46,7 +46,7 @@ public class ARcanvasManager : MonoBehaviour
                 break;
 
             case 1:
-                showInstructionWindow("μλε μημεο αγψκ μτμπθψιεν");
+                showInstructionWindow("ΧΧ›Χ• ΧΧ—ΧΧ•Χ Χ‘Χ“Χ¨Χ ΧΧ¤ΧΧ ΧΧ¨Χ™Χ•Χ");
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     arrivedBTN.SetActive(true);
@@ -71,7 +71,7 @@ public class ARcanvasManager : MonoBehaviour
                 break;
 
             case 3:
-                showStoryWindow("ζδ δθιμ ωμλν - εδεΰ λξςθ ξελο μωιβεψ!", true);
+                showStoryWindow("Χ–Χ” Χ”ΧΧ™Χ Χ©ΧΧ›Χ - Χ•Χ”Χ•Χ Χ›ΧΧΆΧ ΧΧ•Χ›Χ ΧΧ©Χ™Χ’Χ•Χ¨!", true);
                 break;
 
             case 4:
@@ -80,14 +80,14 @@ public class ARcanvasManager : MonoBehaviour
                 break;
 
             case 5:
-                showStoryWindow("λμ ξδ ωφψικ ζδ ψχ μηαψ ΰμιε ΰϊ δμεειιο", false);
+                showStoryWindow("Χ›Χ ΧΧ” Χ©Χ¦Χ¨Χ™Χ Χ–Χ” Χ¨Χ§ ΧΧ—Χ‘Χ¨ ΧΧΧ™Χ• ΧΧª Χ”ΧΧ•Χ•Χ™Χ™Χ", false);
                 if (typewriterUI.TypeWriterIsFinished)
                 {
-                    showInstructionWindow("ητωε ΰϊ δμεειιο εβψψε ΰεϊε ΰμ δθιμ");
+                    showInstructionWindow("Χ—Χ¤Χ©Χ• ΧΧª Χ”ΧΧ•Χ•Χ™Χ™Χ Χ•Χ’Χ¨Χ¨Χ• ΧΧ•ΧªΧ• ΧΧ Χ”ΧΧ™Χ");
                     Globals.rocketStatus = "connectSat";
                 }
-                //ΰν ςεαψ ζξο ξρειν εδξφμξδ ςεγ μΰ λεεπδ μλιεεο δμεειιο, ωιετις ηυ ωιφαις ςμιε
-                //ηιαψε ΰμ δθιμ
+                //ΧΧ ΧΆΧ•Χ‘Χ¨ Χ–ΧΧ ΧΧ΅Χ•Χ™Χ Χ•Χ”ΧΧ¦ΧΧΧ” ΧΆΧ•Χ“ ΧΧ Χ›Χ•Χ•Χ Χ” ΧΧ›Χ™Χ•Χ•Χ Χ”ΧΧ•Χ•Χ™Χ™Χ, Χ©Χ™Χ•Χ¤Χ™ΧΆ Χ—Χ¥ Χ©Χ™Χ¦Χ‘Χ™ΧΆ ΧΆΧΧ™Χ•
+                //Χ—Χ™Χ‘Χ¨Χ• ΧΧ Χ”ΧΧ™Χ
                 break;
 
             case 6:
@@ -97,7 +97,7 @@ public class ARcanvasManager : MonoBehaviour
                 break;
             
             case 7:
-                showStoryWindow("ρεσ ρεσ - δβςϊν μψβς δΰξϊ! ςλωιε πωΰψ ψχ μμηευ ςμ δλτϊεψ...", false);
+                showStoryWindow("Χ΅Χ•Χ£ Χ΅Χ•Χ£ - Χ”Χ’ΧΆΧªΧ ΧΧ¨Χ’ΧΆ Χ”ΧΧΧª! ΧΆΧ›Χ©Χ™Χ• Χ Χ©ΧΧ¨ Χ¨Χ§ ΧΧΧ—Χ•Χ¥ ΧΆΧ Χ”Χ›Χ¤ΧªΧ•Χ¨...", false);
                 break;
 
             case 8:
@@ -106,7 +106,7 @@ public class ARcanvasManager : MonoBehaviour
 
             case 9:
                 StoryWinAnim.exitAnimationTrigger = false;
-                showStoryWindow("μΰο δθιμ πςμν?", true);
+                showStoryWindow("ΧΧΧ Χ”ΧΧ™Χ Χ ΧΆΧΧ?", true);
                 break;
 
             case 10:

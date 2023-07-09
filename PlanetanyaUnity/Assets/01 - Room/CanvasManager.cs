@@ -1,4 +1,4 @@
-using Cinemachine;
+ο»Ώusing Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,7 +35,7 @@ public class CanvasManager : MonoBehaviour
     {
         //if (counter == 0)
         //{
-        //    showStoryWindow("αεχψ θεα! ςλωιε ξϊςεψψιν?");
+        //    showStoryWindow("Χ‘Χ•Χ§Χ¨ ΧΧ•Χ‘! ΧΆΧ›Χ©Χ™Χ• ΧΧªΧΆΧ•Χ¨Χ¨Χ™Χ?");
         //    showBtnStoryWin = true;
         //}
         //else if (counter == 1)
@@ -60,7 +60,7 @@ public class CanvasManager : MonoBehaviour
         switch (counter)
         {
             case 0:
-                showStoryWindow("αεχψ θεα! ςλωιε ξϊςεψψιν?");
+                showStoryWindow("Χ‘Χ•Χ§Χ¨ ΧΧ•Χ‘! ΧΆΧ›Χ©Χ™Χ• ΧΧªΧΆΧ•Χ¨Χ¨Χ™Χ?");
                 showBtnStoryWin = true;
                 break;
 
@@ -74,7 +74,7 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 3:
-                showStoryWindow("ιω μλν ςεγ δψαδ ςαεγδ διεν, ΰζ λγΰι ωϊϊηιμε μδϊχγν...");
+                showStoryWindow("Χ™Χ© ΧΧ›Χ ΧΆΧ•Χ“ Χ”Χ¨Χ‘Χ” ΧΆΧ‘Χ•Χ“Χ” Χ”Χ™Χ•Χ, ΧΧ– Χ›Χ“ΧΧ™ Χ©ΧªΧªΧ—Χ™ΧΧ• ΧΧ”ΧªΧ§Χ“Χ...");
                 showBtnStoryWin = true;
                 break;
 
@@ -84,7 +84,7 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 5:
-                showInstructionWindow("ωεθθε αηγψ εμηφε ςμ ΰηγ δξλωιψιν δξδαδαιν");
+                showInstructionWindow("Χ©Χ•ΧΧΧ• Χ‘Χ—Χ“Χ¨ Χ•ΧΧ—Χ¦Χ• ΧΆΧ ΧΧ—Χ“ Χ”ΧΧ›Χ©Χ™Χ¨Χ™Χ Χ”ΧΧ”Χ‘Χ”Χ‘Χ™Χ");
                 showBtnInstWin = false;
                 BlinkColor.glowOn= true;
                 break;
@@ -97,15 +97,15 @@ public class CanvasManager : MonoBehaviour
             case 7:
                 if (RoomCamera.deviceClicked == "Phone")
                 {
-                    showStoryWindow("δημθϊν ξωεν ξδ μδζξιο δξαεψβψ μΰψεηϊ αεχψ. ΰπηπε μΰ ωετθιν...");
+                    showStoryWindow("Χ”Χ—ΧΧΧªΧ ΧΧ©Χ•Χ ΧΧ” ΧΧ”Χ–ΧΧ™Χ Χ”ΧΧ‘Χ•Χ¨Χ’Χ¨ ΧΧΧ¨Χ•Χ—Χª Χ‘Χ•Χ§Χ¨. ΧΧ Χ—Χ Χ• ΧΧ Χ©Χ•Χ¤ΧΧ™Χ...");
                 }
                 else if (RoomCamera.deviceClicked == "Computer")
                 {
-                    showStoryWindow("δημθϊν ωαΰ μλν μαχψ ατμπϊπιδ - δξχεν δλι ξεωμν αςεμν!!!");
+                    showStoryWindow("Χ”Χ—ΧΧΧªΧ Χ©Χ‘Χ ΧΧ›Χ ΧΧ‘Χ§Χ¨ Χ‘Χ¤ΧΧ ΧªΧ Χ™Χ” - Χ”ΧΧ§Χ•Χ Χ”Χ›Χ™ ΧΧ•Χ©ΧΧ Χ‘ΧΆΧ•ΧΧ!!!");
                 }
                 else if (RoomCamera.deviceClicked == "TV")
                 {
-                    showStoryWindow("δημθϊν ξωεν ξδ μτϊεη ΰϊ δαεχψ αφτιιδ αθμεειζιδ");
+                    showStoryWindow("Χ”Χ—ΧΧΧªΧ ΧΧ©Χ•Χ ΧΧ” ΧΧ¤ΧªΧ•Χ— ΧΧª Χ”Χ‘Χ•Χ§Χ¨ Χ‘Χ¦Χ¤Χ™Χ™Χ” Χ‘ΧΧΧ•Χ•Χ™Χ–Χ™Χ”");
                 }
                 break;
 
@@ -117,15 +117,15 @@ public class CanvasManager : MonoBehaviour
             case 9:
                 if (RoomCamera.deviceClicked == "Phone")
                 {
-                    showStoryWindow("δωμιη αγψκ ΰμιλν, εΰϊν ςεχαιν ΰηψιε αξτδ");
+                    showStoryWindow("Χ”Χ©ΧΧ™Χ— Χ‘Χ“Χ¨Χ ΧΧΧ™Χ›Χ, Χ•ΧΧªΧ ΧΆΧ•Χ§Χ‘Χ™Χ ΧΧ—Χ¨Χ™Χ• Χ‘ΧΧ¤Χ”");
                 }
                 else if (RoomCamera.deviceClicked == "Computer")
                 {
-                    showStoryWindow("δϊημϊν μϊλπο ΰϊ δξρμεμ μπϊπιδ αΰϊψ ςν ξτεϊ");
+                    showStoryWindow("Χ”ΧªΧ—ΧΧªΧ ΧΧªΧ›Χ Χ ΧΧª Χ”ΧΧ΅ΧΧ•Χ ΧΧ ΧªΧ Χ™Χ” Χ‘ΧΧªΧ¨ ΧΆΧ ΧΧ¤Χ•Χª");
                 }
                 else if (RoomCamera.deviceClicked == "TV")
                 {
-                    showStoryWindow("ρααδ, ζδ μΰ ωιω μλν γαψιν ιεϊψ ηωεαιν μςωεϊ...");
+                    showStoryWindow("Χ΅Χ‘Χ‘Χ”, Χ–Χ” ΧΧ Χ©Χ™Χ© ΧΧ›Χ Χ“Χ‘Χ¨Χ™Χ Χ™Χ•ΧªΧ¨ Χ—Χ©Χ•Χ‘Χ™Χ ΧΧΆΧ©Χ•Χª...");
                 }
                 break;
 
@@ -137,15 +137,15 @@ public class CanvasManager : MonoBehaviour
             case 11:
                 if (RoomCamera.deviceClicked == "Phone")
                 {
-                    showStoryWindow("ΰαμ ψβς, ΰικ αςφν δθμτεο ιεγς ΰιτδ δωμιη πξφΰ ςμ δξτδ?");
+                    showStoryWindow("ΧΧ‘Χ Χ¨Χ’ΧΆ, ΧΧ™Χ Χ‘ΧΆΧ¦Χ Χ”ΧΧΧ¤Χ•Χ Χ™Χ•Χ“ΧΆ ΧΧ™Χ¤Χ” Χ”Χ©ΧΧ™Χ— Χ ΧΧ¦Χ ΧΆΧ Χ”ΧΧ¤Χ”?");
                 }
                 else if (RoomCamera.deviceClicked == "Computer")
                 {
-                    showStoryWindow("ΰαμ ψβς, ΰικ αςφν φιμξε ΰϊ δξτδ δζΰϊ?");
+                    showStoryWindow("ΧΧ‘Χ Χ¨Χ’ΧΆ, ΧΧ™Χ Χ‘ΧΆΧ¦Χ Χ¦Χ™ΧΧΧ• ΧΧª Χ”ΧΧ¤Χ” Χ”Χ–ΧΧª?");
                 }
                 else if (RoomCamera.deviceClicked == "TV")
                 {
-                    showStoryWindow("ΰαμ ψβς, ΰικ αςφν δθμεειζιδ ιεγςϊ ξδ μωγψ μπε?");
+                    showStoryWindow("ΧΧ‘Χ Χ¨Χ’ΧΆ, ΧΧ™Χ Χ‘ΧΆΧ¦Χ Χ”ΧΧΧ•Χ•Χ™Χ–Χ™Χ” Χ™Χ•Χ“ΧΆΧª ΧΧ” ΧΧ©Χ“Χ¨ ΧΧ Χ•?");
                 }
                 break;
 
@@ -155,7 +155,7 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 13:
-                showStoryWindow("λγι μδαιο ΰϊ ζδ, αεΰε πχτευ ψβς μημμ...");
+                showStoryWindow("Χ›Χ“Χ™ ΧΧ”Χ‘Χ™Χ ΧΧª Χ–Χ”, Χ‘Χ•ΧΧ• Χ Χ§Χ¤Χ•Χ¥ Χ¨Χ’ΧΆ ΧΧ—ΧΧ...");
                 break;
 
                 case 14:

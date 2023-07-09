@@ -1,4 +1,4 @@
-using Cinemachine;
+ο»Ώusing Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -136,15 +136,15 @@ public class FinalLaunchManager : MonoBehaviour
             case 2:
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
-                    showStoryWindow("λμ δλαεγ – ςωιϊν ΰϊ ζδ! απιϊν εωιβψϊν μεειιο ξιτει μξρμεμ πξεκ!", true);
+                    showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“ β€“ ΧΆΧ©Χ™ΧªΧ ΧΧª Χ–Χ”! Χ‘Χ Χ™ΧªΧ Χ•Χ©Χ™Χ’Χ¨ΧªΧ ΧΧ•Χ•Χ™Χ™Χ ΧΧ™Χ¤Χ•Χ™ ΧΧΧ΅ΧΧ•Χ Χ ΧΧ•Χ!", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "MEO")
                 {
-                    showStoryWindow("λμ δλαεγ – ςωιϊν ΰϊ ζδ! απιϊν εωιβψϊν μεειιο πιεεθ μξρμεμ αιπεπι!", true);
+                    showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“ β€“ ΧΆΧ©Χ™ΧªΧ ΧΧª Χ–Χ”! Χ‘Χ Χ™ΧªΧ Χ•Χ©Χ™Χ’Χ¨ΧªΧ ΧΧ•Χ•Χ™Χ™Χ Χ Χ™Χ•Χ•Χ ΧΧΧ΅ΧΧ•Χ Χ‘Χ™Χ Χ•Χ Χ™!", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "GEO")
                 {
-                    showStoryWindow("λμ δλαεγ – ςωιϊν ΰϊ ζδ! απιϊν εωιβψϊν μεειιο ϊχωεψϊ μξρμεμ βιΰεριπλψεπι!", true);
+                    showStoryWindow("Χ›Χ Χ”Χ›Χ‘Χ•Χ“ β€“ ΧΆΧ©Χ™ΧªΧ ΧΧª Χ–Χ”! Χ‘Χ Χ™ΧªΧ Χ•Χ©Χ™Χ’Χ¨ΧªΧ ΧΧ•Χ•Χ™Χ™Χ ΧªΧ§Χ©Χ•Χ¨Χª ΧΧΧ΅ΧΧ•Χ Χ’Χ™ΧΧ•Χ΅Χ™Χ Χ›Χ¨Χ•Χ Χ™!", true);
                 }
                 //if (typewriterUI.TypeWriterIsFinished)
                 //{
@@ -158,7 +158,7 @@ public class FinalLaunchManager : MonoBehaviour
                 break;
 
             case 4:
-                showStoryWindow("ζδ διδ ϊδμικ ΰψεκ εξΰϊβψ, ΰαμ διδ ωεεδ ΰϊ ζδ!", true);
+                showStoryWindow("Χ–Χ” Χ”Χ™Χ” ΧªΧ”ΧΧ™Χ ΧΧ¨Χ•Χ Χ•ΧΧΧªΧ’Χ¨, ΧΧ‘Χ Χ”Χ™Χ” Χ©Χ•Χ•Χ” ΧΧª Χ–Χ”!", true);
                 break;
 
             case 5:
@@ -170,15 +170,15 @@ public class FinalLaunchManager : MonoBehaviour
             case 6:
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
-                    showStoryWindow("μεειιπιν ςεξγιν ξΰηεψι δψαδ γαψιν αηιι διεξιεν ωμπε, λξε μξωμ πιεεθ εϊχωεψϊ.", true);
+                    showStoryWindow("ΧΧ•Χ•Χ™Χ™Χ Χ™Χ ΧΆΧ•ΧΧ“Χ™Χ ΧΧΧ—Χ•Χ¨Χ™ Χ”Χ¨Χ‘Χ” Χ“Χ‘Χ¨Χ™Χ Χ‘Χ—Χ™Χ™ Χ”Χ™Χ•ΧΧ™Χ•Χ Χ©ΧΧ Χ•, Χ›ΧΧ• ΧΧΧ©Χ Χ Χ™Χ•Χ•Χ Χ•ΧªΧ§Χ©Χ•Χ¨Χª.", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "MEO")
                 {
-                    showStoryWindow("μεειιπιν ςεξγιν ξΰηεψι δψαδ γαψιν αηιι διεξιεν ωμπε, λξε μξωμ ξιτει εϊχωεψϊ.", true);
+                    showStoryWindow("ΧΧ•Χ•Χ™Χ™Χ Χ™Χ ΧΆΧ•ΧΧ“Χ™Χ ΧΧΧ—Χ•Χ¨Χ™ Χ”Χ¨Χ‘Χ” Χ“Χ‘Χ¨Χ™Χ Χ‘Χ—Χ™Χ™ Χ”Χ™Χ•ΧΧ™Χ•Χ Χ©ΧΧ Χ•, Χ›ΧΧ• ΧΧΧ©Χ ΧΧ™Χ¤Χ•Χ™ Χ•ΧªΧ§Χ©Χ•Χ¨Χª.", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "GEO")
                 {
-                    showStoryWindow("μεειιπιν ςεξγιν ξΰηεψι δψαδ γαψιν αηιι διεξιεν ωμπε, λξε μξωμ ξιτει επιεεθ.", true);
+                    showStoryWindow("ΧΧ•Χ•Χ™Χ™Χ Χ™Χ ΧΆΧ•ΧΧ“Χ™Χ ΧΧΧ—Χ•Χ¨Χ™ Χ”Χ¨Χ‘Χ” Χ“Χ‘Χ¨Χ™Χ Χ‘Χ—Χ™Χ™ Χ”Χ™Χ•ΧΧ™Χ•Χ Χ©ΧΧ Χ•, Χ›ΧΧ• ΧΧΧ©Χ ΧΧ™Χ¤Χ•Χ™ Χ•Χ Χ™Χ•Χ•Χ.", true);
                 }
                 break;
 
@@ -190,15 +190,15 @@ public class FinalLaunchManager : MonoBehaviour
             case 8:
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
-                    showStoryWindow("ΰαμ ξδ ωηωεα, δεΰ ωςλωιε ΰϊν ιεγςιν ΰικ ξφμξιν ξτεϊ ξδημμ!", true);
+                    showStoryWindow("ΧΧ‘Χ ΧΧ” Χ©Χ—Χ©Χ•Χ‘, Χ”Χ•Χ Χ©ΧΆΧ›Χ©Χ™Χ• ΧΧªΧ Χ™Χ•Χ“ΧΆΧ™Χ ΧΧ™Χ ΧΧ¦ΧΧΧ™Χ ΧΧ¤Χ•Χª ΧΧ”Χ—ΧΧ!", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "MEO")
                 {
-                    showStoryWindow("ΰαμ ξδ ωηωεα, δεΰ ωςλωιε ΰϊν ιεγςιν ΰικ δθμτεο ιεγς ΰιτδ δωμιη πξφΰ ςμ δξτδ!", true);
+                    showStoryWindow("ΧΧ‘Χ ΧΧ” Χ©Χ—Χ©Χ•Χ‘, Χ”Χ•Χ Χ©ΧΆΧ›Χ©Χ™Χ• ΧΧªΧ Χ™Χ•Χ“ΧΆΧ™Χ ΧΧ™Χ Χ”ΧΧΧ¤Χ•Χ Χ™Χ•Χ“ΧΆ ΧΧ™Χ¤Χ” Χ”Χ©ΧΧ™Χ— Χ ΧΧ¦Χ ΧΆΧ Χ”ΧΧ¤Χ”!", true);
                 }
                 else if (Globals.ChosenSatellite.Orbit == "GEO")
                 {
-                    showStoryWindow("ΰαμ ξδ ωηωεα, δεΰ ωςλωιε ΰϊν ιεγςιν ΰικ δθμεειζιδ ιεγςϊ ξδ μωγψ μπε!", true);
+                    showStoryWindow("ΧΧ‘Χ ΧΧ” Χ©Χ—Χ©Χ•Χ‘, Χ”Χ•Χ Χ©ΧΆΧ›Χ©Χ™Χ• ΧΧªΧ Χ™Χ•Χ“ΧΆΧ™Χ ΧΧ™Χ Χ”ΧΧΧ•Χ•Χ™Χ–Χ™Χ” Χ™Χ•Χ“ΧΆΧª ΧΧ” ΧΧ©Χ“Χ¨ ΧΧ Χ•!", true);
                 }
                 break;
 
@@ -262,7 +262,7 @@ public class FinalLaunchManager : MonoBehaviour
             camPos = 2;
             camplace1.LeanMoveLocal(camplace2.localPosition, 10).setDelay(1).setEaseInOutQuad();
         }
-        else if (camPos == 2 && counter==5) //μωπεϊ χΰεπθψ
+        else if (camPos == 2 && counter==5) //ΧΧ©Χ Χ•Χª Χ§ΧΧ•Χ ΧΧ¨
         {
             camPos = 3;
             camplace1.LeanMoveLocal(camplace3.localPosition, 20).setDelay(1).setEaseInOutQuad();

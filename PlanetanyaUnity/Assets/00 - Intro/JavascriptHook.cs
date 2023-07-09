@@ -1,4 +1,4 @@
-using System.Collections;
+ο»Ώusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class JavascriptHook : MonoBehaviour
         
     }
 
-    //ξχαμ ΰϊ ϊελο ϊιαϊ δθχρθ ξδγτγτο (μτπι ςμιιϊ δξωηχ) εξζψιχ ΰεϊε μξωϊπδ βμεαμι ωμ ων δχαεφδ
+    //ΧΧ§Χ‘Χ ΧΧª ΧªΧ•Χ›Χ ΧªΧ™Χ‘Χª Χ”ΧΧ§Χ΅Χ ΧΧ”Χ“Χ¤Χ“Χ¤Χ (ΧΧ¤Χ Χ™ ΧΆΧΧ™Χ™Χª Χ”ΧΧ©Χ—Χ§) Χ•ΧΧ–Χ¨Χ™Χ§ ΧΧ•ΧªΧ• ΧΧΧ©ΧªΧ Χ” Χ’ΧΧ•Χ‘ΧΧ™ Χ©Χ Χ©Χ Χ”Χ§Χ‘Χ•Χ¦Χ”
     public void getGroupName(string text)
     {
         Globals.GroupName = text;
