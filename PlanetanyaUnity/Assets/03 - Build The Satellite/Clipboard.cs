@@ -28,6 +28,16 @@ public class Clipboard : MonoBehaviour
 
     private void OnMouseDown()
     {
+        BlinkColor.glowOn = false;
+        if (BuildIUCopy.counter == 3)
+        {
+            BuildIUCopy.counter = 7;
+        }
+        if (BuildIUCopy.counter == 5)
+        {
+            BuildIUCopy.counter = 6;
+        }
+
         if (IsOpened)
         {
             IsOpened=false;
@@ -38,8 +48,6 @@ public class Clipboard : MonoBehaviour
             IsOpened = true;
             animator.SetTrigger("openClip");
         }
-
-
     }
 
     private void updateList()
@@ -49,21 +57,21 @@ public class Clipboard : MonoBehaviour
         string textForList = "";
         int index = 0;
 
-        BuildIU.numberOfCorrectObjectsConnected = 0;
-        BuildIU.numberOfWrongObjectsConnected = 0;
-        BuildIU.overallNumberOfCorrectParts = 0;
+        BuildIUCopy.numberOfCorrectObjectsConnected = 0;
+        BuildIUCopy.numberOfWrongObjectsConnected = 0;
+        BuildIUCopy.overallNumberOfCorrectParts = 0;
 
         foreach (SatPart sp in _allObjects.satParts)
         {
             if (sp.isCorrect)
             {
                 textForList += sp.WhatItDoes + "\n";
-                BuildIU.overallNumberOfCorrectParts++;
+                BuildIUCopy.overallNumberOfCorrectParts++;
 
                 if (sp.isConnected)
                 {
                     partChecks[index].gameObject.SetActive(true);
-                    BuildIU.numberOfCorrectObjectsConnected++;
+                    BuildIUCopy.numberOfCorrectObjectsConnected++;
                 }
                 else
                 {
@@ -74,7 +82,7 @@ public class Clipboard : MonoBehaviour
             }
             else if (sp.isConnected)
             {
-                BuildIU.numberOfWrongObjectsConnected++;
+                BuildIUCopy.numberOfWrongObjectsConnected++;
             }
         }
         partList.text = textForList;

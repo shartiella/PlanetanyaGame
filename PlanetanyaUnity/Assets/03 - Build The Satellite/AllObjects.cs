@@ -46,6 +46,7 @@ public class SatPart
     public GameObject gObject;
     public List<string> relatedSatellites;
     public bool isCorrect;
+    public bool isDragged;
     public bool isConnected;
 }
 

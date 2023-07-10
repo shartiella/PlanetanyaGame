@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class IntroManager : MonoBehaviour
@@ -117,8 +118,27 @@ public class IntroManager : MonoBehaviour
 
             case 11:
                 hideStoryWindow();
+                counter = 12;
                 break;
 
+            case 12:
+                if (Globals.ChosenSatellite.Name == "GPS")
+                {
+                    showStoryWindow("למשל, הטלפון שלנו יודע מה המיקום שלנו בזכות לווייני ניווט", true);
+                }
+                else if (Globals.ChosenSatellite.Name == "TV")
+                {
+                    showStoryWindow("למשל, הטלוויזיה שלנו מקבלת את השידור בזכות לווייני תקשורת", true);
+                }
+                else if (Globals.ChosenSatellite.Name == "MAP")
+                {
+                    showStoryWindow("למשל, המפות שאנחנו נעזרים בהן נוצרו בזכות לווייני מיפוי", true);
+                }
+                break;
+
+            case 13:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                break;
         }
 
 

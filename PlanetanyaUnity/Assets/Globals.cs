@@ -43,19 +43,23 @@ public class Globals : MonoBehaviour
         GroupName = "";
 
         FillSatList();
-        if (ChosenSatelliteName!= null)
+        if (ChosenSatellite == null)
         {
-            ChooseSat(ChosenSatelliteName);  //לבטל כשצריך
-            Debug.Log("chosen satellite is " + ChosenSatellite.Name);
-        }
-        else if (ChosenSatellite!= null)
-        {
-            Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+            if (ChosenSatelliteName != null)
+            {
+                ChooseSat(ChosenSatelliteName);  //לבטל כשצריך
+                Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+            }
+            else
+            {
+                Debug.Log("NO chosen satellite");
+            }
         }
         else
         {
-            Debug.Log("NO chosen satellite");
+            Debug.Log("chosen satellite is " + ChosenSatellite.Name);
         }
+
     }
 
     private void Awake()

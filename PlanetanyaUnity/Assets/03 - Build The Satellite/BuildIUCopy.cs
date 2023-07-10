@@ -14,11 +14,13 @@ public class BuildIUCopy : MonoBehaviour
     [SerializeField] private bool showBtnStoryWin;
     private TextMeshProUGUI InstructionTXT;
     [SerializeField] private GameObject InstructionBTN;
-    private TextMeshProUGUI StoryTXT;
+    [SerializeField] private GameObject StoryTXT;
     [SerializeField] private GameObject StoryBTN;
     public static int counter = 0;
-
-
+    public static int numberOfObjectConnections = 0;
+    public static int numberOfCorrectObjectsConnected = 0;
+    public static int numberOfWrongObjectsConnected = 0;
+    public static int overallNumberOfCorrectParts = 0;
 
     [SerializeField] private AllObjects _allObjects;
 
@@ -27,9 +29,9 @@ public class BuildIUCopy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
-        //InstructionBTN= InstructionWindow.GetComponentInChildren<GameObject>();
-        StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
+        //InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
+        ////InstructionBTN= InstructionWindow.GetComponentInChildren<GameObject>();
+        //StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
         //StoryBTN = InstructionWindow.GetComponentInChildren<GameObject>();
     }
 
@@ -40,6 +42,7 @@ public class BuildIUCopy : MonoBehaviour
         switch (counter)
         {
             case 0:
+                BlinkColor.glowOn = false;
                 showStoryWindow("כדי להבין איך עובד לוויין, תצטרכו לבנות אחד!", true);
                 break;
 
@@ -49,39 +52,57 @@ public class BuildIUCopy : MonoBehaviour
                 break;
 
             case 2:
-
-                showStoryWindow("כדי לדעת אילו חלקים לחבר, כדאי שתציצו ברשימה שעל השולחן... ", true);
-
-                break;
-
-            case 3:
-
-                hideStoryWindow();
-                counter = 4;
-                break;
-
-            case 4:
-                showInstructionWindow("גררו את החלקים הנכונים לבסיס כדי להרכיב את הלוויין ");
-                showBtnInstWin = false;
-                BlinkColor.glowOn = true;
+                showInstructionWindow("גררו את החלקים הנכונים לבסיס כדי להרכיב את הלוויין");
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     AllObjects.BuildingState = "building";
-
-
-
+                    BlinkColor.glowOn = true;
+                    StoryTXT.GetComponent<typewriterUI>().enabled = false;
+                    counter = 3;
                 }
+                break;
 
+            case 3:
+                //שני דברים יכולים לקרות פה
+                //או שמתחילים לחבר חלקים לבסיס, ומתקדמים לרמז
+                //או שפותחים את הרשימה, ואז מתקדמים לקייס שבע
+                break;
+
+            case 4:
+                hideInstructionWindow();
+                StoryTXT.GetComponent<typewriterUI>().enabled = true;
+                showStoryWindow("כדי לדעת אילו חלקים לחבר, כדאי שתציצו ברשימה שעל השולחן...", false);
+                if (typewriterUI.TypeWriterIsFinished)
+                {
+                    counter = 5;
+                }
+                break;
+
+            case 5:
+                StoryTXT.GetComponent<typewriterUI>().enabled = false;
+                break;
+
+            case 6:
+                if (StoryWindow.activeSelf)
+                {
+                    hideStoryWindow();
+                }
+                counter = 8;
+                break;
+
+            case 7:
+                hideInstructionWindow();
+                counter = 8;
+                break;
+
+                case 8:
 
                 break;
 
-        
-
-                
 
 
 
-    }
+        }
 
     }
 

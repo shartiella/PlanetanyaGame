@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 12516fe4e4ff8de439b62bd21f621c8c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FtDelicattes Katan
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b0d5bc2091d0f914ea83f255edc8520a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

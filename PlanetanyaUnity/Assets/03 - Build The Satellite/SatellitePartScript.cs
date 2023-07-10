@@ -14,6 +14,8 @@ public class SatellitePartScript : MonoBehaviour
     [SerializeField] private AllObjects _allObjects;
     [SerializeField] private Globals _globals;
     private SatPart thisSatPart;
+    [SerializeField] private GameObject StoryWindow;
+    [SerializeField] private GameObject Storyicon;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,23 @@ public class SatellitePartScript : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (AllObjects.BuildingState == "building")
+        {
+            thisSatPart.isDragged = true;
+            if (!thisSatPart.isConnected && StoryWindow.activeSelf==false && BuildIUCopy.counter!=4)
+            {
+                showStoryWindow(thisSatPart.Description);
+            }
+            else
+            {
+                Debug.Log("thisSatPart.isConnected - "+ thisSatPart.isConnected+ " typewriterUI.TypeWriterIsFinished - "+ typewriterUI.TypeWriterIsFinished);
+            }
 
+            //if (BuildIUCopy.counter== 3)
+            //{
+            //    BuildIUCopy.counter = 4;
+            //}
+        }
     }
 
     private void OnMouseDrag()
@@ -52,6 +70,16 @@ public class SatellitePartScript : MonoBehaviour
     {
         if (AllObjects.BuildingState == "building")
         {
+            thisSatPart.isDragged = false;
+            if (StoryWindow.activeSelf && StoryWinAnim.activeAnimation== false && BuildIUCopy.counter != 4)
+            {
+                hideStoryWindow();
+            }
+            else if (StoryWinAnim.activeAnimation)
+            {
+                StoryWinAnim.exitAnimationTrigger = true;
+            }
+
             if (dragTimer >= 0.2f)//אם זו הייתה גרירה
             {
                 
@@ -66,6 +94,15 @@ public class SatellitePartScript : MonoBehaviour
             if (thisSatPart.isConnected) //אם משחררים אותו בפנים
             {
                 //Debug.Log("I'm In");
+
+                if (BuildIUCopy.counter == 3)
+                {
+                    BuildIUCopy.counter = 4;
+                }
+                if (BuildIUCopy.counter == 5)
+                {
+                    BuildIUCopy.counter = 6;
+                }
 
                 if (thisSatPart.isCorrect)
                 {
@@ -126,7 +163,7 @@ public class SatellitePartScript : MonoBehaviour
                         thisSatPart.isCorrect= true;
 
                     }
-                    colorMe(); //להוריד
+                    //colorMe(); //להוריד
                 }
             }
         }
@@ -160,6 +197,33 @@ public class SatellitePartScript : MonoBehaviour
             foreach (MeshRenderer ren in renderers)
             {
                 ren.material.color = Color.white;
+            }
+        }
+    }
+
+    void showStoryWindow(string textContent)
+    {
+        //typewriterUI.TextToType = textContent;
+        StoryWinAnim.exitAnimationTrigger = false;
+        StoryWindow.GetComponentInChildren<TextMeshProUGUI>().text = textContent;
+        Storyicon.SetActive(true);
+        StoryWindow.SetActive(true);
+        if (typewriterUI.TypeWriterIsFinished)
+        {
+
+        }
+
+    }
+
+    void hideStoryWindow()
+    {
+        if (!StoryWinAnim.exitAnimationTrigger)
+        {
+            if (!StoryWinAnim.activeAnimation)
+            {
+
+                StoryWinAnim.exitAnimationTrigger = true;
+
             }
         }
     }

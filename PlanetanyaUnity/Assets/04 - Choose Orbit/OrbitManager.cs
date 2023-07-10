@@ -81,7 +81,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 4:
-                if (typewriterUI.TypeWriterIsFinished)
+                if (typewriterUI.TypeWriterIsFinished && !SlideFromTop.activeAnimation)
                 {
                     launcher.SetActive(true);
                     counter = 5;
@@ -496,7 +496,7 @@ public class OrbitManager : MonoBehaviour
     void showStoryWindow(string textContent, bool showBtn)
     {
         typewriterUI.TextToType = textContent;
-        StoryBTN.SetActive(false);
+        
         StoryWindow.SetActive(true);
         if (typewriterUI.TypeWriterIsFinished)
         {
@@ -518,6 +518,7 @@ public class OrbitManager : MonoBehaviour
         {
             if (!StoryWinAnim.activeAnimation)
             {
+                StoryBTN.SetActive(false);
                 StoryWinAnim.exitAnimationTrigger = true;
             }
         }

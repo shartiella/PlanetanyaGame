@@ -48,6 +48,7 @@ public class DeviceClick : MonoBehaviour
         CanvasManager.counter++;
 
         RoomCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
+        BlinkColor.glowOn = false;
         Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
 
         foreach (Satellite sat in _globals.SatellitesList)
