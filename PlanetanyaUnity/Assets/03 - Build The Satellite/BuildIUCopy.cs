@@ -16,6 +16,8 @@ public class BuildIUCopy : MonoBehaviour
     [SerializeField] private GameObject InstructionBTN;
     [SerializeField] private GameObject StoryTXT;
     [SerializeField] private GameObject StoryBTN;
+    [SerializeField] private GameObject Fader;
+
     public static int counter = 0;
     public static int numberOfObjectConnections = 0;
     public static int numberOfCorrectObjectsConnected = 0;
@@ -24,7 +26,7 @@ public class BuildIUCopy : MonoBehaviour
 
     [SerializeField] private AllObjects _allObjects;
 
-
+    public static float totalTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +40,7 @@ public class BuildIUCopy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        totalTime += Time.deltaTime;
         switch (counter)
         {
             case 0:
@@ -99,6 +101,24 @@ public class BuildIUCopy : MonoBehaviour
 
                 break;
 
+            case 9:
+                hideStoryWindow();
+                hideInstructionWindow();
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                    counter = 10;
+                }
+                break;
+
+            case 10:
+                //יהיה עוד משהו לפני זה?
+                Globals.LevelStats3 += " מספר חיבורים כולל: " + Globals.Reverse(BodyTrigger.connectedPartCounter.ToString()); //כמה פעמים חוברו חלקים עד שהצליחו
+                Globals.LevelStats3 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                Fader.SetActive(true);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                break;
 
 
 

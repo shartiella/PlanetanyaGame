@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalLaunchManager : MonoBehaviour
 {
@@ -49,11 +50,18 @@ public class FinalLaunchManager : MonoBehaviour
     [SerializeField] private GameObject MEOTarget;
     [SerializeField] private GameObject GEOTarget;
 
+    [SerializeField] private GameObject LEOlight;
+    [SerializeField] private GameObject MEOlight;
+    [SerializeField] private GameObject GEOlight;
+
     private float pushTimer = 0;
+
+    float totalTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+
         if (Globals.ChosenSatellite.Orbit == "LEO")
         {
             //target = LEOTarget;
@@ -99,10 +107,13 @@ public class FinalLaunchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        totalTime += Time.deltaTime;
+
         switch (counter)
         {
             case 0:
                 changeCamPosition();
+                hideStoryWindow();
                 if (pushTimer < 8)
                 {
                     pushTimer += Time.deltaTime;
@@ -130,7 +141,12 @@ public class FinalLaunchManager : MonoBehaviour
                 rocketTop.GetComponent<CapsuleCollider>().enabled = true;
                 rocketBottom.GetComponent<pullTowardsEarth>().enabled = true;
                 rocketBottom.GetComponent<CapsuleCollider>().enabled = true;
-                counter= 2;
+                if (!StoryWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    //StoryBTN.SetActive(false);
+                    counter = 2;
+                }
                 break;
 
             case 2:
@@ -146,10 +162,6 @@ public class FinalLaunchManager : MonoBehaviour
                 {
                     showStoryWindow("כל הכבוד – עשיתם את זה! בניתם ושיגרתם לוויין תקשורת למסלול גיאוסינכרוני!", true);
                 }
-                //if (typewriterUI.TypeWriterIsFinished)
-                //{
-                //    counter = 3;
-                //}
                 break;
 
             case 3:
@@ -204,6 +216,25 @@ public class FinalLaunchManager : MonoBehaviour
 
             case 9:
                 hideStoryWindow();
+                hideInstructionWindow();
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                    counter = 10;
+                }
+                break;
+
+            case 10:
+                if (!StoryWindow.activeSelf && camPos==4)
+                {
+                    counter = 11;
+                }
+                break;
+
+            case 11:
+                Globals.LevelStats6 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }
     }
@@ -216,11 +247,11 @@ public class FinalLaunchManager : MonoBehaviour
     void showStoryWindow(string textContent, bool showBtn)
     {
         typewriterUI.TextToType = textContent;
-        StoryBTN.SetActive(false);
+        //StoryBTN.SetActive(false);
         StoryWindow.SetActive(true);
         if (typewriterUI.TypeWriterIsFinished)
         {
-            if (showBtn)
+            if (showBtn && !StoryBTN.activeSelf)
             {
                 StoryBTN.SetActive(true);
             }
@@ -233,6 +264,7 @@ public class FinalLaunchManager : MonoBehaviour
         {
             if (!StoryWinAnim.activeAnimation)
             {
+                StoryBTN.SetActive(false);
                 StoryWinAnim.exitAnimationTrigger = true;
             }
         }
@@ -265,7 +297,25 @@ public class FinalLaunchManager : MonoBehaviour
         else if (camPos == 2 && counter==5) //לשנות קאונטר
         {
             camPos = 3;
-            camplace1.LeanMoveLocal(camplace3.localPosition, 20).setDelay(1).setEaseInOutQuad();
+            if (Globals.ChosenSatellite.Orbit == "LEO")
+            {
+                LEOlight.SetActive(true);
+            }
+            else if (Globals.ChosenSatellite.Orbit == "MEO")
+            {
+                MEOlight.SetActive(true);
+            }
+            else if (Globals.ChosenSatellite.Orbit == "GEO")
+            {
+                GEOlight.SetActive(true);
+            }
+            camplace1.LeanMoveLocal(camplace3.localPosition, 20).setDelay(1).setEaseInOutQuad().setOnComplete(endLevel);
         }
+    }
+
+    void endLevel()
+    {
+        counter = 10;
+        camPos = 4;
     }
 }

@@ -19,26 +19,39 @@ public class ARcanvasManager : MonoBehaviour
 
     public static int counter = 0;
     public TextMeshProUGUI countext;
+    public static bool ARisON = false;
+
+    float totalTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         //InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
         //StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        countext.text=counter.ToString();
+        totalTime += Time.deltaTime;
+        //countext.text=counter.ToString();
 
         switch (counter)
         {
             case 0:
                 Globals.rocketStatus = "lookingAround";
-                showStoryWindow("אחרי שבניתם לוויין ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויין שלכם לחלל!", false);
+                if (Globals.ChosenSatellite.Orbit == "LEO")
+                {
+                    showStoryWindow("אחרי שבניתם לוויין מיפוי ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויין שלכם לחלל!", false);
+                }
+                else if (Globals.ChosenSatellite.Orbit == "MEO")
+                {
+                    showStoryWindow("אחרי שבניתם לוויין ניווט ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויין שלכם לחלל!", false);
+                }
+                else if (Globals.ChosenSatellite.Orbit == "GEO")
+                {
+                    showStoryWindow("אחרי שבניתם לוויין תקשורת ולמדתם לשגר אותו, הגיע הזמן לשגר את הלוויין שלכם לחלל!", false);
+                }
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     counter = 1;
@@ -56,18 +69,15 @@ public class ARcanvasManager : MonoBehaviour
             case 2:
                 blackBG.SetActive(false);
                 arrivedBTN.SetActive(false);
-                if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
-                {
-                    WebXRManager.Instance.ToggleAR();
-                    Debug.Log("AR is ON");
-                }
-                else
-                {
-                    Debug.Log("no AR");
-                }
+
                 hideInstructionWindow();
                 hideStoryWindow();
-                counter = 3;
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                    counter = 3;
+                }
                 break;
 
             case 3:
@@ -93,19 +103,32 @@ public class ARcanvasManager : MonoBehaviour
             case 6:
                 hideInstructionWindow();
                 hideStoryWindow();
-                counter= 7;
+                Globals.LevelStats5 += " זמן עד מציאת הלוויין: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                counter = 7;
                 break;
             
             case 7:
                 showStoryWindow("סוף סוף - הגעתם לרגע האמת! עכשיו נשאר רק ללחוץ על הכפתור...", false);
+                if (typewriterUI.TypeWriterIsFinished)
+                {
+                    Globals.rocketStatus = "ToLaunch";
+                }
+                else
+                {
+                    Globals.rocketStatus = "satConnected";
+                }
                 break;
 
             case 8:
                 hideStoryWindow();
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                }
                 break;
 
             case 9:
-                StoryWinAnim.exitAnimationTrigger = false;
                 showStoryWindow("לאן הטיל נעלם?", true);
                 break;
 
@@ -119,6 +142,22 @@ public class ARcanvasManager : MonoBehaviour
                 {
                     Debug.Log("no AR");
                 }
+                counter = 11;
+                break;
+
+            case 11:
+                hideStoryWindow();
+                hideInstructionWindow();
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                    counter = 12;
+                }
+                break;
+
+                case 12:
+                Globals.LevelStats5 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }
@@ -133,7 +172,6 @@ public class ARcanvasManager : MonoBehaviour
     void showStoryWindow(string textContent, bool showBtn)
     {
         typewriterUI.TextToType = textContent;
-        StoryBTN.SetActive(false);
         StoryWindow.SetActive(true);
         if (typewriterUI.TypeWriterIsFinished)
         {
@@ -150,6 +188,7 @@ public class ARcanvasManager : MonoBehaviour
         {
             if (!StoryWinAnim.activeAnimation)
             {
+                StoryBTN.SetActive(false);
                 StoryWinAnim.exitAnimationTrigger = true;
             }
         }
@@ -170,5 +209,29 @@ public class ARcanvasManager : MonoBehaviour
                 SlideFromTop.exitAnimationTrigger = true;
             }
         }
+    }
+
+    public void turnOnARorFullScreen()
+    {
+        if (WebXRManager.Instance.isSupportedAR)
+        {
+            if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
+            {
+                WebXRManager.Instance.ToggleAR();
+                Debug.Log("AR is ON");
+                ARisON = true;
+            }
+            else
+            {
+                Debug.Log("AR turn on fail");
+                Camera.main.fieldOfView = 90;
+            }
+        }
+        else
+        {
+            Debug.Log("AR not supported");
+            Camera.main.fieldOfView = 90;
+        }
+        counter = 2;
     }
 }

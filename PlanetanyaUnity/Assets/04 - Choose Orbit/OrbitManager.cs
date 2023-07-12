@@ -42,6 +42,9 @@ public class OrbitManager : MonoBehaviour
     //float eccentricityPercent =0;
     string eccentricityFeedback = "";
 
+    float totalTime = 0;
+    public static int launchesCounter = 0;
+    public static int crashesCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +56,8 @@ public class OrbitManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        totalTime += Time.deltaTime;
+
         switch (counter)
         {
             case 0:
@@ -221,6 +226,8 @@ public class OrbitManager : MonoBehaviour
             case 15:
                 showLauncherAfterCrash = true;
                 hideStoryWindow();
+                Globals.LevelStats4 += " שיגורים עד עוצמה מתאימה: " + Globals.Reverse(launchesCounter.ToString());
+                Globals.LevelStats4 += "\n התרסקויות עד עוצמה מתאימה: " + Globals.Reverse(crashesCounter.ToString());
                 counter = 16;
                 break;
 
@@ -346,6 +353,8 @@ public class OrbitManager : MonoBehaviour
                 hideStoryWindow();
                 Globals.rocketStatus = "crashed";
                 showLauncherAfterCrash = false;
+                Globals.LevelStats4 += "\n שיגורים עד מסלול מעגלי: " + Globals.Reverse(launchesCounter.ToString());
+                Globals.LevelStats4 += "\n התרסקויות עד מסלול מעגלי: " + Globals.Reverse(crashesCounter.ToString());
                 counter = 31;
                 break;
 
@@ -450,6 +459,8 @@ public class OrbitManager : MonoBehaviour
                 Orbits.SetActive(false);
                 resetBTN.SetActive(false);
                 OrbitsNames.SetActive(false);
+                Globals.LevelStats4 += "\n שיגורים עד מסלול נכון: " + Globals.Reverse(launchesCounter.ToString());
+                Globals.LevelStats4 += "\n התרסקויות עד מסלול נכון: " + Globals.Reverse(crashesCounter.ToString());
                 counter = 40;
                 break;
 
@@ -470,8 +481,20 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 41:
+                hideStoryWindow();
+                hideInstructionWindow();
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                    counter = 42;
+                }
+                break;
+
+            case 42:
+                Globals.LevelStats4 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(BuildIUCopy.totalTime).ToString()) + " שניות";
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                counter = 42;
+                counter = 43;
                 break;
             //case 41:
             //    hideStoryWindow();

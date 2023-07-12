@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CinemaMove : MonoBehaviour
 {
+    //סקריפט לא פעיל
+
     //[SerializeField] private GameObject cam;
     //[SerializeField] private GameObject Phone;
     //[SerializeField] private GameObject TV;

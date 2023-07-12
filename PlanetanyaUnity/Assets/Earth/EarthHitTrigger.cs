@@ -17,6 +17,11 @@ public class EarthHitTrigger : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        OrbitManager.crashesCounter++;
+    }
+
     //פגיעת הטיל בכדור הארץ
     private void OnTriggerStay(Collider other)
     {

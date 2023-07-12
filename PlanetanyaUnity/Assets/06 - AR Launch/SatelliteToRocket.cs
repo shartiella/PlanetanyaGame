@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WebXR;
 
 public class SatelliteToRocket : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class SatelliteToRocket : MonoBehaviour
     private float X;
     private float Y;
     private float Z;
+
+    public float time = 0.5f;
+    public float delay = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -32,13 +36,22 @@ public class SatelliteToRocket : MonoBehaviour
 
             if (transform.position.y > 9.6f & transform.position.x > -1 & transform.position.x < 1)
             {
-                Debug.Log(transform.position.y);
-                Globals.rocketStatus = "ToLaunch";
+                //Debug.Log(transform.position.y);
                 ARcanvasManager.counter = 6;
             }
         }
 
     }
 
+    private void OnEnable()
+    {
+        if (!WebXRManager.Instance.isSupportedAR)
+        {
+            transform.localPosition = new Vector3(-1, 2.2f, 4.1f);
+        }
+        Vector3 winScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.LeanScale(winScale, time).setDelay(delay).setEaseOutElastic();
+    }
 
 }

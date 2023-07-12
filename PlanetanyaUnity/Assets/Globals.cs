@@ -8,9 +8,14 @@ using UnityEngine.SceneManagement;
 
 public class Globals : MonoBehaviour
 {
-    public static int GuideCode;
+    //public static int GuideCode;
     public static string GroupName="שם הקבוצה";
-
+    public static string LevelStats1 = "";
+    public static string LevelStats2 = "";
+    public static string LevelStats3 = "";
+    public static string LevelStats4 = "";
+    public static string LevelStats5 = "";
+    public static string LevelStats6 = "";
 
     public static string orbit = "";
     public static float orbitTime = 0.0f;
@@ -35,19 +40,21 @@ public class Globals : MonoBehaviour
 
     public List<Satellite> SatellitesList;
     public static Satellite ChosenSatellite;
-    public string ChosenSatelliteName;
+    public string ChosenSatelliteName = "";
 
     // Start is called before the first frame update
     void Start()
     {
-        GroupName = "";
+        //GroupName = "";
 
         FillSatList();
+
         if (ChosenSatellite == null)
         {
-            if (ChosenSatelliteName != null)
+            if (ChosenSatelliteName != "")
             {
                 ChooseSat(ChosenSatelliteName);  //לבטל כשצריך
+                ChosenSatelliteName = ChosenSatellite.Name;
                 Debug.Log("chosen satellite is " + ChosenSatellite.Name);
             }
             else
@@ -59,7 +66,6 @@ public class Globals : MonoBehaviour
         {
             Debug.Log("chosen satellite is " + ChosenSatellite.Name);
         }
-
     }
 
     private void Awake()

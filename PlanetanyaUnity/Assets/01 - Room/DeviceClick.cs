@@ -59,7 +59,7 @@ public class DeviceClick : MonoBehaviour
             }
         }
 
-        StoryWinAnim.exitAnimationTrigger = true;
+        //StoryWinAnim.exitAnimationTrigger = true;
         //בחירת לוויין
         //Globals.ChosenSatellite.Name = "GPS";//לבטל כדי לבחור לוויין
 

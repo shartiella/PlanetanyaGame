@@ -59,7 +59,9 @@ public class LaunchBTN : MonoBehaviour
 
     private void OnEnable()
     {
-        Vector3 finalsize=transform.localScale;
+        //Globals.rocketStatus = "ToLaunch";
+
+        Vector3 finalsize =transform.localScale;
         transform.localScale = Vector3.zero;
         transform.LeanScale(finalsize, 1).setEaseOutElastic();
     }

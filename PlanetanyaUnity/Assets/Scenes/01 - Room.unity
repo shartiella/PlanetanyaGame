@@ -4188,7 +4188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InstructionWindow: {fileID: 2661020734538854770}
-  showBtnInstWin: 0
   StoryWindow: {fileID: 1279512597}
   showBtnStoryWin: 0
   InstructionBTN: {fileID: 4822105373968946196}
@@ -5953,7 +5952,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4317713759738579752, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
 --- !u!4 &4511514366847435261
 Transform:

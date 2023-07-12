@@ -48,7 +48,7 @@ public class RocketLaunch : MonoBehaviour
         //}
         rocketRB = GetComponent<Rigidbody>();
         Globals.rocketStatus = "ARoff";
-        Debug.Log(Globals.rocketStatus);
+        //Debug.Log(Globals.rocketStatus);
 
     }
 
@@ -75,19 +75,17 @@ public class RocketLaunch : MonoBehaviour
         else if (Globals.rocketStatus == "connectSat") //חיבור הטיל ללווין - עד שהלוויין מחובר
         {
             SatelliteToRocket.SetActive(true);
+
             //window2.SetActive(false);
             //window3.SetActive(true);
         }
-        else if (Globals.rocketStatus == "ToLaunch") //מוכן לשיגור - עד שלוחץ על כפתור השיגור
+        else if (Globals.rocketStatus == "satConnected")
         {
-            //window3.SetActive(false);
-            //window4.SetActive(true);
-
             if (!rocketTop.activeSelf && !rocketFull.activeSelf)
             {
                 rocketTop.SetActive(true);
             }
-            else if (!WinAnimPopUp.activeAnimation)
+            else if (typewriterUI.TypeWriterIsFinished)
             {
                 rocketTop.SetActive(false);
                 rocketBottom.SetActive(false);
@@ -95,6 +93,13 @@ public class RocketLaunch : MonoBehaviour
                 launchBTN.SetActive(true);
             }
             SatelliteToRocket.SetActive(false);
+        }
+        else if (Globals.rocketStatus == "ToLaunch") //מוכן לשיגור - עד שלוחץ על כפתור השיגור
+        {
+            //window3.SetActive(false);
+            //window4.SetActive(true);
+
+
         }
 
 
@@ -163,25 +168,25 @@ public class RocketLaunch : MonoBehaviour
         //GetComponent<Rigidbody>().velocity = Globals.launchForce;
     }
 
-    public void connectSat()
-    {
-        Globals.rocketStatus = "connectSat";
-    }
+    //public void connectSat()
+    //{
+    //    Globals.rocketStatus = "connectSat";
+    //}
 
-    public void toNextscene()
-    {
-        if (WebXRManager.Instance.XRState == WebXRState.AR)
-        {
-            WebXRManager.Instance.ToggleAR();
-            Debug.Log("AR is OFF");
+    //public void toNextscene()
+    //{
+    //    if (WebXRManager.Instance.XRState == WebXRState.AR)
+    //    {
+    //        WebXRManager.Instance.ToggleAR();
+    //        Debug.Log("AR is OFF");
 
-        }
-        else
-        {
-            Debug.Log("no AR");
-        }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("no AR");
+    //    }
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    //}
 
 
     //private void OnMouseUp()
@@ -189,22 +194,22 @@ public class RocketLaunch : MonoBehaviour
     //    Globals.rocketStatus = "LookAtRocket";
     //}
 
-    public void ARon()
-    {
-        Globals.rocketStatus = "lookingAround";
+    //public void ARon()
+    //{
+    //    Globals.rocketStatus = "lookingAround";
 
-        //לחבר כפתור של מציאות רבודה לפונקציה הזאת
-        if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
-        {
-            WebXRManager.Instance.ToggleAR();
-            Debug.Log("AR is ON");
+    //    //לחבר כפתור של מציאות רבודה לפונקציה הזאת
+    //    if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
+    //    {
+    //        WebXRManager.Instance.ToggleAR();
+    //        Debug.Log("AR is ON");
 
-        }
-        else
-        {
-            Debug.Log("no AR");
-        }
-    }
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("no AR");
+    //    }
+    //}
 
     //private void OnMouseDown()
     //{

@@ -20,5 +20,6 @@ public class JavascriptHook : MonoBehaviour
     public void getGroupName(string text)
     {
         Globals.GroupName = text;
+        Debug.Log(Globals.GroupName);
     }
 }

@@ -133,6 +133,8 @@ public class launcher : MonoBehaviour
 
     private void OnMouseUp()
     {
+        OrbitManager.launchesCounter++;
+
         if (OrbitManager.LaunchTowardsEarth)
         {
             OrbitManager.lastLaunchWasTowardsEarth = true;

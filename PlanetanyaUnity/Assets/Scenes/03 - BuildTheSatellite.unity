@@ -3825,6 +3825,7 @@ MonoBehaviour:
   InstructionBTN: {fileID: 318907387}
   StoryTXT: {fileID: 1933497106}
   StoryBTN: {fileID: 1406131455}
+  Fader: {fileID: 2106765921}
   _allObjects: {fileID: 815174455}
 --- !u!114 &964166908
 MonoBehaviour:
@@ -7651,6 +7652,7 @@ MonoBehaviour:
   InstructionBTN: {fileID: 0}
   StoryTXT: {fileID: 0}
   StoryBTN: {fileID: 0}
+  Fader: {fileID: 0}
   _allObjects: {fileID: 0}
 --- !u!1 &1632467573
 GameObject:
@@ -8083,7 +8085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SatellitesList: []
-  ChosenSatelliteName: MAP
+  ChosenSatelliteName: TV
 --- !u!4 &1741456724
 Transform:
   m_ObjectHideFlags: 0

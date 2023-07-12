@@ -62,10 +62,19 @@ public class FinishedBuildManager : MonoBehaviour
                 break;
 
             case 3:
-                StoryBTN.SetActive(false);
-                StoryWinAnim.exitAnimationTrigger = true;
-                SlideFromTop.exitAnimationTrigger = false;
-                counter = 4;
+                hideStoryWindow();
+                hideInstructionWindow();
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                    counter = 4;
+                }
+
+                //StoryBTN.SetActive(false);
+                //StoryWinAnim.exitAnimationTrigger = true;
+                //SlideFromTop.exitAnimationTrigger = false;
+                //counter = 4;
                 break;
 
             case 4:

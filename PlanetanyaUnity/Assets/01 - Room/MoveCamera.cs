@@ -7,6 +7,8 @@ using TMPro;
 
 public class MoveCamera : MonoBehaviour
 {
+    //סקריפט לא פעיל
+
     public float speed = 1;
     private float X;
     private float Y;

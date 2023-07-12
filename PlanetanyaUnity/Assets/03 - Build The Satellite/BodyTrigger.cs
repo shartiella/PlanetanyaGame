@@ -10,8 +10,8 @@ public class BodyTrigger : MonoBehaviour
     public GameObject infoPanel;
     [SerializeField] private AllObjects _allObjects;
     public static SatPart currentPart;
-    [SerializeField] private GameObject Fader;
 
+    public static int connectedPartCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +28,18 @@ public class BodyTrigger : MonoBehaviour
             {
                 AllObjects.BuildingState = "finished";
 
-                //יהיה עוד משהו לפני זה?
-                Fader.SetActive(true);
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                if (BuildIUCopy.counter >= 3)
+                {
+                    BuildIUCopy.counter = 9;
+                }
             }
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        connectedPartCounter++;
+
         identifyPart(other.gameObject.name);
         //showInfo(currentPart.Description);
         currentPart.isConnected = true;

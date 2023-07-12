@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class IntroManager : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private GameObject Satellites;
     [SerializeField] private GameObject Satellite;
 
-
+    float totalTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +31,16 @@ public class IntroManager : MonoBehaviour
         //StoryBTN = InstructionWindow.GetComponentInChildren<GameObject>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        totalTime+= Time.deltaTime;
 
         switch (counter)
         {
             case 0:
-                showStoryWindow("הנה כדור הארץ – כאן אנחנו נמצאים",true);
+                showStoryWindow("הנה כדור הארץ – כאן אנחנו נמצאים", true);
                 break;
 
             case 1:
@@ -48,19 +49,11 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 2:
-     
-             
-                    showStoryWindow("את כדור הארץ מקיף הירח", true);
-                        Moon.SetActive(true);
-               
-       
-
-
-
+                showStoryWindow("את כדור הארץ מקיף הירח", true);
+                Moon.SetActive(true);
                 break;
 
             case 3:
-          
                 hideStoryWindow();
                 counter = 4;
                 break;
@@ -74,8 +67,6 @@ public class IntroManager : MonoBehaviour
                     showStoryWindow("כל הגופים שמקיפים את כדור הארץ נקראים לוויינים. למה?", true);
                     Moon.SetActive(true);
                 }
-      
-               
                 break;
 
             case 5:
@@ -88,15 +79,14 @@ public class IntroManager : MonoBehaviour
 
             case 6:
                  showStoryWindow("כי הם מלווים את כדור הארץ, לכן הירח מכונה לוויין טבעי. למה טבעי?", true);
-          
                 break;
+
             case 7:
                 hideStoryWindow();
                 counter = 8;
                 break;
 
             case 8:
-          
                 showStoryWindow ("כי יש גם לוויינים שהם מלאכותיים שבני אדם תיכננו, יצרו ושלחו למסלול סביב כדור הארץ", true);
                 Satellite.SetActive(true);
                 Moon.SetActive(false);
@@ -104,13 +94,11 @@ public class IntroManager : MonoBehaviour
  
 
             case 9:
-               
                 hideStoryWindow();
                 counter = 10;
                 break;
 
             case 10:
-
                 showStoryWindow("כיום, מקיפים אותנו אלפי לוויינים מלאכותיים מסוגים שונים ומסלולים שונים ואנחנו מסתמכים עליהם בחיי היומיום שלנו", true);
                 Satellites.SetActive(true);
 
@@ -137,6 +125,18 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 13:
+                hideStoryWindow();
+                hideInstructionWindow();
+                if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    SlideFromTop.exitAnimationTrigger = false;
+                    counter = 14;
+                }
+                break;
+
+            case 14:
+                Globals.LevelStats2 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }
@@ -149,21 +149,26 @@ public class IntroManager : MonoBehaviour
     public void advanceCounter()
     {
         counter++;
-        Debug.Log(counter);
+        //Debug.Log(counter);
     }
 
     void showStoryWindow(string textContent, bool showBTN)
     {
-        typewriterUI.TextToType = textContent;
-        StoryWindow.SetActive(true);
-        if (typewriterUI.TypeWriterIsFinished)
+        if (!StoryWindow.activeSelf)
         {
-            if (showBTN)
+            typewriterUI.TextToType = textContent;
+            StoryWindow.SetActive(true);
+        }
+        else
+        {
+            if (typewriterUI.TypeWriterIsFinished)
             {
-               StoryBTN.SetActive(true);
+                if (showBTN)
+                {
+                    StoryBTN.SetActive(true);
+                }
             }
         }
-
     }
 
     void hideStoryWindow()
