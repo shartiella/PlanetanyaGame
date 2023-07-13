@@ -403,7 +403,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -682,8 +682,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -805,7 +805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5439114560275228825, guid: 7fa4799c24a69b544842e91e2dc896f0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 5439114560275228825, guid: 7fa4799c24a69b544842e91e2dc896f0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SatellitesList: []
-  ChosenSatelliteName: GPS
+  ChosenSatelliteName: TV
 --- !u!114 &703959388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1753,7 +1753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472743207346612170, guid: 64f112d8ff400244b92e3914ed8ead3f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 472743207346612170, guid: 64f112d8ff400244b92e3914ed8ead3f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2098,7 +2098,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1257761901}
   - component: {fileID: 1257761900}
-  - component: {fileID: 1257761902}
   m_Layer: 0
   m_Name: FinishedSat
   m_TagString: Untagged
@@ -2133,7 +2132,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257761899}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2145,20 +2144,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1257761902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1257761899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821ba4cf74f7a9c4883045fa16eae5ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txt: {fileID: 399811242}
-  speed: 1
 --- !u!4 &1263502262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 614377868453020439, guid: 4d8351926062e38489095c65bbfdc28a, type: 3}
@@ -2619,7 +2604,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2698,7 +2683,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -3270,6 +3255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5c55b7d196d964ea99c86c9f8300d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetForCam: {fileID: 1257761901}
+  moveCamWithDrag: 1
+  moveCamByDeviceRotation: 1
+  rotateAroundTheTarget: 1
 --- !u!114 &1877639507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3594,7 +3583,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1

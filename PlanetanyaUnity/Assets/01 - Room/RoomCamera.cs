@@ -38,9 +38,6 @@ public class RoomCamera : MonoBehaviour
         {
             if (Input.touchCount == 2)
             {
-                //Debug.Log(Input.touchCount);
-                //            fingers1.text = Input.touchCount.ToString();
-
                 Touch touchZero = Input.GetTouch(0);
                 Touch touchOne = Input.GetTouch(1);
 
@@ -49,8 +46,6 @@ public class RoomCamera : MonoBehaviour
                 float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
                 float currentMaginitude = (touchZero.position - touchOne.position).magnitude;
                 float difference = currentMaginitude - prevMagnitude;
-
-                //fingers2.text = difference.ToString();
 
                 zoom(difference * -0.05f);
             }
@@ -67,12 +62,6 @@ public class RoomCamera : MonoBehaviour
                 zoom(Input.GetAxis("Mouse ScrollWheel") * morescroll);
             }
         }
-
-
-        //if (RoomCamera.deviceClicked != "")
-        //{
-        //    follower.enabled = true;
-        //}
     }
 
     public void zoom(float increment)

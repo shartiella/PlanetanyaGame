@@ -59,7 +59,7 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 4:
-                showInstructionWindow("געו במסך בכדי לראות את הירח וכדור הארץ מזוויות שונות");
+                showInstructionWindow("געו במסך כדי לצפות מזוויות שונות");
                 showBtnInstWin = false;
                 BlinkColor.glowOn = true;
                 if (typewriterUI.TypeWriterIsFinished)
@@ -78,7 +78,7 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 6:
-                 showStoryWindow("כי הם מלווים את כדור הארץ, לכן הירח מכונה לוויין טבעי. למה טבעי?", true);
+                 showStoryWindow("כי הם מלווים את כדור הארץ, לכן הירח מכונה לוויין טבעי. למה ''טבעי''?", true);
                 break;
 
             case 7:
@@ -99,7 +99,7 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 10:
-                showStoryWindow("כיום, מקיפים אותנו אלפי לוויינים מלאכותיים מסוגים שונים ומסלולים שונים ואנחנו מסתמכים עליהם בחיי היומיום שלנו", true);
+                showStoryWindow("כיום, מקיפים אותנו אלפי לוויינים מלאכותיים מסוגים שונים ואנחנו מסתמכים עליהם בחיי היומיום שלנו", true);
                 Satellites.SetActive(true);
 
                 break;

@@ -95,6 +95,7 @@ public class ARcanvasManager : MonoBehaviour
                 {
                     showInstructionWindow("חפשו את הלוויין וגררו אותו אל הטיל");
                     Globals.rocketStatus = "connectSat";
+                    CameraRotateAR.moveCamWithDrag = false;
                 }
                 //אם עובר זמן מסוים והמצלמה עוד לא כוונה לכיוון הלוויין, שיופיע חץ שיצביע עליו
                 //חיברו אל הטיל
@@ -112,6 +113,7 @@ public class ARcanvasManager : MonoBehaviour
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     Globals.rocketStatus = "ToLaunch";
+                    CameraRotateAR.moveCamWithDrag = true;
                 }
                 else
                 {

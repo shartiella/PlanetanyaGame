@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
 public class FinalLaunchManager : MonoBehaviour
@@ -31,6 +32,7 @@ public class FinalLaunchManager : MonoBehaviour
     private GameObject rocketTop;
     private GameObject rocketBottom;
     private ParticleSystem fire;
+    private GameObject Sat;
     [SerializeField] private GameObject rocketLEO;
     [SerializeField] private GameObject rocketMEO;
     [SerializeField] private GameObject rocketGEO;
@@ -38,12 +40,15 @@ public class FinalLaunchManager : MonoBehaviour
     [SerializeField] private GameObject LEOrocketTop;
     [SerializeField] private GameObject LEOrocketBottom;
     [SerializeField] private ParticleSystem LEOfire;
+    [SerializeField] private GameObject LEOSat;
     [SerializeField] private GameObject MEOrocketTop;
     [SerializeField] private GameObject MEOrocketBottom;
     [SerializeField] private ParticleSystem MEOfire;
+    [SerializeField] private GameObject MEOSat;
     [SerializeField] private GameObject GEOrocketTop;
     [SerializeField] private GameObject GEOrocketBottom;
     [SerializeField] private ParticleSystem GEOfire;
+    [SerializeField] private GameObject GEOSat;
 
     private GameObject target;
     [SerializeField] private GameObject LEOTarget;
@@ -61,7 +66,6 @@ public class FinalLaunchManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         if (Globals.ChosenSatellite.Orbit == "LEO")
         {
             //target = LEOTarget;
@@ -74,7 +78,7 @@ public class FinalLaunchManager : MonoBehaviour
             camplace3 = LEOcamplace3;
             Cam.Follow = LEOcamplace1.transform;
             Cam.LookAt = LEOTarget.transform;
-            
+            Sat = LEOSat;
         }
         else if (Globals.ChosenSatellite.Orbit == "MEO")
         {
@@ -88,6 +92,7 @@ public class FinalLaunchManager : MonoBehaviour
             camplace3 = MEOcamplace3;
             Cam.Follow = MEOcamplace1.transform;
             Cam.LookAt = MEOTarget.transform;
+            Sat = MEOSat;
         }
         else if (Globals.ChosenSatellite.Orbit == "GEO")
         {
@@ -101,6 +106,7 @@ public class FinalLaunchManager : MonoBehaviour
             camplace3 = GEOcamplace3;
             Cam.Follow = GEOcamplace1.transform;
             Cam.LookAt = GEOTarget.transform;
+            Sat = GEOSat;
         }
     }
 
@@ -122,7 +128,8 @@ public class FinalLaunchManager : MonoBehaviour
                     {
                         var fireEmission = fire.emission;
                         fireEmission.enabled = true;
-                        fireEmission.rateOverTime = 15;
+                        fireEmission.rateOverTime = 30;
+
                     }
                     else
                     {
@@ -141,6 +148,7 @@ public class FinalLaunchManager : MonoBehaviour
                 rocketTop.GetComponent<CapsuleCollider>().enabled = true;
                 rocketBottom.GetComponent<pullTowardsEarth>().enabled = true;
                 rocketBottom.GetComponent<CapsuleCollider>().enabled = true;
+                Sat.SetActive(true);
                 if (!StoryWindow.activeSelf)
                 {
                     StoryWinAnim.exitAnimationTrigger = false;

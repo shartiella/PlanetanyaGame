@@ -1805,9 +1805,9 @@ GameObject:
   - component: {fileID: 1088201997}
   - component: {fileID: 1088201995}
   - component: {fileID: 1088201994}
-  - component: {fileID: 1088201993}
   - component: {fileID: 1088201999}
   - component: {fileID: 1088202000}
+  - component: {fileID: 1088202001}
   m_Layer: 0
   m_Name: CM vcam2
   m_TagString: MainCamera
@@ -1815,22 +1815,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1088201993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088201992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c95e41d8a582d429274a05862eab18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  zoomOutMin: 10
-  zoomOutMax: 60
-  morescroll: 10
 --- !u!114 &1088201994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2039,6 +2023,22 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1088202001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088201992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5c55b7d196d964ea99c86c9f8300d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetForCam: {fileID: 2012018899}
+  moveCamWithDrag: 1
+  moveCamByDeviceRotation: 1
+  rotateAroundTheTarget: 0
 --- !u!1 &1151709345
 GameObject:
   m_ObjectHideFlags: 0

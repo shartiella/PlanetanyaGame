@@ -12,11 +12,17 @@ function getgroupname(){
     const textinput = document.getElementById("groupname");
     const pregamepart = document.getElementById("pregame");
     const gamepart = document.getElementById("unity-container");
-    pregamepart.classList.add("hide");
-    gamepart.classList.remove("hide");
 
     groupname=textinput.value;
     console.log(groupname);
     unityInstance.SendMessage('JavascriptHook','getGroupName',groupname);
+
+    pregamepart.classList.add("hide");
+    gamepart.classList.remove("hide");
+    //unityInstance.SetFullscreen(1);
+    //unityInstance.requestFullscreen();
+    //unity-container.SetFullscreen(1);
+    gamepart.requestFullscreen();
+    //unityInstance.SetFullscreen(1);
 }
 
