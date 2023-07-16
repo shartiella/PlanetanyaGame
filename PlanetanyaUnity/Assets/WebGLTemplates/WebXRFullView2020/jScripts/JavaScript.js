@@ -20,9 +20,8 @@ function getgroupname(){
     pregamepart.classList.add("hide");
     gamepart.classList.remove("hide");
     //unityInstance.SetFullscreen(1);
-    //unityInstance.requestFullscreen();
-    //unity-container.SetFullscreen(1);
     gamepart.requestFullscreen();
-    //unityInstance.SetFullscreen(1);
 }
+
+
 

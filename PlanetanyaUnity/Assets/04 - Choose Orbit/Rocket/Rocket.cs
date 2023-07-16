@@ -38,6 +38,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] private GameObject pushBTN;
     [SerializeField] private GameObject demoBTN;
     [SerializeField] private GameObject resetBTN;
+    [SerializeField] private GameObject Goal;
 
     //לבטל כשנדע מה טוב
     [SerializeField] private float Xforce;
@@ -100,7 +101,7 @@ public class Rocket : MonoBehaviour
         //EarthRocketVec = earth.transform.position - rocket.transform.position;
         EarthRocketDistance = (earth.transform.position - rocket.transform.position).magnitude;
 
-        if (EarthRocketDistance > 12)
+        if (transform.position.y > 9.4f || transform.position.y < -12.8 || transform.position.x > 9.4f || transform.position.x < -12.8 || EarthRocketDistance > 12)
         {
             Globals.rocketStatus = "crashed";
             OrbitManager.crashFromEarthCollision = false;
@@ -227,7 +228,7 @@ public class Rocket : MonoBehaviour
                 smokeEmission.enabled = false;
             }
 
-            if (OrbitManager.showResetAfterLaunch && OrbitManager.counter<=39)
+            if (OrbitManager.showResetAfterLaunch)
             {
                 resetBTN.SetActive(true);
             }
@@ -244,9 +245,13 @@ public class Rocket : MonoBehaviour
 
         if (Globals.rocketStatus == "launching")
         {
-            if (OrbitManager.counter >= 20 && !Globals.demo)
+            if (OrbitManager.showPushAfterLaunch && !Globals.demo)
             {
                 pushBTN.SetActive(true);
+            }
+            else
+            {
+                pushBTN.SetActive(false);
             }
 
             launchTimer += Time.deltaTime;
@@ -293,7 +298,7 @@ public class Rocket : MonoBehaviour
     //כפתורי כיווונון - לשפר
     public void gentlePush(string direction)
     {
-        if (Globals.rocketStatus == "launched")
+        if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching")
         {
             Globals.rocketStatus = "pushed";
 
@@ -327,6 +332,8 @@ public class Rocket : MonoBehaviour
     {
         if (Globals.rocketStatus == "launched")
         {
+            OrbitManager.RocketHasBeenPushed = true;
+
             if (Globals.ChosenSatellite.Orbit == "LEO")
             {
                 pushForce = 0.6f;
@@ -397,12 +404,20 @@ public class Rocket : MonoBehaviour
             if (OrbitManager.showLauncherAfterCrash)
             {
                 launcher.SetActive(true);
-                launcher.GetComponent<MeshRenderer>().enabled = true;
             }
             else
             {
                 launcher.SetActive(false);
             }
+            OrbitManager.RocketHasBeenPushed = false;
+            //if (OrbitManager.showGoalAfterCrash)
+            //{
+            //    Goal.SetActive(true);
+            //}
+            //else
+            //{
+            //    Goal.SetActive(false);
+            //}
 
             pushBTN.SetActive(false);
             resetBTN.SetActive(false);
@@ -423,7 +438,7 @@ public class Rocket : MonoBehaviour
         Vector3 e = (Vector3.Cross(v, h)) / mu - r / r.magnitude;
 
         Eccentricity = e.magnitude;
-        Debug.Log("Eccentricity: " + Eccentricity);
+        //Debug.Log("Eccentricity: " + Eccentricity);
 
     }
 

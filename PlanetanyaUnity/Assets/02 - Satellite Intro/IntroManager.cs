@@ -20,6 +20,9 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private GameObject Satellites;
     [SerializeField] private GameObject Satellite;
 
+    [SerializeField] private Camera cam;
+    private int cameraMoveCounter = 0;
+
     float totalTime = 0;
 
     // Start is called before the first frame update
@@ -35,11 +38,12 @@ public class IntroManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        totalTime+= Time.deltaTime;
+        totalTime += Time.deltaTime;
 
         switch (counter)
         {
             case 0:
+                moveCameraAtTheStart();
                 showStoryWindow("הנה כדור הארץ – כאן אנחנו נמצאים", true);
                 break;
 
@@ -78,7 +82,7 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 6:
-                 showStoryWindow("כי הם מלווים את כדור הארץ, לכן הירח מכונה לוויין טבעי. למה ''טבעי''?", true);
+                showStoryWindow("כי הם מלווים את כדור הארץ, לכן הירח מכונה לוויין טבעי. למה ''טבעי''?", true);
                 break;
 
             case 7:
@@ -87,11 +91,11 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 8:
-                showStoryWindow ("כי יש גם לוויינים שהם מלאכותיים שבני אדם תיכננו, יצרו ושלחו למסלול סביב כדור הארץ", true);
+                showStoryWindow("כי יש גם לוויינים שהם מלאכותיים שבני אדם תיכננו, יצרו ושלחו למסלול סביב כדור הארץ", true);
                 Satellite.SetActive(true);
                 Moon.SetActive(false);
                 break;
- 
+
 
             case 9:
                 hideStoryWindow();
@@ -101,7 +105,7 @@ public class IntroManager : MonoBehaviour
             case 10:
                 showStoryWindow("כיום, מקיפים אותנו אלפי לוויינים מלאכותיים מסוגים שונים ואנחנו מסתמכים עליהם בחיי היומיום שלנו", true);
                 Satellites.SetActive(true);
-
+                Satellite.SetActive(false);
                 break;
 
             case 11:
@@ -144,7 +148,7 @@ public class IntroManager : MonoBehaviour
 
     }
 
-    
+
 
     public void advanceCounter()
     {
@@ -205,4 +209,22 @@ public class IntroManager : MonoBehaviour
         SlideFromTop.exitAnimationTrigger = true;
     }
 
+    void moveCameraAtTheStart()
+    {
+        cameraMoveCounter++;
+
+        if (cameraMoveCounter==1)
+        {
+            Vector3 firstStaticCameraPosition = cam.transform.localPosition;
+            Vector3 otherPosition = new Vector3(0, 0, -21);
+            cam.transform.localPosition = otherPosition;
+            cam.transform.LeanMoveLocal(firstStaticCameraPosition, 3).setDelay(1).setEaseInOutSine();
+        }
+        else
+        {
+            cam.GetComponent<CameraRotate>().enabled = true;
+        }
+
     }
+
+}

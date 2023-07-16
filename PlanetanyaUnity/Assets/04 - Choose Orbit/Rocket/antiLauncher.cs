@@ -81,10 +81,10 @@ public class antiLauncher : MonoBehaviour
                     GetComponent<MeshRenderer>().enabled = true;
                     transform.position = OrbitManager.lastFingerRelease;
                 }
-                else if (Globals.rocketStatus == "inOrbit")
-                {
-                    GetComponent<MeshRenderer>().enabled = false;
-                }
+                //else if (Globals.rocketStatus == "inOrbit")
+                //{
+                //    GetComponent<MeshRenderer>().enabled = false;
+                //}
 
             }
         }

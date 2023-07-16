@@ -5948,6 +5948,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoryWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 4317713760105480060, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317713760105480060, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4317713760105480063, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
       propertyPath: m_IsActive
       value: 1

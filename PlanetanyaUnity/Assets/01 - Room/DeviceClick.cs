@@ -31,6 +31,7 @@ public class DeviceClick : MonoBehaviour
     void stopMovingCamera()
     {
         Cam.GetComponent<CinemachineVirtualCamera>().enabled = false;
+        Cam.GetComponent<CameraRotate>().enabled = true;
     }
 
     //לחיצה על אובייקט
@@ -45,35 +46,31 @@ public class DeviceClick : MonoBehaviour
     }
     public void OnMouseUp()
     {
-        CanvasManager.counter++;
-
-        RoomCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
-        BlinkColor.glowOn = false;
-        Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
-        Cam.GetComponent<CameraRotate>().enabled = false;
-
-        foreach (Satellite sat in _globals.SatellitesList)
+        if (CanvasManager.counter == 5)
         {
-            if (sat.Object == thisDevice)
+            CanvasManager.counter++;
+
+            RoomCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
+            BlinkColor.glowOn = false;
+            Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
+            Cam.GetComponent<CameraRotate>().enabled = false;
+
+            foreach (Satellite sat in _globals.SatellitesList)
             {
-                Globals.ChosenSatellite = sat;
+                if (sat.Object == thisDevice)
+                {
+                    Globals.ChosenSatellite = sat;
+                }
             }
-        }
 
-        //StoryWinAnim.exitAnimationTrigger = true;
-        //בחירת לוויין
-        //Globals.ChosenSatellite.Name = "GPS";//לבטל כדי לבחור לוויין
+            Vector3 myPos = transform.position;
 
-        Vector3 myPos = transform.position;
-
-
-        if (RoomCamera.deviceClicked == thisDevice)
-        {
-            LookAtTarget.transform.position = transform.position ; //הגדרת מיקום המעקב כמיקום האובייקט הלחוץ
-                                                                   //LookAtTarget.transform.LeanMove(myPos, 1);
-            Cam.transform.LeanMove(CamPositionAfterClick, 2).setEaseInOutQuad().setOnComplete(stopMovingCamera);
-
-
+            if (RoomCamera.deviceClicked == thisDevice)
+            {
+                LookAtTarget.transform.position = transform.position; //הגדרת מיקום המעקב כמיקום האובייקט הלחוץ
+                                                                      //LookAtTarget.transform.LeanMove(myPos, 1);
+                Cam.transform.LeanMove(CamPositionAfterClick, 2).setEaseInOutQuad().setOnComplete(stopMovingCamera);
+            }
         }
     }
 

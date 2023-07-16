@@ -114,12 +114,16 @@ public class BuildIUCopy : MonoBehaviour
 
             case 10:
                 //יהיה עוד משהו לפני זה?
+                Fader.SetActive(true);
                 Globals.LevelStats3 += " מספר חיבורים כולל: " + Globals.Reverse(BodyTrigger.connectedPartCounter.ToString()); //כמה פעמים חוברו חלקים עד שהצליחו
                 Globals.LevelStats3 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
-                Fader.SetActive(true);
+                counter = 11;
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
 
+            case 11:
+
+                break;
 
 
         }

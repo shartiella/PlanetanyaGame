@@ -113,7 +113,7 @@ public class Orbits : MonoBehaviour
     {
         if (Globals.rocketStatus == "launched" || Globals.rocketStatus == "launching")
         {
-            if (orbit == "MEO")
+            if (orbit == "MEO" && orbit == Globals.ChosenSatellite.Orbit)
             {
                 MEO.GetComponent<MeshRenderer>().material = Correct;
             }
@@ -122,7 +122,7 @@ public class Orbits : MonoBehaviour
                 MEO.GetComponent<MeshRenderer>().material = MEOcolor;
             }
 
-            if (orbit == "LEO")
+            if (orbit == "LEO" && orbit == Globals.ChosenSatellite.Orbit)
             {
                 LEO.GetComponent<MeshRenderer>().material = Correct;
             }
@@ -131,7 +131,7 @@ public class Orbits : MonoBehaviour
                 LEO.GetComponent<MeshRenderer>().material = LEOcolor;
             }
 
-            if (orbit == "GEO")
+            if (orbit == "GEO" && orbit == Globals.ChosenSatellite.Orbit)
             {
                 GEO.GetComponent<MeshRenderer>().material = Correct;
             }

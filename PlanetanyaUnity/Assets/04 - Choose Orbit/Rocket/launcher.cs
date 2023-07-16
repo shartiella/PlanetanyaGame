@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class launcher : MonoBehaviour
 {
     [SerializeField] private Material holdingFeedback;
     [SerializeField] private Material defaultColor;
+    [SerializeField] private GameObject Outline;
 
     private Vector3 initialLauncherPosition; //המיקום ההתחלתי של העיגול
     private Vector3 initialrocketPosition; //המיקום ההתחלתי של הטיל
@@ -40,7 +42,10 @@ public class launcher : MonoBehaviour
 
     private void OnEnable()
     {
-        GetComponent<MeshRenderer>().enabled = true;
+        //GetComponent<MeshRenderer>().enabled = true;
+        Outline.SetActive(true);
+        transform.position = initialLauncherPosition; //חזרה למיקום ההתחלתי
+        GetComponent<Renderer>().material = defaultColor;
 
         transform.localScale = new Vector3(0, 0, 0);
         transform.LeanScale(fullScale, 0.5f).setDelay(0.5f).setEaseOutElastic();
@@ -91,6 +96,8 @@ public class launcher : MonoBehaviour
     {
         if (Globals.rocketStatus == "toLaunch")
         {
+            Outline.SetActive(false);
+
             transform.position = Globals.currentMousePosition; //גרירה - העיגול עוקב אחרי העכבר
             //לצורך השיגור
             //distanceBetweenInitialToRelease = Vector3.Distance(initialPosition, Globals.currentMousePosition);
@@ -135,6 +142,12 @@ public class launcher : MonoBehaviour
     {
         OrbitManager.launchesCounter++;
 
+        if (Globals.demo == false)
+        {
+            //Globals.numberOfLaunches++;
+            Rocket.launchCounter++;
+        }
+
         if (OrbitManager.LaunchTowardsEarth)
         {
             OrbitManager.lastLaunchWasTowardsEarth = true;
@@ -149,12 +162,9 @@ public class launcher : MonoBehaviour
         Globals.lastLaunchForce=Globals.launchForce;
         Debug.Log("launch force: " + Globals.launchForce);
 
-        GetComponent<Renderer>().material = defaultColor;
-        if (Globals.demo==false)
-        {
-            //Globals.numberOfLaunches++;
-            Rocket.launchCounter++;
-        }
+
+
+
 
         if (Globals.rocketStatus == "toLaunch")
         {
@@ -162,8 +172,9 @@ public class launcher : MonoBehaviour
 
             OrbitManager.lastFingerRelease = Globals.currentMousePosition; //שמירת המיקום האחרון של העכבר
             Globals.rocketStatus = "LAUNCH"; //קריאה לשיגור
-            transform.position = initialLauncherPosition; //חזרה למיקום ההתחלתי
-            GetComponent<MeshRenderer>().enabled = false; //הסתרה
+
+            //GetComponent<MeshRenderer>().enabled = false; //הסתרה
+
 
             //מחיקת הנקודות
             for (int i = 1; i < dotNumber; i++)
@@ -172,6 +183,8 @@ public class launcher : MonoBehaviour
             }
         }
 
+        Outline.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
