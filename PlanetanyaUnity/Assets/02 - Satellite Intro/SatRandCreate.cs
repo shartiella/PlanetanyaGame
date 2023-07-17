@@ -18,12 +18,6 @@ public class SatRandCreate : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnEnable()
     {
         satsArray = new GameObject[satNumber]; //יצירת מערך נקודות הסימון

@@ -28,7 +28,7 @@ public class ObjectOrbit : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         direction = new Vector3(spinForce * 0.001f, 0, 0);
         obj.position = new Vector3();

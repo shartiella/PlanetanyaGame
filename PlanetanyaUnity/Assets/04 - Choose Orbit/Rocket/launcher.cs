@@ -52,7 +52,7 @@ public class launcher : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (Globals.rocketStatus == "inOrbit" || Globals.demo == true)

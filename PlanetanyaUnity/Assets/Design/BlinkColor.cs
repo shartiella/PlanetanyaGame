@@ -20,7 +20,7 @@ public class BlinkColor : MonoBehaviour
         renlist = GetComponents<MeshRenderer>().ToList();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (glowOn)
         {

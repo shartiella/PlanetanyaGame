@@ -36,7 +36,7 @@ public class IntroManager : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         totalTime += Time.deltaTime;
 

@@ -59,9 +59,9 @@ public class Rocket : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-
         if (Globals.Gravity)
         {
             //AddGravityForce(EarthRigidbody, rocketRigidbody);
@@ -84,19 +84,7 @@ public class Rocket : MonoBehaviour
             demoTimer = 0.0f;
             pushTimes = 0;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Globals.ChosenSatellite.Orbit == "none")
-        //{
-        //    launcher.SetActive(false);
-        //}
-        //else
-        //{
-        //    launcher.SetActive(true);
-        //}
 
         //EarthRocketVec = earth.transform.position - rocket.transform.position;
         EarthRocketDistance = (earth.transform.position - rocket.transform.position).magnitude;

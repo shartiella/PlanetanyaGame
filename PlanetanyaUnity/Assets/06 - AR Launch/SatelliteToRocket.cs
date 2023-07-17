@@ -14,6 +14,10 @@ public class SatelliteToRocket : MonoBehaviour
     public float time = 0.5f;
     public float delay = 0;
 
+    [SerializeField] private GameObject GPS;
+    [SerializeField] private GameObject TV;
+    [SerializeField] private GameObject MAP;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +52,19 @@ public class SatelliteToRocket : MonoBehaviour
         if (!WebXRManager.Instance.isSupportedAR)
         {
             transform.localPosition = new Vector3(-1, 2.2f, 4.1f);
+        }
+
+        if (Globals.ChosenSatellite.Name == "GPS")
+        {
+            GPS.SetActive(true);
+        }
+        else if (Globals.ChosenSatellite.Name == "TV")
+        {
+            TV.SetActive(true);
+        }
+        else if (Globals.ChosenSatellite.Name == "MAP")
+        {
+            MAP.SetActive(true);
         }
         Vector3 winScale = transform.localScale;
         transform.localScale = Vector3.zero;

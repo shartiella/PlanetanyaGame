@@ -29,23 +29,4 @@ public class EndStats : MonoBehaviour
         LevelStats5.text= Globals.LevelStats5;
         LevelStats6.text= Globals.LevelStats6;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (Globals.GroupName == "" || Globals.GroupName == "שם הקבוצה") //אפרור הכפתור אם אין שם קבוצה
-        {
-            //startBTN.interactable = false;
-        }
-        else
-        {
-            //startBTN.interactable = true;
-        }
-    }
-
-    //public void clickStart()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);   
-    //}
 }

@@ -23,15 +23,8 @@ public class ARcanvasManager : MonoBehaviour
 
     float totalTime = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
-        //StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
-    }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         totalTime += Time.deltaTime;
         //countext.text=counter.ToString();

@@ -18,13 +18,6 @@ public class AllObjects : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
- 
-    }
-
-
     public static void connectedPart(SatPart newestPart)
     {
         newestPartTouching = newestPart;

@@ -18,12 +18,6 @@ public class countdown : MonoBehaviour
         finalSize= transform.localScale;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnEnable()
     {
         transform.localScale = startSize;

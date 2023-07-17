@@ -20,17 +20,17 @@ public class BodyTrigger : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (AllObjects.BuildingState == "building")
         {
-            if (BuildIUCopy.overallNumberOfCorrectParts == BuildIUCopy.numberOfCorrectObjectsConnected && BuildIUCopy.numberOfWrongObjectsConnected == 0)
+            if (BuildIU.overallNumberOfCorrectParts == BuildIU.numberOfCorrectObjectsConnected && BuildIU.numberOfWrongObjectsConnected == 0)
             {
                 AllObjects.BuildingState = "finished";
 
-                if (BuildIUCopy.counter >= 3)
+                if (BuildIU.counter >= 3)
                 {
-                    BuildIUCopy.counter = 9;
+                    BuildIU.counter = 9;
                 }
             }
         }

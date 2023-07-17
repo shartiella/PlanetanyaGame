@@ -43,10 +43,10 @@ public class RocketForFinal : MonoBehaviour
         launchDemo();
     }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-
-        rocketRB.velocity += Globals.GravityForce(earth, rocket, 0.5f* forceMultiplier);
+        rocketRB.velocity += Globals.GravityForce(earth, rocket, 0.5f * forceMultiplier);
 
         //דמו
         if (Globals.demo)
@@ -58,21 +58,6 @@ public class RocketForFinal : MonoBehaviour
             demoTimer = 0.0f;
             pushTimes = 0;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (timerToLaunch <= 1)
-        //{
-        //    timerToLaunch += Time.deltaTime;
-        //    Debug.Log(timerToLaunch);
-        //}
-        //else
-        //{
-        //    launchDemo();
-        //}
-
 
         if (Globals.rocketStatus == "launching" || Globals.rocketStatus == "launched" || Globals.rocketStatus == "pushed" || Globals.rocketStatus == "inOrbit")
         {

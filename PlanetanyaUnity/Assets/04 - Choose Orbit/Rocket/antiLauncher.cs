@@ -8,9 +8,9 @@ using System;
 public class antiLauncher : MonoBehaviour
 {
     private Vector3 initialPosition;
-    [SerializeField] private TextMeshProUGUI instructionChooseOrbit;
-    [SerializeField] private TextMeshProUGUI instructionHowToLaunch;
-    [SerializeField] private TextMeshProUGUI demoInProgress;
+    //[SerializeField] private TextMeshProUGUI instructionChooseOrbit;
+    //[SerializeField] private TextMeshProUGUI instructionHowToLaunch;
+    //[SerializeField] private TextMeshProUGUI demoInProgress;
 
     private Vector3 fullScale;
 
@@ -28,7 +28,7 @@ public class antiLauncher : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //GetComponent<LineRenderer>().SetPosition(0, initialPosition);
         //GetComponent<LineRenderer>().SetPosition(1, transform.position);
@@ -45,14 +45,14 @@ public class antiLauncher : MonoBehaviour
 
         //}
 
-        demoInProgress.enabled = false;
-        instructionHowToLaunch.enabled = false;
-        instructionChooseOrbit.enabled = false;
+        //demoInProgress.enabled = false;
+        //instructionHowToLaunch.enabled = false;
+        //instructionChooseOrbit.enabled = false;
 
         if (Globals.demo)
         {
-            demoInProgress.enabled = true;
-            demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.ChosenSatellite.Orbit + " לולסמל המגודל רוגיש";
+            //demoInProgress.enabled = true;
+            //demoInProgress.GetComponent<TextMeshProUGUI>().text = Globals.ChosenSatellite.Orbit + " לולסמל המגודל רוגיש";
         }
         else
         {
@@ -62,19 +62,19 @@ public class antiLauncher : MonoBehaviour
                 //instruction.GetComponent<MeshRenderer>().enabled = true;
                 if (Globals.ChosenSatellite.Orbit == "none")
                 {
-                    instructionChooseOrbit.enabled = true;
-                    instructionHowToLaunch.enabled = false;
+                    //instructionChooseOrbit.enabled = true;
+                    //instructionHowToLaunch.enabled = false;
                 }
                 else
                 {
-                    instructionChooseOrbit.enabled = false;
-                    instructionHowToLaunch.enabled = true;
+                    //instructionChooseOrbit.enabled = false;
+                    //instructionHowToLaunch.enabled = true;
                 }
 
             }
             else
             {
-                instructionHowToLaunch.enabled = false;
+                //instructionHowToLaunch.enabled = false;
 
                 if (Globals.rocketStatus == "toLaunch")
                 {
@@ -88,11 +88,6 @@ public class antiLauncher : MonoBehaviour
 
             }
         }
-
-        
-
-
-
     }
 
     private void Awake()

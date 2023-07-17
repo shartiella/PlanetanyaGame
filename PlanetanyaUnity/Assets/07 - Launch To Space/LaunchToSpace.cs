@@ -28,7 +28,7 @@ public class LaunchToSpace : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (timerToLaunch < 1 && timerToLaunch>-1)
         {

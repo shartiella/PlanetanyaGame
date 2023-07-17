@@ -53,7 +53,7 @@ public class RocketLaunch : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Globals.rocketStatus == "ARoff")// לפני הפעלת מציאות רבודה
         {
@@ -109,13 +109,9 @@ public class RocketLaunch : MonoBehaviour
             //toNext.SetActive(true);
         }
 
-    }
-
-    void FixedUpdate()
-    {
         if (Globals.rocketStatus == "launching") //משוגר
         {
-//            ARcanvasManager.counter = 5;
+            //            ARcanvasManager.counter = 5;
 
             //float angle = Mathf.Atan2(rocket.GetComponent<Rigidbody>().velocity.y, rocket.GetComponent<Rigidbody>().velocity.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.Euler(0, 0, angle);

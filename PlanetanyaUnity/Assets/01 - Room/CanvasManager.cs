@@ -6,13 +6,10 @@ using UnityEngine.SceneManagement;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] private GameObject InstructionWindow;
-    //[SerializeField] private bool showBtnInstWin;
     [SerializeField] private GameObject StoryWindow;
     [SerializeField] private bool showBtnStoryWin;
 
-    //private TextMeshProUGUI InstructionTXT;
     [SerializeField] private GameObject InstructionBTN;
-    //private TextMeshProUGUI StoryTXT;
     [SerializeField] private GameObject StoryBTN;
 
     public static int CameraPositionCounter = 0;
@@ -26,32 +23,14 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
-        //InstructionBTN= InstructionWindow.GetComponentInChildren<GameObject>();
-        //StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
-        //StoryBTN = InstructionWindow.GetComponentInChildren<GameObject>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         totalTime+= Time.deltaTime;
 
-        //if (counter == 0)
-        //{
-        //    showStoryWindow("בוקר טוב! עכשיו מתעוררים?");
-        //    showBtnStoryWin = true;
-        //}
-        //else if (counter == 1)
-        //{
-        //    hideStoryWindow();
-        //    counter = 2;
-        //}
-        //else if (counter == 2)
-        //{
-        //    showStoryWindow("asd asdasd afsdf sss");
-        //    //showBtnStoryWin = true;
-        //}
         if (CameraPositionCounter==1)
         {
             changeCameraPosition1stTime();

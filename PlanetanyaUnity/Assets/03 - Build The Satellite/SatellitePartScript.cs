@@ -24,7 +24,7 @@ public class SatellitePartScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         IdentifySelf();
     }
@@ -35,7 +35,7 @@ public class SatellitePartScript : MonoBehaviour
         if (AllObjects.BuildingState == "building")
         {
             thisSatPart.isDragged = true;
-            if (!thisSatPart.isConnected && StoryWindow.activeSelf==false && BuildIUCopy.counter!=4)
+            if (!thisSatPart.isConnected && StoryWindow.activeSelf==false && BuildIU.counter!=4)
             {
                 showStoryWindow(thisSatPart.Description);
             }
@@ -71,7 +71,7 @@ public class SatellitePartScript : MonoBehaviour
         if (AllObjects.BuildingState == "building")
         {
             thisSatPart.isDragged = false;
-            if (StoryWindow.activeSelf && StoryWinAnim.activeAnimation== false && BuildIUCopy.counter != 4)
+            if (StoryWindow.activeSelf && StoryWinAnim.activeAnimation== false && BuildIU.counter != 4)
             {
                 hideStoryWindow();
             }
@@ -95,13 +95,13 @@ public class SatellitePartScript : MonoBehaviour
             {
                 //Debug.Log("I'm In");
 
-                if (BuildIUCopy.counter == 3)
+                if (BuildIU.counter == 3)
                 {
-                    BuildIUCopy.counter = 4;
+                    BuildIU.counter = 4;
                 }
-                if (BuildIUCopy.counter == 5)
+                if (BuildIU.counter == 5)
                 {
-                    BuildIUCopy.counter = 6;
+                    BuildIU.counter = 6;
                 }
 
                 if (thisSatPart.isCorrect)

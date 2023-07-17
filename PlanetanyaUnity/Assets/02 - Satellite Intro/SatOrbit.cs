@@ -57,7 +57,7 @@ public class SatOrbit : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ////transform.position = Vector3.zero;
 

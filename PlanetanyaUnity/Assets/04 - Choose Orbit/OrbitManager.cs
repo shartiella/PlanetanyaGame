@@ -58,7 +58,7 @@ public class OrbitManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         totalTime += Time.deltaTime;
 
@@ -714,7 +714,7 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 53:
-                Globals.LevelStats4 += "\nזמן כולל: " + Globals.Reverse(Mathf.RoundToInt(BuildIUCopy.totalTime).ToString()) + " שניות";
+                Globals.LevelStats4 += "\nזמן כולל: " + Globals.Reverse(Mathf.RoundToInt(BuildIU.totalTime).ToString()) + " שניות";
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 counter = 54;
                 break;

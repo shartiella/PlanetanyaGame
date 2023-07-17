@@ -41,9 +41,7 @@ namespace SojaExiles
 									StartCoroutine(closing());
 								}
 							}
-
 						}
-
 					}
 				}
 

@@ -20,16 +20,15 @@ public class CameraRotate : MonoBehaviour
         Input.gyro.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+        }
+
         if (moveCamWithDrag)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
-            }
-
             if (Input.GetMouseButton(0))
             {
                 Vector3 direction = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
@@ -52,7 +51,11 @@ public class CameraRotate : MonoBehaviour
                 previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
             }
         }
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if(moveCamByDeviceRotation)
         {
             if (Input.gyro.attitude.x != 0 && Input.gyro.attitude.y != 0 && Input.gyro.attitude.z != 0 && Input.gyro.attitude.w != 1)

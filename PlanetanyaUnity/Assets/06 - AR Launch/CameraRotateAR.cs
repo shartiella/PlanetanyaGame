@@ -20,8 +20,7 @@ public class CameraRotateAR : MonoBehaviour
         Input.gyro.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (moveCamWithDrag)
         {
@@ -52,7 +51,11 @@ public class CameraRotateAR : MonoBehaviour
                 previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
             }
         }
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if(moveCamByDeviceRotation)
         {
             if (Input.gyro.attitude.x != 0 && Input.gyro.attitude.y != 0 && Input.gyro.attitude.z != 0 && Input.gyro.attitude.w != 1)
