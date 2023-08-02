@@ -292,7 +292,8 @@ public class LeanTween : MonoBehaviour {
     * 
     * @method LeanTween.tweensRunning
     * @example
-    *   Debug.Log("I have "+LeanTween.tweensRunning+" animating!");
+    *   Debug.Log
+    *   ("I have "+LeanTween.tweensRunning+" animating!");
     */
     public static int tweensRunning{
         get{ 

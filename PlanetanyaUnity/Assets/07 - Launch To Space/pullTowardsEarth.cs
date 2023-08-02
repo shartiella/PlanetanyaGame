@@ -16,7 +16,7 @@ public class pullTowardsEarth : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         rocketRB.velocity += Globals.GravityForce(earth, rocket, massProduct);
     }

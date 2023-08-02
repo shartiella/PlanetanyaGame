@@ -20,7 +20,7 @@ public class BodyTrigger : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (AllObjects.BuildingState == "building")
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static Cinemachine.CinemachineFreeLook;
 
@@ -12,10 +13,11 @@ public class Orbits : MonoBehaviour
     [SerializeField] private GameObject MEO;
     [SerializeField] private GameObject LEO;
 
-    [SerializeField] private Material GEOcolor;
-    [SerializeField] private Material MEOcolor;
-    [SerializeField] private Material LEOcolor;
-    [SerializeField] private Material Correct;
+    [SerializeField] private Color GEOcolor;
+    [SerializeField] private Color MEOcolor;
+    [SerializeField] private Color LEOcolor;
+    [SerializeField] private Color Correct;
+    [SerializeField] private Color ColorOfCurrentOrbit;
     [SerializeField] private Material Wrong;
 
     // Start is called before the first frame update
@@ -24,7 +26,7 @@ public class Orbits : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         IdentifyOrbit();
@@ -32,10 +34,9 @@ public class Orbits : MonoBehaviour
 
         if (Globals.rocketStatus == "toLaunch")
         {
-            LEO.GetComponent<MeshRenderer>().material = LEOcolor;
-            MEO.GetComponent<MeshRenderer>().material = MEOcolor;
-            GEO.GetComponent<MeshRenderer>().material = GEOcolor;
-
+            LEO.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", LEOcolor);
+            MEO.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", MEOcolor);
+            GEO.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", GEOcolor);
         }
         //Vector3 EarthRocketVector = EarthTransform.position - rocketTransform.position;
         //float EarthRocketDistance = EarthRocketVec.magnitude;
@@ -115,31 +116,41 @@ public class Orbits : MonoBehaviour
         {
             if (orbit == "MEO" && orbit == Globals.ChosenSatellite.Orbit)
             {
-                MEO.GetComponent<MeshRenderer>().material = Correct;
+                changeColor(MEO,MEOcolor);
             }
             else
             {
-                MEO.GetComponent<MeshRenderer>().material = MEOcolor;
+                MEO.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", MEOcolor);
             }
 
             if (orbit == "LEO" && orbit == Globals.ChosenSatellite.Orbit)
             {
-                LEO.GetComponent<MeshRenderer>().material = Correct;
+                changeColor(LEO,LEOcolor);
             }
             else
             {
-                LEO.GetComponent<MeshRenderer>().material = LEOcolor;
+                LEO.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", LEOcolor);
             }
 
             if (orbit == "GEO" && orbit == Globals.ChosenSatellite.Orbit)
             {
-                GEO.GetComponent<MeshRenderer>().material = Correct;
+                changeColor(GEO,GEOcolor);
             }
             else
             {
-                GEO.GetComponent<MeshRenderer>().material = GEOcolor;
+                GEO.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", GEOcolor);
             }
         }
 
+    }
+
+    private void changeColor(GameObject curOrbit, Color orbitColor)
+    {
+        Color fromColor = orbitColor;
+        Color toColor = Correct;
+
+        Color color = Color.Lerp(fromColor, toColor, Globals.orbitTime/ OrbitManager.neededOrbitTime);
+
+        curOrbit.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", color);
     }
 }

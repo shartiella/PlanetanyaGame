@@ -39,7 +39,7 @@ public class OrbitManager : MonoBehaviour
     public static bool lastLaunchWasTowardsEarth = false;
     public static bool RocketHasBeenPushed = false;
 
-    [SerializeField] private float neededOrbitTime=5;
+    public static float neededOrbitTime=5;
 
     public static Vector3 lastFingerRelease;
 
@@ -58,7 +58,7 @@ public class OrbitManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         totalTime += Time.deltaTime;
 
@@ -528,6 +528,7 @@ public class OrbitManager : MonoBehaviour
                 }
                 else
                 {
+                    eccentricityFeedback = "כל הכבוד - אתם יודעים עכשיו לשגר טיל למסלול גם יציב וגם מעגלי!";
                     pushBTN.SetActive(false);
                     resetBTN.SetActive(false);
                     hideInstructionWindow();
@@ -552,6 +553,7 @@ public class OrbitManager : MonoBehaviour
                 }
                 else
                 {
+                    eccentricityFeedback = "כל הכבוד - אתם יודעים עכשיו לשגר טיל למסלול גם יציב וגם מעגלי!";
                     pushBTN.SetActive(false);
                     resetBTN.SetActive(false);
                     showResetAfterLaunch = false;
@@ -727,7 +729,7 @@ public class OrbitManager : MonoBehaviour
     public void advanceCounter()
     {
         counter++;
-        Debug.Log(counter);
+        //Debug.Log(counter);
     }
 
     void showStoryWindow(string textContent, bool showBtn)
@@ -793,7 +795,7 @@ public class OrbitManager : MonoBehaviour
             if (Globals.orbit == Globals.ChosenSatellite.Orbit && Globals.demo == false)
             {
                 Globals.orbitTime += Time.deltaTime;
-                Debug.Log(" :ןוכנה לולסמב ןמז" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString());
+                //Debug.Log(" :ןוכנה לולסמב ןמז" + Environment.NewLine + Math.Round(Globals.orbitTime, 2).ToString());
 
                 if (Globals.orbitTime >= neededOrbitTime)
                 {

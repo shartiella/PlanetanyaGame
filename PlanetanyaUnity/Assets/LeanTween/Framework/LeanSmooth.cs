@@ -7,7 +7,9 @@ using UnityEngine;
 * <strong>Example: </strong><br />fromY = LeanSmooth.spring(fromY, followArrow.localPosition.y, ref velocityY, 1.1f);<br />
 * fromVec3 = LeanSmooth.damp(fromVec3, dude5Title.localPosition, ref velocityVec3, 1.1f);<br />
 * fromColor = LeanSmooth.damp(fromColor, dude5Title.GetComponent<Renderer>().material.color, ref velocityColor, 1.1f);<br />
-* Debug.Log("Smoothed y:" + fromY + " vec3:" + fromVec3 + " color:" + fromColor);<br />
+* Debug.Log
+* 
+* ("Smoothed y:" + fromY + " vec3:" + fromVec3 + " color:" + fromColor);<br />
 *
 * @class LeanSmooth
 */

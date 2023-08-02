@@ -32,11 +32,12 @@ public class IntroManager : MonoBehaviour
         //InstructionBTN= InstructionWindow.GetComponentInChildren<GameObject>();
         StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
         //StoryBTN = InstructionWindow.GetComponentInChildren<GameObject>();
+        cam.transform.localPosition = new Vector3(0, 0, -21);
     }
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         totalTime += Time.deltaTime;
 
@@ -215,16 +216,18 @@ public class IntroManager : MonoBehaviour
 
         if (cameraMoveCounter==1)
         {
-            Vector3 firstStaticCameraPosition = cam.transform.localPosition;
-            Vector3 otherPosition = new Vector3(0, 0, -21);
-            cam.transform.localPosition = otherPosition;
-            cam.transform.LeanMoveLocal(firstStaticCameraPosition, 3).setDelay(1).setEaseInOutSine();
+            Vector3 firstStaticCameraPosition = new Vector3(0, 0, -240);
+            cam.transform.LeanMoveLocal(firstStaticCameraPosition, 3).setDelay(1).setEaseInOutSine().setOnComplete(finishCameraMove);
         }
         else
         {
-            cam.GetComponent<CameraRotate>().enabled = true;
+            
         }
 
     }
 
+    void finishCameraMove()
+    {
+        cam.GetComponent<CameraRotate>().enabled = true;
+    }
 }

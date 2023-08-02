@@ -55,7 +55,7 @@ public class Rocket : MonoBehaviour
         earthRB= earth.GetComponent<Rigidbody>();
 
         Globals.rocketStatus = "toLaunch";
-        Debug.Log(Globals.rocketStatus);
+        //Debug.Log(Globals.rocketStatus);
 
     }
 
@@ -273,9 +273,9 @@ public class Rocket : MonoBehaviour
     public void launchIt()
     {
         //launchCounter++;
-        Debug.Log("launchCounter: " + launchCounter);
+        //Debug.Log("launchCounter: " + launchCounter);
         Globals.rocketStatus = "launching";
-        Debug.Log(Globals.rocketStatus);
+        //Debug.Log(Globals.rocketStatus);
         Globals.Gravity = true;
 
         //rocketRB.AddForce(Globals.launchForce);
@@ -378,7 +378,7 @@ public class Rocket : MonoBehaviour
             Globals.orbitTime = 0;
             Globals.orbit = "none";
             Globals.rocketStatus = "toLaunch";
-            Debug.Log(Globals.rocketStatus);
+            //Debug.Log(Globals.rocketStatus);
             var fireEmission = fire.emission;
             fireEmission.enabled = false;
 
@@ -441,10 +441,10 @@ public class Rocket : MonoBehaviour
             demoBTN.SetActive(false);
             demoTimer = 0.0f;
             //pushTime = 0.0f;
-            Debug.Log(Globals.demo);
+            //Debug.Log(Globals.demo);
 
             Globals.rocketStatus = "launching";
-            Debug.Log(Globals.rocketStatus);
+            //Debug.Log(Globals.rocketStatus);
 
             if (Globals.ChosenSatellite.Orbit == "LEO")
             {

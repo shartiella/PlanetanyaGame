@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.07233388, g: 0.06632143, b: 0.070521094, a: 1}
+  m_IndirectSpecularColor: {r: 0.012907533, g: 0.012541854, b: 0.0189206, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh50258
+  m_Name: pb_Mesh30840
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -293,7 +293,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-201498
+  m_Name: pb_Mesh-359628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12386,7 +12386,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh50242
+  m_Name: pb_Mesh30828
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13217,10 +13217,11 @@ MonoBehaviour:
   GEO: {fileID: 6729281332486772954}
   MEO: {fileID: 6729281330719286700}
   LEO: {fileID: 6729281332389869494}
-  GEOcolor: {fileID: 2100000, guid: e1eede457b89a3c4c9c9584098790a48, type: 2}
-  MEOcolor: {fileID: 2100000, guid: 1a89a1477ba899642a1b4eb8e14e78bd, type: 2}
-  LEOcolor: {fileID: 2100000, guid: b55c71ab75596164c82ba20d194290ff, type: 2}
-  Correct: {fileID: 2100000, guid: 895d8d816805ccc4f9278f76360337e4, type: 2}
+  GEOcolor: {r: 0, g: 0.011764706, b: 0.1882353, a: 0}
+  MEOcolor: {r: 0, g: 0.023529412, b: 0.36862746, a: 0}
+  LEOcolor: {r: 0, g: 0.03529412, b: 0.54901963, a: 0}
+  Correct: {r: 0.121395506, g: 0.8301887, b: 0.44579393, a: 1}
+  ColorOfCurrentOrbit: {r: 0, g: 0, b: 0, a: 0}
   Wrong: {fileID: 2100000, guid: 8a9cff6e700ba9447833a498b0aef2b3, type: 2}
 --- !u!1 &961025096
 GameObject:
@@ -13576,7 +13577,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-201522
+  m_Name: pb_Mesh-359652
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25683,9 +25684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaddf363def5af14283c2a618ea1a27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instructionChooseOrbit: {fileID: 0}
-  instructionHowToLaunch: {fileID: 0}
-  demoInProgress: {fileID: 0}
 --- !u!1001 &1201573366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25809,7 +25807,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh50266
+  m_Name: pb_Mesh30848
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25973,7 +25971,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-201486
+  m_Name: pb_Mesh-359616
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26163,7 +26161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeStart: 0.5
-  timeBtwChars: 0.1
   leadingChar: 
   leadingCharBeforeDelay: 0
 --- !u!114 &1396452884
@@ -26328,7 +26325,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh49890
+  m_Name: pb_Mesh30628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26736,7 +26733,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-201534
+  m_Name: pb_Mesh-359664
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26980,7 +26977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SatellitesList: []
-  ChosenSatelliteName: TV
+  ChosenSatelliteName: GPS
 --- !u!4 &1759274011
 Transform:
   m_ObjectHideFlags: 0
@@ -27002,7 +26999,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-201510
+  m_Name: pb_Mesh-359640
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27330,7 +27327,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-201546
+  m_Name: pb_Mesh-359676
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27783,7 +27780,6 @@ MonoBehaviour:
   resetBTN: {fileID: 961025096}
   Goal: {fileID: 907235943}
   demoBTN: {fileID: 797054749}
-  neededOrbitTime: 5
 --- !u!4 &1288327048955369911
 Transform:
   m_ObjectHideFlags: 0
@@ -28481,7 +28477,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeStart: 0.5
-  timeBtwChars: 0.08
   leadingChar: 
   leadingCharBeforeDelay: 0
 --- !u!114 &4317713760535520031

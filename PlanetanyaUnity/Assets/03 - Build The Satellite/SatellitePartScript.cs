@@ -24,7 +24,7 @@ public class SatellitePartScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         IdentifySelf();
     }
@@ -41,7 +41,7 @@ public class SatellitePartScript : MonoBehaviour
             }
             else
             {
-                Debug.Log("thisSatPart.isConnected - "+ thisSatPart.isConnected+ " typewriterUI.TypeWriterIsFinished - "+ typewriterUI.TypeWriterIsFinished);
+                //Debug.Log("thisSatPart.isConnected - "+ thisSatPart.isConnected+ " typewriterUI.TypeWriterIsFinished - "+ typewriterUI.TypeWriterIsFinished);
             }
 
             //if (BuildIUCopy.counter== 3)

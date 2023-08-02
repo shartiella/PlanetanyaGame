@@ -19,4 +19,8 @@ mergeInto(LibraryManager.library, {
         navigator.geolocation.getCurrentPosition(success, error);
     }
   },
+
+    doFullScreen: function () {
+        unityInstance.SetFullscreen(1);
+  },
 });

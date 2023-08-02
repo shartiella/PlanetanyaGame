@@ -24,7 +24,7 @@ public class ARcanvasManager : MonoBehaviour
     float totalTime = 0;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         totalTime += Time.deltaTime;
         //countext.text=counter.ToString();
@@ -131,11 +131,11 @@ public class ARcanvasManager : MonoBehaviour
                 if (WebXRManager.Instance.XRState == WebXRState.AR)
                 {
                     WebXRManager.Instance.ToggleAR();
-                    Debug.Log("AR is OFF");
+                    //Debug.Log("AR is OFF");
                 }
                 else
                 {
-                    Debug.Log("no AR");
+                    //Debug.Log("no AR");
                 }
                 counter = 11;
                 break;
@@ -161,7 +161,7 @@ public class ARcanvasManager : MonoBehaviour
     public void advanceCounter()
     {
         counter++;
-        Debug.Log("COUNTER: " + counter);
+        //Debug.Log("COUNTER: " + counter);
     }
 
     void showStoryWindow(string textContent, bool showBtn)
@@ -213,18 +213,18 @@ public class ARcanvasManager : MonoBehaviour
             if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
             {
                 WebXRManager.Instance.ToggleAR();
-                Debug.Log("AR is ON");
+                //Debug.Log("AR is ON");
                 ARisON = true;
             }
             else
             {
-                Debug.Log("AR turn on fail");
+                //Debug.Log("AR turn on fail");
                 Camera.main.fieldOfView = 90;
             }
         }
         else
         {
-            Debug.Log("AR not supported");
+            //Debug.Log("AR not supported");
             Camera.main.fieldOfView = 90;
         }
         counter = 2;

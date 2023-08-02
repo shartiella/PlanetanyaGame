@@ -23,7 +23,7 @@ public class LaunchBTN : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (startCountdown)
         {
@@ -68,7 +68,7 @@ public class LaunchBTN : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("button press");
+        //Debug.Log("button press");
         ARcanvasManager.counter++;
         //Vector3 lowerbtn = new Vector3(btnbtn.transform.position.x, btnbtn.transform.position.y, btnbtn.transform.position.z);
         btnbtn.LeanMove(btnlowerposition.position, 1.5f).setEaseOutBack().setOnComplete(afteranimation);

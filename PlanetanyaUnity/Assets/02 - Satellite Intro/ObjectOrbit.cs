@@ -23,12 +23,12 @@ public class ObjectOrbit : MonoBehaviour
         if (RandomRotation)
         {
             randomNum=Random.value;
-            Debug.Log(randomNum);
+            //Debug.Log(randomNum);
         }
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         direction = new Vector3(spinForce * 0.001f, 0, 0);
         obj.position = new Vector3();

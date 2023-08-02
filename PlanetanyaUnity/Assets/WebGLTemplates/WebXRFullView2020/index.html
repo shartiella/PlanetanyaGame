@@ -20,11 +20,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
 
+    <link rel="stylesheet" href="./TemplateData/style.css">
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="./styles/indexCss.css">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./TemplateData/style.css">
 
     <!-- JS -->
     <script src="./jScripts/JavaScript.js" type="text/javascript"></script>
@@ -98,24 +98,36 @@
             <p>פה אפשר להכניס בדיקת מיקום כדי לוודא שהם בפלנתניה</p>
         </section>-->
                 <section id="group" class="">
-                    <h2>שלום קבוצה!</h2>
-                    <p>הקלידו כאן את שם הקבוצה שלכם:</p>
-                    <input id="groupname" type="text" placeholder="שם קבוצה"> <br />
+                    <h2>שלום!</h2>
+                    <p>הקלידו כאן את השם שלכם:</p>
+                    <input id="groupname" type="text" placeholder="שם"> <br />
                     <input id="btn" type="button" class="btn btn-primary" value="אישור" onclick="getgroupname()">
+                    <div id="loading">
+                        <p>המשחק בטעינה...</p>
+                        <div id="unity-loading-bar">
+                            <div id="unity-progress-bar-empty">
+                                <div id="unity-progress-bar-full"></div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
 
             <div id="unity-container">
                 <div id="unity-canvas-container" style="width: 100%; height: 100%;">
-                    <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
+                    <canvas id="unity-canvas" style="width: 20%; height: 20%;"></canvas>
+                    <div id="unity-fullscreen-button"></div>
+                    <button id="enterar" value="Enter AR" disabled>AR</button>
                 </div>
-                <div id="unity-loading-bar">
+                <!--
+                    <div id="unity-loading-bar">
                     <div id="unity-logo"></div>
                     <div id="unity-progress-bar-empty">
                         <div id="unity-progress-bar-full"></div>
                     </div>
                 </div>
-                <div id="unity-footer">
+            -->
+                <div id="unity-footer" style="display:none">
                     <div id="unity-webgl-logo" style="display:none"></div>
                     <button id="enterar" value="Enter AR" style="display:none" disabled>מסך מלא</button>
                     <div id="unity-webxr-link" style="display:none">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
@@ -139,6 +151,7 @@
         companyName: "{{{ COMPANY_NAME }}}",
         productName: "{{{ PRODUCT_NAME }}}",
         productVersion: "{{{ PRODUCT_VERSION }}}",
+        devicePixelRatio: 1,
       };
 
       var container = document.querySelector("#unity-container");
@@ -163,6 +176,8 @@
         }).then((instance) => {
           unityInstance = instance;
           loadingBar.style.display = "none";
+          btn.classList.remove("hide");
+          loading.classList.add("hide");
           if (fullscreenButton)
           {
             fullscreenButton.onclick = () => {

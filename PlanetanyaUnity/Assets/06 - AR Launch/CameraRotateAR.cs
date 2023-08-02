@@ -71,8 +71,8 @@ public class CameraRotateAR : MonoBehaviour
                 }
                 else
                 {
-                    cam.transform.Rotate(new Vector3(1, 0, 0), Input.gyro.rotationRate.x);
-                    cam.transform.Rotate(new Vector3(0, 1, 0), Input.gyro.rotationRate.y, Space.World);
+                    cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x);
+                    cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World);
                 }
             }
         }

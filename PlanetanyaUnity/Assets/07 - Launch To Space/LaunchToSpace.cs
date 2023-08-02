@@ -28,12 +28,12 @@ public class LaunchToSpace : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (timerToLaunch < 1 && timerToLaunch>-1)
         {
             timerToLaunch += Time.deltaTime;
-            Debug.Log(timerToLaunch);
+            //Debug.Log(timerToLaunch);
         }
         if (timerToLaunch > 1)
         {
@@ -84,10 +84,10 @@ public class LaunchToSpace : MonoBehaviour
             Globals.demo = true;
             demoTimer = 0.0f;
             //pushTime = 0.0f;
-            Debug.Log(Globals.demo);
+            //Debug.Log(Globals.demo);
 
             Globals.rocketStatus = "launching";
-            Debug.Log(Globals.rocketStatus);
+            //Debug.Log(Globals.rocketStatus);
 
             if (Globals.ChosenSatellite.Orbit == "LEO")
             {
@@ -125,10 +125,10 @@ public class LaunchToSpace : MonoBehaviour
             Globals.demo = true;
             demoTimer = 0.0f;
             //pushTime = 0.0f;
-            Debug.Log(Globals.demo);
+            //Debug.Log(Globals.demo);
 
             Globals.rocketStatus = "launching";
-            Debug.Log(Globals.rocketStatus);
+            //Debug.Log(Globals.rocketStatus);
 
             Globals.Gravity = true;
             Xforce = -92;

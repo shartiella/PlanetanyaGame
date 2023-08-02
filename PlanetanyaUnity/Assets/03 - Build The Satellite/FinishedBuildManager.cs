@@ -33,7 +33,7 @@ public class FinishedBuildManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         switch (counter)
         {
@@ -86,7 +86,7 @@ public class FinishedBuildManager : MonoBehaviour
     public void advanceCounter()
     {
         counter++;
-        Debug.Log(counter);
+        //Debug.Log(counter);
     }
 
     void showStoryWindow(string textContent, bool showBTN)

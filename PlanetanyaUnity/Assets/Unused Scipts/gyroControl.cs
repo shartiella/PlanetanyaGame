@@ -20,7 +20,7 @@ public class gyroControl : MonoBehaviour
         initialRotation = transform.rotation;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         //txt.text = "DEVICE rotation: " + Input.gyro.attitude.eulerAngles + "\n rotationRate: "+ Input.gyro.rotationRate + "\n rotationRateUnbiased: " + Input.gyro.rotationRateUnbiased;
         //txt.text += "\n OBJECT position: " + transform.position +"\n OBJECT rotation" + transform.rotation.eulerAngles;

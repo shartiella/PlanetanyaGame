@@ -52,7 +52,7 @@ public class launcher : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         if (Globals.rocketStatus == "inOrbit" || Globals.demo == true)
@@ -125,7 +125,7 @@ public class launcher : MonoBehaviour
             rocket.transform.LookAt(TrajectoryDots[3].transform);
             rocket.transform.Rotate(-90, 180, 0);
 
-            Debug.Log(rocket.transform.rotation.eulerAngles);
+            //Debug.Log(rocket.transform.rotation.eulerAngles);
 
             if (rocket.transform.rotation.eulerAngles.z == 180 && rocket.transform.rotation.eulerAngles.x > 300 && (rocket.transform.rotation.eulerAngles.y < 269 || rocket.transform.rotation.eulerAngles.y > 90))
             {
@@ -151,7 +151,7 @@ public class launcher : MonoBehaviour
         if (OrbitManager.LaunchTowardsEarth)
         {
             OrbitManager.lastLaunchWasTowardsEarth = true;
-            Debug.Log("LaunchedTowardsEarth");
+            //Debug.Log("LaunchedTowardsEarth");
         }
         else
         {
@@ -160,7 +160,7 @@ public class launcher : MonoBehaviour
 
         //Debug.Log(Globals.currentMousePosition.ToString());
         Globals.lastLaunchForce=Globals.launchForce;
-        Debug.Log("launch force: " + Globals.launchForce);
+        //Debug.Log("launch force: " + Globals.launchForce);
 
 
 

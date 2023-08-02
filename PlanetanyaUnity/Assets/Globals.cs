@@ -55,16 +55,16 @@ public class Globals : MonoBehaviour
             {
                 ChooseSat(ChosenSatelliteName);  //לבטל כשצריך
                 ChosenSatelliteName = ChosenSatellite.Name;
-                Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+                //Debug.Log("chosen satellite is " + ChosenSatellite.Name);
             }
             else
             {
-                Debug.Log("NO chosen satellite");
+                //Debug.Log("NO chosen satellite");
             }
         }
         else
         {
-            Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+            //Debug.Log("chosen satellite is " + ChosenSatellite.Name);
         }
     }
 
@@ -151,7 +151,7 @@ public class Globals : MonoBehaviour
             {
                 //תגדיר אותו בתור הלוויין שנבחר
                 ChosenSatellite = satellite;
-                Debug.Log("chosen satellite is " + ChosenSatellite.Name);
+                //Debug.Log("chosen satellite is " + ChosenSatellite.Name);
 
             }
         }

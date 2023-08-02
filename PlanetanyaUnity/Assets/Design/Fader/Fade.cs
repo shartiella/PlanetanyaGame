@@ -35,7 +35,7 @@ public class Fade : MonoBehaviour
 
     public void OnFadeOutComplete()
     {
-        Debug.Log("ACTIVE SCENE"+SceneManager.GetActiveScene().buildIndex);
+        //Debug.Log("ACTIVE SCENE"+SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

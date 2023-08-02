@@ -146,7 +146,7 @@ public class RocketLaunch : MonoBehaviour
 
     public void launchIt()
     {
-        Debug.Log(Globals.rocketStatus);
+        //Debug.Log(Globals.rocketStatus);
         cineMachine.SetActive(true); //לבטל כשנצליח להטמיע מציאות רבודה
 
         Globals.rocketStatus = "launching";

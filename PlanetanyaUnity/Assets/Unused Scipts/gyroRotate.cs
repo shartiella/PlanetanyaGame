@@ -14,7 +14,7 @@ public class gyroRotate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //transform.rotation = Input.gyro.attitude;
         rot.y = -Input.gyro.rotationRateUnbiased.y;

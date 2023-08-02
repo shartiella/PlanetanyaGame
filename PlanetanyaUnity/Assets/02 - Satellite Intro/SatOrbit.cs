@@ -52,12 +52,12 @@ public class SatOrbit : MonoBehaviour
 
         transform.position = start;
         axis = Vector3.Cross(start, end);
-        Debug.Log(gameObject.name + start.magnitude);
+        //Debug.Log(gameObject.name + start.magnitude);
         speed = (maxRadius - start.magnitude) / maxRadius;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         ////transform.position = Vector3.zero;
 

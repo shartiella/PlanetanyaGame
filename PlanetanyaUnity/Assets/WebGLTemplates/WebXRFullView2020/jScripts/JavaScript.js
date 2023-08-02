@@ -1,35 +1,40 @@
 
 let groupname="";
 var gamepart;
+var loading;
+var btn;
+var canvas;
 
 document.addEventListener("DOMContentLoaded", function (event){
     gamepart = document.getElementById("unity-container");
-    console.log(gamepart);
+    canvas = document.getElementById("unity-canvas");
+    loading = document.getElementById("loading");
+    btn = document.getElementById("btn");
+    //console.log(gamepart);
     gamepart.classList.add("hide");
+    btn.classList.add("hide");
 });
 
 function getgroupname(){
     const textinput = document.getElementById("groupname");
     const pregamepart = document.getElementById("pregame");
-    const gamepart = document.getElementById("unity-container");
+    //const gamepart = document.getElementById("unity-container");
 
     groupname=textinput.value;
-    console.log(groupname);
+    //console.log(groupname);
     unityInstance.SendMessage('JavascriptHook','getGroupName',groupname);
 
     pregamepart.classList.add("hide");
     gamepart.classList.remove("hide");
     //unityInstance.SetFullscreen(1);
-    gamepart.requestFullscreen();
+    canvas.requestFullscreen();
 }
-
 
 function openAbout() {
     document.getElementById("aboutPopUp").classList.remove('aboutPopUpClosed');
     document.getElementById("aboutPopUp").classList.add('aboutPopUpOpen');
     document.getElementById("aboutPopUpX").classList.remove('aboutPopUpXclosed');
     document.getElementById("aboutPopUpX").classList.add('aboutPopUpXopen');
-
 }
 
 function closeAbout() {
@@ -44,7 +49,6 @@ function openHow() {
     document.getElementById("howPopUp").classList.add('howPopUpOpen');
     document.getElementById("howPopUpX").classList.remove('howPopUpXclosed');
     document.getElementById("howPopUpX").classList.add('howPopUpXopen');
-
 }
 
 function closeHow() {

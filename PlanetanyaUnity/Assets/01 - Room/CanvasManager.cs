@@ -26,19 +26,24 @@ public class CanvasManager : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        //if (CameraPositionCounter == 1)
+        //{
+        //    CameraPositionCounter = 2;
+
+        //    changeCameraPosition1stTime();
+        //}
+        //else
+        //{
+
+        //}
+    }
+
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         totalTime+= Time.deltaTime;
-
-        if (CameraPositionCounter==1)
-        {
-            changeCameraPosition1stTime();
-        }
-        else
-        {
-
-        }
 
         switch (counter)
         {
@@ -53,7 +58,7 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 2:
-                CameraPositionCounter = 1;
+                changeCameraPosition1stTime();
                 break;
 
             case 3:
@@ -211,29 +216,28 @@ public class CanvasManager : MonoBehaviour
 
     void changeCameraPosition1stTime()
     {
-        CameraPositionCounter = 2;
-        if (CameraPositionCounter == 2)
+        CameraPositionCounter++;
+        if (CameraPositionCounter == 1)
         {
             Vector3 pos = new Vector3(1.544f, 1.866f, 2.175f);
             Vector3 lookAt = new Vector3(1.87f, 1.26f, -7.81f);
 
-            //Cam.transform.position = pos;
-            Cam.transform.LeanMove(pos, 0.5f).setEaseInOutQuad();
             Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
-            LookAtTarget.transform.LeanMove(lookAt, 2).setOnComplete(stopMovingCamera);
+            Cam.transform.LeanMove(pos, 6).setEaseInOutQuad();
+            LookAtTarget.transform.LeanMove(lookAt, 3).setEaseInOutQuad().setOnComplete(stopLookingAt);
         }
-
-        CameraPositionCounter = 3;
     }
 
-    void stopMovingCamera()
+    void stopLookingAt()
     {
-        Cam.GetComponent<CinemachineVirtualCamera>().enabled = false;
-
-        if (counter == 2)
+        if (LookAtTarget.transform.position.x >= 1.8f)
         {
-            counter = 3;
-        }
+            Cam.GetComponent<CinemachineVirtualCamera>().enabled = false;
 
+            if (counter == 2)
+            {
+                counter = 3;
+            }
+        }
     }
 }

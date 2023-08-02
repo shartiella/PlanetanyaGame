@@ -38,13 +38,13 @@ public class RocketForFinal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("ROCKERFORFINAL");
+        //Debug.Log("ROCKERFORFINAL");
         //Globals.rocketStatus = "toLaunch";
         launchDemo();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         rocketRB.velocity += Globals.GravityForce(earth, rocket, 0.5f * forceMultiplier);
 
@@ -191,7 +191,7 @@ public class RocketForFinal : MonoBehaviour
         //pushTime = 0.0f;
 
         Globals.rocketStatus = "launching";
-        Debug.Log(Globals.rocketStatus);
+        //Debug.Log(Globals.rocketStatus);
 
         Globals.Gravity = true;
         Xforce = -92;

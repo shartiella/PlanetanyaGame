@@ -31,7 +31,7 @@ public class EarthHitTrigger : MonoBehaviour
             {
                 Globals.rocketStatus = "crashed";
                 OrbitManager.crashFromEarthCollision = true;
-                Debug.Log(Globals.rocketStatus + " because of collision");
+                //Debug.Log(Globals.rocketStatus + " because of collision");
 
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }

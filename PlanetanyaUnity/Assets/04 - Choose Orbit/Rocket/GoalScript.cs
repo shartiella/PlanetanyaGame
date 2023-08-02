@@ -43,7 +43,7 @@ public class GoalScript : MonoBehaviour
         transform.LeanScale(Vector3.zero, 0.5f).setEaseInOutBack().setOnComplete(disableSelf);
 
         GoalsAccomplished = positionCounter;
-        Debug.Log("Goal " + GoalsAccomplished + " accomplished");
+        //Debug.Log("Goal " + GoalsAccomplished + " accomplished");
     }
 
     private void OnTriggerExit(Collider other)

@@ -28,7 +28,7 @@ public class antiLauncher : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //GetComponent<LineRenderer>().SetPosition(0, initialPosition);
         //GetComponent<LineRenderer>().SetPosition(1, transform.position);

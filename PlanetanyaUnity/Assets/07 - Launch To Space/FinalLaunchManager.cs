@@ -1,12 +1,16 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
 public class FinalLaunchManager : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern void doFullScreen();
+
     public static int counter = 0;
 
     [SerializeField] private GameObject InstructionWindow;
@@ -108,13 +112,15 @@ public class FinalLaunchManager : MonoBehaviour
             Cam.LookAt = GEOTarget.transform;
             Sat = GEOSat;
         }
+
+        doFullScreen();
     }
 
     // Update is called once per frame
     void Update()
     {
         totalTime += Time.deltaTime;
-        Debug.Log(counter);
+        //Debug.Log(counter);
 
 
         switch (counter)
@@ -251,7 +257,7 @@ public class FinalLaunchManager : MonoBehaviour
     public void advanceCounter()
     {
         counter++;
-        Debug.Log("COUNTER: " + counter);
+        //Debug.Log("COUNTER: " + counter);
     }
 
     void showStoryWindow(string textContent, bool showBtn)

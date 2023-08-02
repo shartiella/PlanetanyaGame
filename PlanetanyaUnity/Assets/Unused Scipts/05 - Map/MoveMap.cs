@@ -45,7 +45,7 @@ public class MoveMap : MonoBehaviour
             Y = transform.position.y;
             Z = transform.position.z;
             transform.transform.position = new Vector3(X + moveby.x, Y, Z + moveby.y);
-            Debug.Log(transform.position);
+            //Debug.Log(transform.position);
         }
 
         if ((transform.position.x > -1.7 && transform.position.x < -0.5) && (transform.position.z > -3.6 && transform.position.z < -2.1))
@@ -60,7 +60,7 @@ public class MoveMap : MonoBehaviour
     public void arrival()
     {
         arrivalBTN.SetActive(false);
-        Debug.Log("asdasd");
+        //Debug.Log("asdasd");
         if ((transform.position.x > -1.7 && transform.position.x < -0.5) && (transform.position.z > -3.6 && transform.position.z < -2.1))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

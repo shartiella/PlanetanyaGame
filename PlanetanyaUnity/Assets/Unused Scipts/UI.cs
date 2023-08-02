@@ -36,7 +36,8 @@ public class UI : MonoBehaviour
     void Start()
     {
         //Globals.correctOrbit = "MEO";
-        //Debug.Log("correct Orbit " + Globals.ChosenSatellite.Orbit);
+        //
+        //("correct Orbit " + Globals.ChosenSatellite.Orbit);
 
     }
 
@@ -162,10 +163,10 @@ public class UI : MonoBehaviour
             Globals.demo = true;
             demoTimer = 0.0f;
             //pushTime = 0.0f;
-            Debug.Log(Globals.demo);
+            //Debug.Log(Globals.demo);
 
             Globals.rocketStatus = "launching";
-            Debug.Log(Globals.rocketStatus);
+            //Debug.Log(Globals.rocketStatus);
 
             if (Globals.ChosenSatellite.Orbit == "LEO")
             {
