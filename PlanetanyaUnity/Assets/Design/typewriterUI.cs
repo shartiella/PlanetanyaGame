@@ -10,12 +10,13 @@ using TMPro;
 
 public class typewriterUI : MonoBehaviour
 {
-	Text _text;
-	TMP_Text _tmpProText;
+	//Text _text;
+	public static TMP_Text _tmpProText;
 	string writer;
 
 	public static bool TypeWriterIsFinished;
 	public static string TextToType;
+	public static bool skipTyping = false;
 
 	[SerializeField] float delayBeforeStart = 0.5f;
 	float timeBtwChars = 0.05f;
@@ -26,19 +27,20 @@ public class typewriterUI : MonoBehaviour
 	void OnEnable()
 	{
         TypeWriterIsFinished = false;
+		skipTyping = false;
 
-        _text = GetComponent<Text>()!;
-		_tmpProText = GetComponent<TMP_Text>()!;
+        //_text = GetComponent<Text>()!;
+        _tmpProText = GetComponent<TMP_Text>()!;
 
-		if(_text != null)
-        {
-			//writer = _text.text;
-            writer = TextToType;
+		//if(_text != null)
+  //      {
+		//	//writer = _text.text;
+  //          writer = TextToType;
 
-            _text.text = "";
+  //          _text.text = "";
 
-			StartCoroutine("TypeWriterText");
-		}
+		//	StartCoroutine("TypeWriterText");
+		//}
 
 		if (_tmpProText != null)
 		{
@@ -51,28 +53,28 @@ public class typewriterUI : MonoBehaviour
 		}
 	}
 
-	IEnumerator TypeWriterText()
-	{
-        _text.text = leadingCharBeforeDelay ? leadingChar : "";
+	//IEnumerator TypeWriterText()
+	//{
+ //       _text.text = leadingCharBeforeDelay ? leadingChar : "";
 
-		yield return new WaitForSeconds(delayBeforeStart);
+	//	yield return new WaitForSeconds(delayBeforeStart);
 
-		foreach (char c in writer)
-		{
-			if (_text.text.Length > 0)
-			{
-				_text.text = _text.text.Substring(0, _text.text.Length - leadingChar.Length);
-			}
-			_text.text += c;
-			_text.text += leadingChar;
-			yield return new WaitForSeconds(timeBtwChars);
-		}
+	//	foreach (char c in writer)
+	//	{
+	//		if (_text.text.Length > 0)
+	//		{
+	//			_text.text = _text.text.Substring(0, _text.text.Length - leadingChar.Length);
+	//		}
+	//		_text.text += c;
+	//		_text.text += leadingChar;
+	//		yield return new WaitForSeconds(timeBtwChars);
+	//	}
 
-		if(leadingChar != "")
-        {
-			_text.text = _text.text.Substring(0, _text.text.Length - leadingChar.Length);
-		}
-	}
+	//	if(leadingChar != "")
+ //       {
+	//		_text.text = _text.text.Substring(0, _text.text.Length - leadingChar.Length);
+	//	}
+	//}
 
 	IEnumerator TypeWriterTMP()
     {
@@ -82,13 +84,21 @@ public class typewriterUI : MonoBehaviour
 
 		foreach (char c in writer)
 		{
-			if (_tmpProText.text.Length > 0)
+			if (skipTyping)
 			{
-				_tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - leadingChar.Length);
+				_tmpProText.text = TextToType;
+				break;
 			}
-			_tmpProText.text += c;
-			_tmpProText.text += leadingChar;
-			yield return new WaitForSeconds(timeBtwChars);
+			else
+			{
+                if (_tmpProText.text.Length > 0)
+                {
+                    _tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - leadingChar.Length);
+                }
+                _tmpProText.text += c;
+                _tmpProText.text += leadingChar;
+                yield return new WaitForSeconds(timeBtwChars);
+            }
 		}
 
         if (leadingChar != "")

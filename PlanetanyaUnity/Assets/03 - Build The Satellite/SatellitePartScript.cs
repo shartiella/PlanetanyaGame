@@ -16,17 +16,58 @@ public class SatellitePartScript : MonoBehaviour
     private SatPart thisSatPart;
     [SerializeField] private GameObject StoryWindow;
     [SerializeField] private GameObject Storyicon;
+    float distance_to_screen;
+    [SerializeField] private float zAtDesk = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         initialobjectPosition = transform.position; //קביעת המיקום ההתחלתי של האובייקט
+    }
+
+    private void OnEnable()
+    {
+        if (thisSatPart != null)
+        {
+            thisSatPart.isConnected = false;
+        }
+        transform.position = initialobjectPosition;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
         IdentifySelf();
+        if (!thisSatPart.isDragged)
+        {
+            if (AllObjects.aPartIsBeingDragged)
+            {
+                GetComponent<Rigidbody>().useGravity = false;
+                GetComponent<Rigidbody>().detectCollisions = false;
+            }
+            else
+            {
+                //GetComponent<Rigidbody>().velocity = Vector3.zero;
+                GetComponent<Rigidbody>().detectCollisions = true;
+                GetComponent<Rigidbody>().useGravity = true;
+            }
+        }
+
+        if (BuildIU.overallNumberOfCorrectParts == BuildIU.numberOfCorrectObjectsConnected && BuildIU.numberOfWrongObjectsConnected > 0)
+        {
+            if (StoryWindow.activeSelf == false && !StoryWinAnim.activeAnimation && BuildIU.counter != 4)
+            {
+                if (BuildIU.numberOfWrongObjectsConnected <= 1)
+                {
+                    showStoryWindow("שימו לב - יכול להיות שיש לכם חלק מיותר...");
+                }
+                else
+                {
+                    showStoryWindow("שימו לב - יכול להיות שיש לכם חלקים מיותרים...");
+                }
+            }
+        }
     }
 
 
@@ -35,6 +76,11 @@ public class SatellitePartScript : MonoBehaviour
         if (AllObjects.BuildingState == "building")
         {
             thisSatPart.isDragged = true;
+            AllObjects.aPartIsBeingDragged = true;
+            //GetComponent<Rigidbody>().useGravity = false;
+
+            distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+
             if (!thisSatPart.isConnected && StoryWindow.activeSelf==false && BuildIU.counter!=4)
             {
                 showStoryWindow(thisSatPart.Description);
@@ -43,11 +89,6 @@ public class SatellitePartScript : MonoBehaviour
             {
                 //Debug.Log("thisSatPart.isConnected - "+ thisSatPart.isConnected+ " typewriterUI.TypeWriterIsFinished - "+ typewriterUI.TypeWriterIsFinished);
             }
-
-            //if (BuildIUCopy.counter== 3)
-            //{
-            //    BuildIUCopy.counter = 4;
-            //}
         }
     }
 
@@ -58,8 +99,11 @@ public class SatellitePartScript : MonoBehaviour
         {
             if (dragTimer >= 0.2f)//גרירה
             {
-                float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+                //float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+                //Globals.currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
+
                 Globals.currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
+
 
                 transform.position = Globals.currentMousePosition; //גרירה - האובייקט עוקב אחרי העכבר
             }
@@ -71,6 +115,10 @@ public class SatellitePartScript : MonoBehaviour
         if (AllObjects.BuildingState == "building")
         {
             thisSatPart.isDragged = false;
+            AllObjects.aPartIsBeingDragged = false;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().useGravity = true;
+
             if (StoryWindow.activeSelf && StoryWinAnim.activeAnimation== false && BuildIU.counter != 4)
             {
                 hideStoryWindow();
@@ -104,6 +152,10 @@ public class SatellitePartScript : MonoBehaviour
                     BuildIU.counter = 6;
                 }
 
+                Debug.Log("released inside");
+                transform.position = new Vector3(transform.position.x, 0.5f, zAtDesk);
+                GetComponent<Rigidbody>().useGravity= true;
+
                 if (thisSatPart.isCorrect)
                 {
                     //Debug.Log("I'm correct");
@@ -117,10 +169,10 @@ public class SatellitePartScript : MonoBehaviour
                     //Debug.Log("wrong " + BuildIU.numberOfWrongObjectsConnected);
 
                 }
+
             }
             else //אם משחררים אותו בחוץ
             {
-
                 if (thisSatPart.isCorrect)
                 {
                     //Debug.Log("I'm correct");
@@ -136,7 +188,10 @@ public class SatellitePartScript : MonoBehaviour
 
                 }
                 //Debug.Log("I'm out");
+                Debug.Log("released outside");
                 transform.position = initialobjectPosition;
+                //GetComponent<Rigidbody>().velocity = Vector3.zero;
+                //GetComponent<Rigidbody>().useGravity = true;
             }
         }
 
@@ -221,9 +276,7 @@ public class SatellitePartScript : MonoBehaviour
         {
             if (!StoryWinAnim.activeAnimation)
             {
-
                 StoryWinAnim.exitAnimationTrigger = true;
-
             }
         }
     }

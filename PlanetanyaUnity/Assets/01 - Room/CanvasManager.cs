@@ -72,7 +72,7 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 5:
-                showInstructionWindow("שוטטו בחדר ולחצו על אחד המכשירים המהבהבים");
+                showInstructionWindow("לחצו על אחד המכשירים המהבהבים");
                 //showBtnInstWin = false;
                 BlinkColor.glowOn= true;
                 break;
@@ -219,18 +219,19 @@ public class CanvasManager : MonoBehaviour
         CameraPositionCounter++;
         if (CameraPositionCounter == 1)
         {
-            Vector3 pos = new Vector3(1.544f, 1.866f, 2.175f);
-            Vector3 lookAt = new Vector3(1.87f, 1.26f, -7.81f);
+            //Vector3 pos = new Vector3(1.544f, 1.866f, 2.175f);
+            //Vector3 lookAt = new Vector3(1.87f, 1.26f, -7.81f);
+            Vector3 lookAt = new Vector3(-0.7f, 2, -18);
 
             Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
-            Cam.transform.LeanMove(pos, 6).setEaseInOutQuad();
+            //Cam.transform.LeanMove(pos, 6).setEaseInOutQuad();
             LookAtTarget.transform.LeanMove(lookAt, 3).setEaseInOutQuad().setOnComplete(stopLookingAt);
         }
     }
 
     void stopLookingAt()
     {
-        if (LookAtTarget.transform.position.x >= 1.8f)
+        if (LookAtTarget.transform.position.z <= 17)
         {
             Cam.GetComponent<CinemachineVirtualCamera>().enabled = false;
 

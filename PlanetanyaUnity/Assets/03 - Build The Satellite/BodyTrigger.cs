@@ -50,9 +50,12 @@ public class BodyTrigger : MonoBehaviour
     {
         identifyPart(other.gameObject.name);
         //infoPanel.SetActive(false);
-        currentPart.isConnected = false;
-        AllObjects.disConnectedPart(currentPart);
-        currentPart = null;
+        if (currentPart.isDragged)
+        {
+            currentPart.isConnected = false;
+            AllObjects.disConnectedPart(currentPart);
+            currentPart = null;
+        }
     }
 
     void identifyPart(string touchingPartName)

@@ -35,7 +35,7 @@ public class SatelliteToRocket : MonoBehaviour
                 X = transform.position.x;
                 Y = transform.position.y;
                 Z = transform.position.z;
-                transform.transform.position = new Vector3(X + moveby.x, Y + moveby.y * 1.3f, Z + moveby.y);
+                transform.transform.position = new Vector3(X + moveby.x, Y + moveby.y * 0.8f, Z + moveby.y);
             }
 
             if (transform.position.y > 9.6f & transform.position.x > -1 & transform.position.x < 1)
@@ -49,10 +49,10 @@ public class SatelliteToRocket : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!WebXRManager.Instance.isSupportedAR)
-        {
-            transform.localPosition = new Vector3(-1, 2.2f, 4.1f);
-        }
+        //if (!WebXRManager.Instance.isSupportedAR)
+        //{
+        //    transform.localPosition = new Vector3(-1, 2.2f, 4.1f);
+        //}
 
         if (Globals.ChosenSatellite.Name == "GPS")
         {

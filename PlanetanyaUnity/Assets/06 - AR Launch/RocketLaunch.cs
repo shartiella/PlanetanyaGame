@@ -99,7 +99,7 @@ public class RocketLaunch : MonoBehaviour
             //window3.SetActive(false);
             //window4.SetActive(true);
 
-
+            launchBTN.SetActive(true);
         }
 
 

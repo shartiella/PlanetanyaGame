@@ -45,7 +45,7 @@ public class BuildIU : MonoBehaviour
         {
             case 0:
                 BlinkColor.glowOn = false;
-                showStoryWindow("כדי להבין איך עובד לוויין, תצטרכו לבנות אחד!", true);
+                showStoryWindow("כדי להבין איך עובד לוויין "+Globals.ChosenSatellite.Kind+", תצטרכו להרכיב אחד!", true);
                 break;
 
             case 1:
@@ -54,7 +54,7 @@ public class BuildIU : MonoBehaviour
                 break;
 
             case 2:
-                showInstructionWindow("גררו את החלקים הנכונים לבסיס כדי להרכיב את הלוויין");
+                showInstructionWindow("גררו אל השולחן את הרכיבים הנכונים כדי להרכיב מהם את הלוויין");
                 if (typewriterUI.TypeWriterIsFinished)
                 {
                     AllObjects.BuildingState = "building";

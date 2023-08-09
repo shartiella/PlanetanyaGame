@@ -10,7 +10,7 @@ public class AllObjects : MonoBehaviour
 
     public List<SatPart> satParts; //התוכן מוגדר באינספקטור
     public static SatPart newestPartTouching = null;
-
+    public static bool aPartIsBeingDragged = false;
 
     // Start is called before the first frame update
     void Start()

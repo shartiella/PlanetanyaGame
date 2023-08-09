@@ -79,7 +79,7 @@ public class launcher : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GetComponent<Renderer>().material= holdingFeedback; //צביעת העיגול בצהוב
+        GetComponent<Renderer>().material= holdingFeedback; //פידבק משיכה ויזואלי
 
         //יצירת הנקודות תחת האובייקט
         for (int i = 1; i < dotNumber; i++)
@@ -115,9 +115,30 @@ public class launcher : MonoBehaviour
             currentPosition = initialrocketPosition;
             //currentPosition = new Vector3(0, 0, 0);
 
+            float maxdistance = 0;
+            int indexOfMaxDistance = 0;
             for (int i = 1; i < dotNumber; i++)
             {
                 TrajectoryDots[i].transform.position = currentPosition;
+                if (currentPosition.magnitude > maxdistance)
+                {
+                    maxdistance = currentPosition.magnitude;
+                    if (indexOfMaxDistance == (i - 1))
+                    {
+                        indexOfMaxDistance = i;
+                    }
+                }
+
+                if (maxdistance > currentPosition.magnitude || indexOfMaxDistance<i)
+                {
+                    TrajectoryDots[i].GetComponent<MeshRenderer>().enabled = false;
+                }
+                else
+                {
+                    TrajectoryDots[i].GetComponent<MeshRenderer>().enabled = true;
+                }
+                Debug.Log("maxdistance" + maxdistance + "indexOfMaxDistance" + indexOfMaxDistance);
+
                 calculateNextPosition(i* timeFactor, TrajectoryDots[i]);
                 currentPosition = nextPosition;
                 currentSpeed = nextSpeed;

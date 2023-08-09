@@ -45,7 +45,7 @@ public class IntroManager : MonoBehaviour
         {
             case 0:
                 moveCameraAtTheStart();
-                showStoryWindow("הנה כדור הארץ – כאן אנחנו נמצאים", true);
+                showStoryWindow("הנה כדור הארץ – כאן אנחנו נמצאים!", true);
                 break;
 
             case 1:
@@ -64,18 +64,18 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 4:
-                showInstructionWindow("געו במסך כדי לצפות מזוויות שונות");
-                showBtnInstWin = false;
+                //showInstructionWindow("געו במסך כדי לצפות מזוויות שונות");
+                //showBtnInstWin = false;
                 BlinkColor.glowOn = true;
-                if (typewriterUI.TypeWriterIsFinished)
-                {
-                    showStoryWindow("כל הגופים שמקיפים את כדור הארץ נקראים לוויינים. למה?", true);
+                //if (typewriterUI.TypeWriterIsFinished)
+                //{
+                    showStoryWindow("הירח בעצם ''מלווה'' את כדור הארץ - לכן מכנים אותו ''לוויין טבעי''", true);
                     Moon.SetActive(true);
-                }
+                //}
                 break;
 
             case 5:
-                hideInstructionWindow();
+                //hideInstructionWindow();
                 advanceCounter();
                 hideStoryWindow();
                 counter = 6;
@@ -83,7 +83,7 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 6:
-                showStoryWindow("כי הם מלווים את כדור הארץ, לכן הירח מכונה לוויין טבעי. למה ''טבעי''?", true);
+                showStoryWindow("למה ''טבעי''? כי יש גם לוויינים מלאכותיים!", true);
                 break;
 
             case 7:
@@ -92,7 +92,7 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 8:
-                showStoryWindow("כי יש גם לוויינים שהם מלאכותיים שבני אדם תיכננו, יצרו ושלחו למסלול סביב כדור הארץ", true);
+                showStoryWindow("את הלוויינים המלאכותיים בני אדם תיכננו, יצרו ושלחו למסלול סביב כדור הארץ", true);
                 Satellite.SetActive(true);
                 Moon.SetActive(false);
                 break;

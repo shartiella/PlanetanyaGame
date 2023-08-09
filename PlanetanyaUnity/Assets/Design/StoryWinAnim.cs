@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StoryWinAnim : MonoBehaviour
@@ -67,5 +68,14 @@ public class StoryWinAnim : MonoBehaviour
     {
         activeAnimation = false;
         gameObject.SetActive(false);
+    }
+
+    public void OnBackgroundClick()
+    {
+        Debug.Log("click");
+        //typewriterUI._tmpProText.text = "";
+        //GetComponentInChildren<TextMeshProUGUI>().text = typewriterUI.TextToType;
+        //typewriterUI.TypeWriterIsFinished = true;
+        typewriterUI.skipTyping = true;
     }
 }
