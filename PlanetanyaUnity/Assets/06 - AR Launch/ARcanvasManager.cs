@@ -74,7 +74,10 @@ public class ARcanvasManager : MonoBehaviour
                 break;
 
             case 3:
-                showStoryWindow("זה הטיל שלכם - והוא כמעט מוכן לשיגור!", true);
+                if (!StoryWindow.activeSelf || !StoryBTN.activeSelf)
+                {
+                    showStoryWindow("זה הטיל שלכם - והוא כמעט מוכן לשיגור!", true);
+                }
                 break;
 
             case 4:

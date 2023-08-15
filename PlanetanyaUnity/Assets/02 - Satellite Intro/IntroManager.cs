@@ -117,15 +117,15 @@ public class IntroManager : MonoBehaviour
             case 12:
                 if (Globals.ChosenSatellite.Name == "GPS")
                 {
-                    showStoryWindow("למשל, הטלפון שלנו יודע מה המיקום שלנו בזכות לווייני ניווט", true);
+                    showStoryWindow("למשל, הטלפון שלנו יודע מה המיקום שלנו בזכות לווייני ניווט ", true);
                 }
                 else if (Globals.ChosenSatellite.Name == "TV")
                 {
-                    showStoryWindow("למשל, הטלוויזיה שלנו מקבלת את השידור בזכות לווייני תקשורת", true);
+                    showStoryWindow("למשל, הטלוויזיה שלנו מקבלת את השידור בזכות לווייני תקשורת ", true);
                 }
                 else if (Globals.ChosenSatellite.Name == "MAP")
                 {
-                    showStoryWindow("למשל, המפות שאנחנו נעזרים בהן נוצרו בזכות לווייני מיפוי", true);
+                    showStoryWindow("למשל, המפות שאנחנו נעזרים בהן נוצרו בזכות לווייני מיפוי ", true);
                 }
                 break;
 

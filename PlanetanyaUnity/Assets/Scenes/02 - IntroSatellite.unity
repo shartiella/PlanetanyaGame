@@ -847,6 +847,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 1.8
   delay: 1.8
+--- !u!1 &816020184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4317713759200181489, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
+  m_PrefabInstance: {fileID: 1583794911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1097147111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1198,6 +1203,10 @@ PrefabInstance:
       value: IntroManager, Globals
       objectReference: {fileID: 0}
     - target: {fileID: 4317713759738579752, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 816020184}
+    - target: {fileID: 4317713759738579752, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
       propertyPath: otherPositionT
       value: 
       objectReference: {fileID: 2007565211}
@@ -1215,7 +1224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4317713759738579753, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4317713759738579753, guid: c55eeb9451fb92c4d98f3950910470dd, type: 3}
       propertyPath: m_AnchorMax.x

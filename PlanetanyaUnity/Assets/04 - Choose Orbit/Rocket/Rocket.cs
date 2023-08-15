@@ -318,8 +318,8 @@ public class Rocket : MonoBehaviour
 
     public void push()
     {
-        if (Globals.rocketStatus == "launched")
-        {
+        //if (Globals.rocketStatus == "launched")
+        //{
             OrbitManager.RocketHasBeenPushed = true;
 
             if (Globals.ChosenSatellite.Orbit == "LEO")
@@ -355,7 +355,7 @@ public class Rocket : MonoBehaviour
             }
             rocketRB.velocity += transform.up * pushForce;
             Globals.rocketStatus = "pushed";
-        }
+        //}
     }
 
 

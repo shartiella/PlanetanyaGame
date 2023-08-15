@@ -21,7 +21,12 @@ public class launcher : MonoBehaviour
 
     [SerializeField] private GameObject dotPrefab;
     [SerializeField] private GameObject[] TrajectoryDots;
-    [SerializeField] private int dotNumber;
+    [SerializeField] private Vector3[] TrajectoryPositions;
+    [SerializeField] private Vector3[] TrajectorySpeeds;
+    [SerializeField] private int dotNumberToCalculate;
+    [SerializeField] private int dotsToShow;
+    private int dotsToSkip;
+    [SerializeField] private GameObject dotForCalculations;
     [SerializeField] private GameObject Earth;
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject trajectoryDotsParent;
@@ -32,6 +37,8 @@ public class launcher : MonoBehaviour
     [SerializeField] private Vector3 nextSpeed;
 
     [SerializeField] private float timeFactor;
+
+    [SerializeField] private float trajectoryFix = 1;
 
     private Vector3 fullScale;
 
@@ -74,20 +81,23 @@ public class launcher : MonoBehaviour
         fullScale = transform.localScale;
         initialrocketPosition = new Vector3(0, 1.7f, 0); //קביעת המיקום ההתחלתי של הטיל
 
-        TrajectoryDots = new GameObject[dotNumber]; //יצירת מערך נקודות הסימון
+        TrajectoryDots = new GameObject[dotsToShow]; //יצירת מערך נקודות הסימון
+        dotsToSkip = Mathf.RoundToInt(dotNumberToCalculate / dotsToShow);
+        TrajectoryPositions = new Vector3[dotNumberToCalculate];
+        TrajectorySpeeds = new Vector3[dotNumberToCalculate];
     }
 
     private void OnMouseDown()
     {
         GetComponent<Renderer>().material= holdingFeedback; //פידבק משיכה ויזואלי
+        dotForCalculations = Instantiate(dotPrefab, trajectoryDotsParent.transform);
 
         //יצירת הנקודות תחת האובייקט
-        for (int i = 1; i < dotNumber; i++)
+        for (int i = 1; i < dotsToShow; i++)
         {
             TrajectoryDots[i] = Instantiate(dotPrefab, trajectoryDotsParent.transform);
-            float relativeScale = (float)(dotNumber - i) / (float)dotNumber;
-            TrajectoryDots[i].transform.localScale = new Vector3(relativeScale, 0.01f, relativeScale);
-            //Debug.Log(TrajectoryDots[i].transform.localScale);
+            //float relativeScale = (float)(dotsToShow - i) / (float)dotsToShow;
+            //TrajectoryDots[i].transform.localScale = new Vector3(relativeScale, 0.01f, relativeScale);
         }
 
     }
@@ -117,33 +127,63 @@ public class launcher : MonoBehaviour
 
             float maxdistance = 0;
             int indexOfMaxDistance = 0;
-            for (int i = 1; i < dotNumber; i++)
+            float currentdistance = 0;
+            for (int i = 1; i < dotNumberToCalculate; i++)
             {
-                TrajectoryDots[i].transform.position = currentPosition;
-                if (currentPosition.magnitude > maxdistance)
+                dotForCalculations.transform.position = currentPosition;
+                dotForCalculations.GetComponent<MeshRenderer>().enabled = false;
+
+                TrajectoryPositions[i] = currentPosition;
+                TrajectorySpeeds[i] = currentSpeed;
+
+                //TrajectoryDots[i / dotsToSkip].transform.position = currentPosition;
+
+                if (i%dotsToSkip== 0)
                 {
-                    maxdistance = currentPosition.magnitude;
-                    if (indexOfMaxDistance == (i - 1))
+                    TrajectoryDots[i/dotsToSkip].transform.position = TrajectoryPositions[i];
+                }
+
+                currentdistance = (currentPosition - Earth.transform.position).magnitude;
+                if (currentdistance > maxdistance)
+                {
+                    maxdistance = currentdistance;
+                    if (indexOfMaxDistance == (i/dotsToSkip - 1))
                     {
-                        indexOfMaxDistance = i;
+                        indexOfMaxDistance = i/dotsToSkip;
                     }
                 }
 
-                if (maxdistance > currentPosition.magnitude || indexOfMaxDistance<i)
-                {
-                    TrajectoryDots[i].GetComponent<MeshRenderer>().enabled = false;
-                }
-                else
-                {
-                    TrajectoryDots[i].GetComponent<MeshRenderer>().enabled = true;
-                }
-                Debug.Log("maxdistance" + maxdistance + "indexOfMaxDistance" + indexOfMaxDistance);
+                //if (i % 2 == 0)
+                //{
+                //    TrajectoryDots[i].GetComponent<MeshRenderer>().enabled = true;
+                //}
+                //else
+                //{
+                //    TrajectoryDots[i].GetComponent<MeshRenderer>().enabled = false;
+                //}
 
-                calculateNextPosition(i* timeFactor, TrajectoryDots[i]);
+                calculateNextPosition(i, dotForCalculations, TrajectoryPositions[i], TrajectorySpeeds[i]);
                 currentPosition = nextPosition;
                 currentSpeed = nextSpeed;
             }
-            rocket.transform.LookAt(TrajectoryDots[3].transform);
+            Debug.Log(indexOfMaxDistance + " = indexOfMaxDistance");
+
+            int dotsToShowAndShrink = indexOfMaxDistance + 3;
+            for (int x = 1; x < dotsToShow; x++)
+            {
+                if (x <= dotsToShowAndShrink && indexOfMaxDistance > 0)
+                {
+                    TrajectoryDots[x].GetComponent<MeshRenderer>().enabled = true;
+                    float relativeScale = (float)(dotsToShowAndShrink - x) / (float)dotsToShowAndShrink;
+                    TrajectoryDots[x].transform.localScale = new Vector3(relativeScale, 0.01f, relativeScale);
+                }
+                else
+                {
+                    TrajectoryDots[x].GetComponent<MeshRenderer>().enabled = false;
+                }
+            }
+
+            rocket.transform.LookAt(TrajectoryDots[2].transform);
             rocket.transform.Rotate(-90, 180, 0);
 
             //Debug.Log(rocket.transform.rotation.eulerAngles);
@@ -198,7 +238,7 @@ public class launcher : MonoBehaviour
 
 
             //מחיקת הנקודות
-            for (int i = 1; i < dotNumber; i++)
+            for (int i = 1; i < dotsToShow; i++)
             {
                 Destroy(TrajectoryDots[i]);
             }
@@ -209,7 +249,7 @@ public class launcher : MonoBehaviour
     }
 
 
-    public void calculateNextPosition(float timeInterval, GameObject dot)
+    public void calculateNextPosition(int i, GameObject dot, Vector3 curPos, Vector3 curSpee)
     {
         //return new Vector3(initialPosition.x, initialPosition.y + 0.1f, 0) +
         //    new Vector3(direction.x * forceFactor, direction.y * forceFactor, 0) * elapsedTime +
@@ -224,9 +264,16 @@ public class launcher : MonoBehaviour
         //forceAtPlayer * forceFactor * elapsedTime +
         //0.5f * Globals.GravityForce(Earth, dot, 0.5f) * elapsedTime * elapsedTime;
 
-        nextPosition = currentPosition + currentSpeed * timeInterval + 0.5f * Globals.GravityForce(Earth, dot, 0.5f) / Time.fixedDeltaTime * timeInterval * timeInterval ;
-        nextSpeed = currentSpeed + Globals.GravityForce(Earth, dot, 0.5f) / Time.fixedDeltaTime * timeInterval;
-        
+
+
+
+
+        //nextPosition = currentPosition + currentSpeed * timeInterval + 0.5f * Globals.GravityForce(Earth, dot, 0.5f) / Time.fixedDeltaTime * timeInterval * timeInterval ;
+        //nextSpeed = currentSpeed + Globals.GravityForce(Earth, dot, 0.5f) / Time.fixedDeltaTime * timeInterval;
+
+
+        nextPosition = curPos + curSpee * timeFactor + 0.5f * Globals.GravityForce(Earth, dot, 0.5f) / Time.fixedDeltaTime * timeFactor * timeFactor;
+        nextSpeed = curSpee + Globals.GravityForce(Earth, dot, 0.5f) / Time.fixedDeltaTime * timeFactor;
     }
 
 }

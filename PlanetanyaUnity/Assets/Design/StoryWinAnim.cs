@@ -13,6 +13,8 @@ public class StoryWinAnim : MonoBehaviour
 
     [SerializeField] private float animationTime = 0.5f;
     [SerializeField] private GameObject textGameObject;
+    [SerializeField] private GameObject icon;
+
     public float delay = 0;
 
     public static bool exitAnimationTrigger = false;
@@ -77,5 +79,8 @@ public class StoryWinAnim : MonoBehaviour
         //GetComponentInChildren<TextMeshProUGUI>().text = typewriterUI.TextToType;
         //typewriterUI.TypeWriterIsFinished = true;
         typewriterUI.skipTyping = true;
+        icon.gameObject.SetActive(false);
+        icon.gameObject.SetActive(true);
+
     }
 }

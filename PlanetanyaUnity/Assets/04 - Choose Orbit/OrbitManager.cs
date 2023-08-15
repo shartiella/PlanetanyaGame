@@ -34,6 +34,10 @@ public class OrbitManager : MonoBehaviour
 
     [SerializeField] private GameObject demoBTN;
 
+    [SerializeField] private GameObject GEOexample;
+    [SerializeField] private GameObject MEOexample;
+    [SerializeField] private GameObject LEOexample;
+
     public static bool crashFromEarthCollision=false;
     public static bool LaunchTowardsEarth = false;
     public static bool lastLaunchWasTowardsEarth = false;
@@ -70,26 +74,32 @@ public class OrbitManager : MonoBehaviour
 
             case 1:
                 hideStoryWindow();
+                launcher.SetActive(true);
+                showLauncherAfterCrash = true;
                 counter = 2;
                 break;
 
             case 2:
-                showStoryWindow("את השיגור תעשו באמצעות משיכה ושחרור של העיגול הסגול", true);
+                showStoryWindow("רואים את העיגול הסגול? נסו למשוך אותו ולשחרר כדי לשגר את הטיל. הנקודות הסגולות יסמנו את המסלול החזוי.", false);
                 if (typewriterUI.TypeWriterIsFinished && !StoryWinAnim.activeAnimation)
                 {
-                    launcher.SetActive(true);
-                    showLauncherAfterCrash = true;
+
                     counter = 3;
                 }
                 break;
 
             case 3:
                 //קייס ריק כדי שהמשגר לא יופיע כל הזמן
+                if (Globals.rocketStatus == "crashed")
+                {
+                    StoryWinAnim.exitAnimationTrigger = false;
+                    counter = 4;
+                }
                 break;
 
             case 4:
                 hideStoryWindow();
-                showInstructionWindow("שגרו את הטיל לכיוון הנקודה הירוקה");
+                showInstructionWindow("שגרו את הטיל אל הנקודה הירוקה");
                 if (typewriterUI.TypeWriterIsFinished && !SlideFromTop.activeAnimation)
                 {
                     Goal.SetActive(true);
@@ -180,6 +190,10 @@ public class OrbitManager : MonoBehaviour
                             showStoryWindow("לא כזה פשוט, נכון? נסו שוב...", false);
                             break;
 
+                        case 2:
+                            showStoryWindow("נסו להבין למה המסלול בפועל שונה מהמסלול החזוי, ובאיזה אופן?", false);
+                            break;
+
                         default:
                             showStoryWindow("נסו שוב, אנחנו מאמינים בכם!", false);
                             break;
@@ -252,11 +266,19 @@ public class OrbitManager : MonoBehaviour
                             break;
 
                         case 2:
-                            showStoryWindow("שמתם לב שהטיל סוטה מהמסלול המתוכנן? מעניין למה...", false);
+                            showStoryWindow("שמתם לב שהטיל סוטה מהמסלול החזוי? מעניין למה...", false);
                             break;
 
                         case 3:
                             showStoryWindow("כדאי להיעזר במיקום השיגור האחרון כדי להבין איך לשפר את השיגור", false);
+                            break;
+
+                        case 4:
+                            showStoryWindow("אם הטיל לא מצליח להגיע למסלול החזוי, אולי כדאי לתת לו קצת יותר כוח", false);
+                            break;
+
+                        case 5:
+                            showStoryWindow("נסו לשגר את הטיל כך שיפגע בדיוק משמאל לנקודה הירוקה", false);
                             break;
 
                         default:
@@ -400,7 +422,7 @@ public class OrbitManager : MonoBehaviour
 
 
             case 27:
-                showStoryWindow("כדי לייצב את המסלול, צריך לתת לטיל דחיפה קלה אחרי השיגור", false);
+                showStoryWindow("כדי לייצב את המסלול, צריך לתת לטיל דחיפה קלה אחרי השיגור", true);
                 showPushAfterLaunch = true;
                 crashesCounter = 0;
                 if (typewriterUI.TypeWriterIsFinished)
@@ -510,7 +532,19 @@ public class OrbitManager : MonoBehaviour
                 break;
 
             case 37:
-                showInstructionWindow("שגרו את הטיל למסלול יציב ומעגלי סביב כדור הארץ");
+                showInstructionWindow("שגרו את הטיל למסלול יציב ומעגלי סביב כדור הארץ (היעזרו בסימון)");
+                if (Globals.ChosenSatellite.Orbit == "LEO")
+                {
+                    LEOexample.SetActive(true);
+                }
+                else if (Globals.ChosenSatellite.Orbit == "MEO")
+                {
+                    MEOexample.SetActive(true);
+                }
+                else if (Globals.ChosenSatellite.Orbit == "GEO")
+                {
+                    GEOexample.SetActive(true);
+                }
                 if (typewriterUI.TypeWriterIsFinished && Globals.rocketStatus == "pushed")
                 {
                     counter = 38;
@@ -529,6 +563,9 @@ public class OrbitManager : MonoBehaviour
                 else
                 {
                     eccentricityFeedback = "כל הכבוד - אתם יודעים עכשיו לשגר טיל למסלול גם יציב וגם מעגלי!";
+                    LEOexample.SetActive(false);
+                    MEOexample.SetActive(false);
+                    GEOexample.SetActive(false);
                     pushBTN.SetActive(false);
                     resetBTN.SetActive(false);
                     hideInstructionWindow();
@@ -554,6 +591,9 @@ public class OrbitManager : MonoBehaviour
                 else
                 {
                     eccentricityFeedback = "כל הכבוד - אתם יודעים עכשיו לשגר טיל למסלול גם יציב וגם מעגלי!";
+                    LEOexample.SetActive(false);
+                    MEOexample.SetActive(false);
+                    GEOexample.SetActive(false);
                     pushBTN.SetActive(false);
                     resetBTN.SetActive(false);
                     showResetAfterLaunch = false;
