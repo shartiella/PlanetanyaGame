@@ -17,7 +17,6 @@ public class launcher : MonoBehaviour
     private Vector3 initialrocketPosition; //המיקום ההתחלתי של הטיל
 
     private Vector3 forceAtPlayer; //כוח השיגור
-    [SerializeField] private float forceFactor;
 
     [SerializeField] private GameObject dotPrefab;
     [SerializeField] private GameObject[] TrajectoryDots;
@@ -119,7 +118,7 @@ public class launcher : MonoBehaviour
             //לצורך הנקודות
             forceAtPlayer = initialLauncherPosition - Globals.currentMousePosition;
 
-            Globals.launchForce = forceAtPlayer * forceFactor;
+            Globals.launchForce = forceAtPlayer * OrbitManager.forceFactor;
 
             currentSpeed = Globals.launchForce;
             currentPosition = initialrocketPosition;
@@ -166,7 +165,7 @@ public class launcher : MonoBehaviour
                 currentPosition = nextPosition;
                 currentSpeed = nextSpeed;
             }
-            Debug.Log(indexOfMaxDistance + " = indexOfMaxDistance");
+            //Debug.Log(indexOfMaxDistance + " = indexOfMaxDistance");
 
             int dotsToShowAndShrink = indexOfMaxDistance + 3;
             for (int x = 1; x < dotsToShow; x++)

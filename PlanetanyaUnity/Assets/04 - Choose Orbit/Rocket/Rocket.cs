@@ -24,7 +24,7 @@ public class Rocket : MonoBehaviour
     private float pushTimer = 0.0f;
     [SerializeField] private GameObject launcher;
     private float crashTimer = 0.0f;
-    public float pushForce;
+    public static float pushForce;
     public static float EarthRocketDistance;
     //private float MINearthRocketDistance=0;
     //private float MAXearthRocketDistance=0;
@@ -39,6 +39,9 @@ public class Rocket : MonoBehaviour
     [SerializeField] private GameObject demoBTN;
     [SerializeField] private GameObject resetBTN;
     [SerializeField] private GameObject Goal;
+
+    public static bool rocketIsGoingToCrash = false;
+    public GameObject distancetocrash;
 
     //לבטל כשנדע מה טוב
     [SerializeField] private float Xforce;
@@ -72,6 +75,7 @@ public class Rocket : MonoBehaviour
         if (Globals.rocketStatus == "launched")
         {
             CalculateEccentricity();
+            //isRocketGoingToCrash();
         }
 
         //דמו
@@ -322,37 +326,18 @@ public class Rocket : MonoBehaviour
         //{
             OrbitManager.RocketHasBeenPushed = true;
 
-            if (Globals.ChosenSatellite.Orbit == "LEO")
-            {
-                pushForce = 0.6f;
-                //3.72  0.12
-                //3.69  0.38
-                //3.63  0.18
-                //3.66  0.41
-                //3.66  0.25
-                //3.69  0.38
-                //3.76  0.54
-                //3.53  0.05
-            }
-            else if (Globals.ChosenSatellite.Orbit == "MEO")
-            {
-                pushForce = 0.8f;
-                //3.85  -0.50
-                //3.85  -0.44
-                //3.85  -0.53
-                //3.89  -0.47
-                //3.82  -0.63
-                //4.02  -0.18
-            }
-            else if (Globals.ChosenSatellite.Orbit == "GEO")
-            {
-                pushForce = 0.9f;
-                //3.98  -0.82
-                //3.85  -1.08
-                //4.02  -0.79
-                //3.82  -1.15
-                //3.98  -0.86
-            }
+            //if (Globals.ChosenSatellite.Orbit == "LEO")
+            //{
+            //    pushForce = 0.6f;
+            //}
+            //else if (Globals.ChosenSatellite.Orbit == "MEO")
+            //{
+            //    pushForce = 0.8f;
+            //}
+            //else if (Globals.ChosenSatellite.Orbit == "GEO")
+            //{
+            //    pushForce = 0.9f;
+            //}
             rocketRB.velocity += transform.up * pushForce;
             Globals.rocketStatus = "pushed";
         //}
@@ -371,6 +356,10 @@ public class Rocket : MonoBehaviour
             //MAXearthRocketDistance = 0;
             //combinedDistancesFromEarth = 0;
 
+            if (Globals.rocketStatus != "crashed")
+            {
+                OrbitManager.resetCounter++;
+            }
 
             rocketRB.velocity = Vector3.zero;
             rocketRB.angularVelocity = Vector3.zero;
@@ -491,4 +480,46 @@ public class Rocket : MonoBehaviour
             demoTimer = 0.0f;
         }
     }
+
+    //public void isRocketGoingToCrash()
+    //{
+    //    Vector3 curPos = rocket.transform.position;
+    //    Vector3 curSpee = rocketRB.velocity;
+    //    float timeFactor = 0.5f;
+    //    float currentEarthToRocketDistance;
+    //    float minimumEarthToRocketDistance = 0;
+    //    Vector3 positionOfMinDistance = Vector3.zero;
+
+    //    for (int i = 0; i < 10; i++)
+    //    {
+    //        Vector3 nextPosition = curPos + curSpee * timeFactor + 0.5f * Globals.GravityForce(earth, rocket, 0.5f) / Time.fixedDeltaTime * timeFactor * timeFactor;
+    //        Vector3 nextSpeed = curSpee + Globals.GravityForce(earth, rocket, 0.5f) / Time.fixedDeltaTime * timeFactor;
+
+    //        curPos= nextPosition;
+    //        curSpee= nextSpeed;
+
+    //        currentEarthToRocketDistance = (curPos-earth.transform.position).magnitude;
+
+    //        if (currentEarthToRocketDistance <= minimumEarthToRocketDistance || i == 0)
+    //        {
+    //            minimumEarthToRocketDistance = currentEarthToRocketDistance;
+    //            positionOfMinDistance = curPos;
+    //            Debug.Log("i: " + i + " dis " + currentEarthToRocketDistance);
+    //        }
+    //    }
+
+    //    distancetocrash.transform.position = positionOfMinDistance;
+
+    //    if (minimumEarthToRocketDistance < 1.5f)
+    //    {
+    //        rocketIsGoingToCrash= true;
+    //        Debug.Log("rocket is about to crash at "+ minimumEarthToRocketDistance);
+    //    }
+    //    else
+    //    {
+    //        rocketIsGoingToCrash= false;
+    //        Debug.Log("rocket is NOT about to crash at " + minimumEarthToRocketDistance);
+
+    //    }
+    //}
 }
