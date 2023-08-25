@@ -11,6 +11,12 @@ public class GoalScript : MonoBehaviour
     public static int GoalsAccomplished = 0;
     Vector3 initialSize;
 
+    private void Start()
+    {
+        GoalsAccomplished = 0;
+        positionCounter = 1;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {

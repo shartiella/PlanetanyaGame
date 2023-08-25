@@ -28,6 +28,9 @@ public class IntroManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        counter = 0;
+        cameraMoveCounter = 0;
+
         InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
         //InstructionBTN= InstructionWindow.GetComponentInChildren<GameObject>();
         StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
@@ -141,7 +144,8 @@ public class IntroManager : MonoBehaviour
                 break;
 
             case 14:
-                Globals.LevelStats2 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                //Globals.LevelStats2 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                Globals.totalGameTime += totalTime;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }

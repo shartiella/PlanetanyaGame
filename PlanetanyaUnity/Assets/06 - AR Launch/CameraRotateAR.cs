@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WebXR;
 
 public class CameraRotateAR : MonoBehaviour
 {
@@ -56,23 +57,26 @@ public class CameraRotateAR : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(moveCamByDeviceRotation)
+        if (!ARcanvasManager.ARisON)
         {
-            if (Input.gyro.attitude.x != 0 && Input.gyro.attitude.y != 0 && Input.gyro.attitude.z != 0 && Input.gyro.attitude.w != 1)
+            if (moveCamByDeviceRotation)
             {
-                if (rotateAroundTheTarget)
+                if (Input.gyro.attitude.x != 0 && Input.gyro.attitude.y != 0 && Input.gyro.attitude.z != 0 && Input.gyro.attitude.w != 1)
                 {
-                    transform.position = TargetForCam.position; //new Vector3();
+                    if (rotateAroundTheTarget)
+                    {
+                        transform.position = TargetForCam.position; //new Vector3();
 
-                    cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x);
-                    cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World);
+                        cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x);
+                        cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World);
 
-                    cam.transform.Translate(initialPosition);
-                }
-                else
-                {
-                    cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x);
-                    cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World);
+                        cam.transform.Translate(initialPosition);
+                    }
+                    else
+                    {
+                        cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x);
+                        cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World);
+                    }
                 }
             }
         }

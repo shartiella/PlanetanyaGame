@@ -13,7 +13,7 @@ public class RoomCamera : MonoBehaviour
     public float zoomOutMax;
     public float morescroll;
 
-    public static string deviceClicked = "";
+    //public static string deviceClicked = "";
     public static bool finalPart = false;
 
     //[SerializeField] private CinemachineVirtualCamera follower;
@@ -34,7 +34,7 @@ public class RoomCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (deviceClicked == "")
+        if (DeviceClick.dName == "")
         {
             if (Input.touchCount == 2)
             {

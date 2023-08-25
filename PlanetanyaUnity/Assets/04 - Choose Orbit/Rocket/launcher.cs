@@ -37,7 +37,7 @@ public class launcher : MonoBehaviour
 
     [SerializeField] private float timeFactor;
 
-    [SerializeField] private float trajectoryFix = 1;
+    //[SerializeField] private float trajectoryFix = 1;
 
     private Vector3 fullScale;
 
@@ -65,6 +65,12 @@ public class launcher : MonoBehaviour
         {
 
             GetComponent<MeshRenderer>().enabled = false;
+            Outline.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().enabled = true;
+            Outline.GetComponent<MeshRenderer>().enabled = true;
         }
 
         float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;

@@ -5,6 +5,7 @@ using WebXR;
 
 public class SatelliteToRocket : MonoBehaviour
 {
+    Vector3 initialPosition;
 
     public float speed;
     private float X;
@@ -19,8 +20,9 @@ public class SatelliteToRocket : MonoBehaviour
     [SerializeField] private GameObject MAP;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        initialPosition = transform.position;
         //פה תהיה הצגה של חלקי הלוויין שרלוונטיים ללוויין שנבחר
     }
 
@@ -43,6 +45,12 @@ public class SatelliteToRocket : MonoBehaviour
                 //Debug.Log(transform.position.y);
                 ARcanvasManager.counter = 6;
             }
+
+            if ((transform.position - new Vector3(0, 4, -1)).magnitude > 25)
+            {
+                transform.gameObject.SetActive(false);
+                transform.gameObject.SetActive(true);
+            }
         }
 
     }
@@ -53,6 +61,7 @@ public class SatelliteToRocket : MonoBehaviour
         //{
         //    transform.localPosition = new Vector3(-1, 2.2f, 4.1f);
         //}
+        transform.position = initialPosition;
 
         if (Globals.ChosenSatellite.Name == "GPS")
         {

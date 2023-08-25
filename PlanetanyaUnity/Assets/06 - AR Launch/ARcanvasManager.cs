@@ -17,19 +17,40 @@ public class ARcanvasManager : MonoBehaviour
     [SerializeField] private GameObject blackBG;
     [SerializeField] private GameObject arrivedBTN;
 
+    [SerializeField] private GameObject cam;
+    [SerializeField] private GameObject rocket;
+
+    [SerializeField] private TextMeshProUGUI txt;
+
     public static int counter = 0;
     public TextMeshProUGUI countext;
     public static bool ARisON = false;
 
     float totalTime = 0;
 
+    private void Start()
+    {
+        counter = 0;
+
+    }
+
     // Update is called once per frame
     void Update()
     {
         totalTime += Time.deltaTime;
         //countext.text=counter.ToString();
+        txt.text = "cam position: " + cam.transform.position + "\nlocal: " + cam.transform.localPosition + "\nrotation: " + cam.transform.rotation.eulerAngles+ "\nrocket position: " + rocket.transform.position + "\nlocal: " + rocket.transform.localPosition + "\nrotation: " + rocket.transform.rotation.eulerAngles+"\ngyro: "+ Input.gyro.rotationRate;
 
-        switch (counter)
+        if (WebXRManager.Instance.XRState == WebXRState.AR)
+        {
+            ARisON = true;
+        }
+        else
+        {
+            ARisON = false;
+        }
+
+            switch (counter)
         {
             case 0:
                 Globals.rocketStatus = "lookingAround";
@@ -76,7 +97,7 @@ public class ARcanvasManager : MonoBehaviour
             case 3:
                 if (!StoryWindow.activeSelf || !StoryBTN.activeSelf)
                 {
-                    showStoryWindow("זה הטיל שלכם - והוא כמעט מוכן לשיגור!", true);
+                    showStoryWindow("זה הטיל שלכם - והוא כמעט מוכן לשיגור! ", true);
                 }
                 break;
 
@@ -100,7 +121,7 @@ public class ARcanvasManager : MonoBehaviour
             case 6:
                 hideInstructionWindow();
                 hideStoryWindow();
-                Globals.LevelStats5 += " זמן עד מציאת הלוויין: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                //Globals.LevelStats5 += " זמן עד מציאת הלוויין: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
                 counter = 7;
                 break;
             
@@ -155,7 +176,8 @@ public class ARcanvasManager : MonoBehaviour
                 break;
 
                 case 12:
-                Globals.LevelStats5 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                //Globals.LevelStats5 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                Globals.totalGameTime += totalTime;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }
@@ -215,9 +237,13 @@ public class ARcanvasManager : MonoBehaviour
         {
             if (WebXRManager.Instance.XRState == WebXRState.NORMAL)
             {
-                WebXRManager.Instance.ToggleAR();
                 //Debug.Log("AR is ON");
+                //cam.transform.position = new Vector3(0,4,-1);
+                //cam.transform.LookAt(rocket.transform);
+                WebXRManager.Instance.ToggleAR();
                 ARisON = true;
+                //cam.transform.rotation = Quaternion.identity;
+
             }
             else
             {

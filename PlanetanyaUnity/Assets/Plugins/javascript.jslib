@@ -21,6 +21,7 @@ mergeInto(LibraryManager.library, {
   },
 
     doFullScreen: function () {
+        canvas.requestFullscreen();
         unityInstance.SetFullscreen(1);
   },
 });

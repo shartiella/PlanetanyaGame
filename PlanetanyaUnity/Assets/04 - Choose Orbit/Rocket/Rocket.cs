@@ -54,7 +54,17 @@ public class Rocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rocketRB=GetComponent<Rigidbody>();
+        launchTimer = 0.0f;
+        pushTimer = 0.0f;
+        crashTimer = 0.0f;
+        Eccentricity = 0;
+        inStableOrbit = false;
+        launchCounter = 0;
+        rocketIsGoingToCrash = false;
+        demoTimer = 0.0f;
+        pushTimes = 0;
+
+        rocketRB =GetComponent<Rigidbody>();
         earthRB= earth.GetComponent<Rigidbody>();
 
         Globals.rocketStatus = "toLaunch";
@@ -65,6 +75,8 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(Globals.rocketStatus);
+
         if (Globals.Gravity)
         {
             //AddGravityForce(EarthRigidbody, rocketRigidbody);
@@ -347,60 +359,53 @@ public class Rocket : MonoBehaviour
     //כפתור איפוס הטיל
     public void resetRocket()
     {
-        if (Globals.rocketStatus != "inOrbit")
+        rocketT.position = new Vector3(0, 1.7f, 0);
+        rocketT.rotation = Quaternion.identity;
+
+        if (Globals.rocketStatus != "crashed")
         {
-            rocketT.position = new Vector3(0, 1.7f, 0);
-            rocketT.rotation = Quaternion.identity;
-
-            //MINearthRocketDistance = 0;
-            //MAXearthRocketDistance = 0;
-            //combinedDistancesFromEarth = 0;
-
-            if (Globals.rocketStatus != "crashed")
-            {
-                OrbitManager.resetCounter++;
-            }
-
-            rocketRB.velocity = Vector3.zero;
-            rocketRB.angularVelocity = Vector3.zero;
-            Globals.Gravity = false;
-            Globals.orbitTime = 0;
-            Globals.orbit = "none";
-            Globals.rocketStatus = "toLaunch";
-            //Debug.Log(Globals.rocketStatus);
-            var fireEmission = fire.emission;
-            fireEmission.enabled = false;
-
-            var smokeEmission = smoke.emission;
-            smokeEmission.enabled = false;
-
-            var explosionEmission = explosion.emission;
-            explosionEmission.enabled = false;
-
-            Globals.demo = false;
-            if (OrbitManager.showLauncherAfterCrash)
-            {
-                launcher.SetActive(true);
-            }
-            else
-            {
-                launcher.SetActive(false);
-            }
-            OrbitManager.RocketHasBeenPushed = false;
-            //if (OrbitManager.showGoalAfterCrash)
-            //{
-            //    Goal.SetActive(true);
-            //}
-            //else
-            //{
-            //    Goal.SetActive(false);
-            //}
-
-            pushBTN.SetActive(false);
-            resetBTN.SetActive(false);
-            //launcher.GetComponent<MeshRenderer>().enabled = true;
-
+            OrbitManager.resetCounter++;
         }
+
+        rocketRB.velocity = Vector3.zero;
+        rocketRB.angularVelocity = Vector3.zero;
+        Globals.Gravity = false;
+        Globals.orbitTime = 0;
+        Globals.orbit = "none";
+        Globals.rocketStatus = "toLaunch";
+        //Debug.Log(Globals.rocketStatus);
+        var fireEmission = fire.emission;
+        fireEmission.enabled = false;
+
+        var smokeEmission = smoke.emission;
+        smokeEmission.enabled = false;
+
+        var explosionEmission = explosion.emission;
+        explosionEmission.enabled = false;
+
+        Globals.demo = false;
+        demoTimer = 0.0f;
+        launchTimer = 0;
+        pushTimer= 0;
+        //Xforce = 0;
+        //Yforce = 0;
+        //pushAfter = 0;
+        //forceAmountonY = 0;
+        //pushTimes = 0;
+        //crashTimer = 0;
+
+        if (OrbitManager.showLauncherAfterCrash)
+        {
+            launcher.SetActive(true);
+        }
+        else
+        {
+            launcher.SetActive(false);
+        }
+        OrbitManager.RocketHasBeenPushed = false;
+
+        pushBTN.SetActive(false);
+        resetBTN.SetActive(false);
     }
 
     public void CalculateEccentricity()

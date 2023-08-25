@@ -15,7 +15,9 @@ public class AllObjects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        BuildingState = "";
+        aPartIsBeingDragged = false;
+        newestPartTouching = null;
     }
 
     public static void connectedPart(SatPart newestPart)

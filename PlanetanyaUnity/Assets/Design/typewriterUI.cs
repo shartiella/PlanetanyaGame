@@ -26,6 +26,8 @@ public class typewriterUI : MonoBehaviour
 	// Use this for initialization
 	void OnEnable()
 	{
+		//Debug.Log(transform.gameObject.name);
+
         TypeWriterIsFinished = false;
 		skipTyping = false;
 

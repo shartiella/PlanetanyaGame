@@ -27,8 +27,11 @@ public class EarthHitTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            //Debug.Log(Globals.rocketStatus);
+
             if (Globals.rocketStatus == "launched")
             {
+                //Debug.Log("TOUCHING");
                 Globals.rocketStatus = "crashed";
                 OrbitManager.crashFromEarthCollision = true;
                 //Debug.Log(Globals.rocketStatus + " because of collision");

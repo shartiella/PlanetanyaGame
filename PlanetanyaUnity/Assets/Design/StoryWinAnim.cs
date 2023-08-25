@@ -74,7 +74,7 @@ public class StoryWinAnim : MonoBehaviour
 
     public void OnBackgroundClick()
     {
-        Debug.Log("click");
+        //Debug.Log("click");
         //typewriterUI._tmpProText.text = "";
         //GetComponentInChildren<TextMeshProUGUI>().text = typewriterUI.TextToType;
         //typewriterUI.TypeWriterIsFinished = true;

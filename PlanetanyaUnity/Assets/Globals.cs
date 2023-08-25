@@ -9,13 +9,17 @@ using UnityEngine.SceneManagement;
 public class Globals : MonoBehaviour
 {
     //public static int GuideCode;
-    public static string GroupName="שם הקבוצה";
-    public static string LevelStats1 = "";
-    public static string LevelStats2 = "";
-    public static string LevelStats3 = "";
-    public static string LevelStats4 = "";
-    public static string LevelStats5 = "";
-    public static string LevelStats6 = "";
+    public static string GroupName="שם השחקן";
+    //public static string LevelStats1 = "";
+    //public static string LevelStats2 = "";
+    //public static string LevelStats3 = "";
+    //public static string LevelStats4 = "";
+    //public static string LevelStats5 = "";
+    //public static string LevelStats6 = "";
+
+    public static int connectionNum = 0;
+    public static int launchesNum = 0;
+    public static float totalGameTime = 0;
 
     public static string orbit = "";
     public static float orbitTime = 0.0f;
@@ -124,6 +128,8 @@ public class Globals : MonoBehaviour
         GPS.Kind = "ניווט";
         GPS.Orbit = "MEO";
         GPS.Object = "Phone";
+        GPS.OrbitInHebrew = "בינוני";
+        GPS.ObjectInHebrew = "טלפון";
         SatellitesList.Add(GPS);
 
         Satellite TV = new Satellite();
@@ -131,6 +137,8 @@ public class Globals : MonoBehaviour
         TV.Kind = "תקשורת";
         TV.Orbit = "GEO";
         TV.Object = "TV";
+        TV.OrbitInHebrew = "גיאוסינכרוני";
+        TV.ObjectInHebrew = "טלוויזיה";
         SatellitesList.Add(TV);
 
         Satellite MAP = new Satellite();
@@ -138,6 +146,8 @@ public class Globals : MonoBehaviour
         MAP.Kind = "מיפוי";
         MAP.Orbit = "LEO";
         MAP.Object = "Computer";
+        MAP.OrbitInHebrew = "נמוך";
+        MAP.ObjectInHebrew = "מחשב";
         SatellitesList.Add(MAP);
     }
 
@@ -164,6 +174,9 @@ public class Satellite
     public string Name; //שם
     public string Kind; //סוג
     public string Orbit; //מסלול
+    public string OrbitInHebrew; //שם המסלול בעברית
     public string Object; //אובייקט יומיומי שמייצג אותו
+    public string ObjectInHebrew; //שם האובייקט בעברית
+
 }
 

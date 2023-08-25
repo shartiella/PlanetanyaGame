@@ -16,6 +16,7 @@ public class FinalLaunchManager : MonoBehaviour
     [SerializeField] private GameObject InstructionWindow;
     [SerializeField] private GameObject StoryWindow;
     [SerializeField] private GameObject StoryBTN;
+    [SerializeField] private GameObject endStats;
 
     [SerializeField] private CinemachineVirtualCamera Cam;
 
@@ -66,10 +67,15 @@ public class FinalLaunchManager : MonoBehaviour
     private float pushTimer = 0;
 
     float totalTime = 0;
+    bool updateTime = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        counter = 0;
+        camPos = 1;
+        pushTimer = 0;
+
         if (Globals.ChosenSatellite.Orbit == "LEO")
         {
             //target = LEOTarget;
@@ -119,7 +125,10 @@ public class FinalLaunchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        totalTime += Time.deltaTime;
+        if (updateTime)
+        {
+            totalTime += Time.deltaTime;
+        }
         //Debug.Log(counter);
 
 
@@ -216,6 +225,15 @@ public class FinalLaunchManager : MonoBehaviour
                 break;
 
             case 8:
+                showStoryWindow("לפעמים אפשר אפילו לראות אותם חולפים מעלינו בשמיים!", true);
+                break;
+
+            case 9:
+                hideStoryWindow();
+                counter = 10;
+                break;
+
+            case 10:
                 if (Globals.ChosenSatellite.Orbit == "LEO")
                 {
                     showStoryWindow("אבל מה שחשוב, הוא שעכשיו אתם יודעים איך מצלמים מפות מהחלל!", true);
@@ -230,27 +248,35 @@ public class FinalLaunchManager : MonoBehaviour
                 }
                 break;
 
-            case 9:
+            case 11:
                 hideStoryWindow();
                 hideInstructionWindow();
                 if (!StoryWindow.activeSelf && !InstructionWindow.activeSelf)
                 {
                     StoryWinAnim.exitAnimationTrigger = false;
                     SlideFromTop.exitAnimationTrigger = false;
-                    counter = 10;
+                    counter = 12;
                 }
                 break;
 
-            case 10:
-                if (!StoryWindow.activeSelf && camPos==4)
+            case 12:
+                if (!StoryWindow.activeSelf && camPos == 4)
                 {
-                    counter = 11;
+                    counter = 13;
                 }
                 break;
 
-            case 11:
-                Globals.LevelStats6 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            case 13:
+                //Globals.LevelStats6 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                updateTime = false;
+                showInstructionWindow("הגעתם לסוף המשחק!");
+                if (typewriterUI.TypeWriterIsFinished)
+                {
+                    endStats.SetActive(true);
+                    Globals.totalGameTime += totalTime;
+                    counter = 14;
+                }
                 break;
         }
     }
@@ -326,12 +352,17 @@ public class FinalLaunchManager : MonoBehaviour
             {
                 GEOlight.SetActive(true);
             }
-            camplace1.LeanMoveLocal(camplace3.localPosition, 20).setDelay(1).setEaseInOutQuad().setOnComplete(endLevel);
+            camplace1.LeanMoveLocal(camplace3.localPosition, 15).setDelay(1).setEaseInOutQuad().setOnComplete(endLevel);
         }
     }
 
     void endLevel()
     {
         camPos = 4;
+    }
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene(1);
     }
 }

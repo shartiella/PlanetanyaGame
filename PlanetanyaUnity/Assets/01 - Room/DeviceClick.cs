@@ -13,6 +13,7 @@ public class DeviceClick : MonoBehaviour
     [SerializeField] private GameObject LookAtTarget;
     [SerializeField] private Globals _globals;
 
+    public static string dName = "";
 
     [SerializeField] private GameObject Cam;
     [SerializeField] private Vector3 CamPositionAfterClick;
@@ -23,7 +24,7 @@ public class DeviceClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dName = "";
     }
 
     // Update is called once per frame
@@ -50,11 +51,11 @@ public class DeviceClick : MonoBehaviour
     }
     public void OnMouseUp()
     {
-        if (CanvasManager.counter == 5)
+        if (CanvasManager.counter == 5 && typewriterUI.TypeWriterIsFinished)
         {
             CanvasManager.counter++;
 
-            RoomCamera.deviceClicked = thisDevice; //הגדרת האובייקט המסומן
+            dName = thisDevice; //הגדרת האובייקט המסומן
             BlinkColor.glowOn = false;
             Cam.GetComponent<CinemachineVirtualCamera>().enabled = true;
             Cam.GetComponent<CameraRotate>().enabled = false;
@@ -94,7 +95,7 @@ public class DeviceClick : MonoBehaviour
 
             Vector3 myPos = transform.position;
 
-            if (RoomCamera.deviceClicked == thisDevice)
+            if (dName == thisDevice)
             {
                 //LookAtTarget.transform.position = transform.position; //הגדרת מיקום המעקב כמיקום האובייקט הלחוץ
                                                                       //LookAtTarget.transform.LeanMove(myPos, 1);

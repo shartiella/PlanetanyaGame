@@ -18,6 +18,8 @@ public class FinishedBuildManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        counter = 0;
+
         if (Globals.ChosenSatellite.Name == "GPS")
         {
             GPS.SetActive(true);

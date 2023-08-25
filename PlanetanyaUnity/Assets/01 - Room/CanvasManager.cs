@@ -16,6 +16,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject Cam;
     [SerializeField] private GameObject LookAtTarget;
 
+    [SerializeField] private TextMeshProUGUI txt;
+
+
     public static int counter = 0;
 
     float totalTime = 0;
@@ -23,7 +26,10 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        counter = 0;
+        CameraPositionCounter = 0;
+        totalTime = 0;
+        Globals.totalGameTime= 0;
     }
 
     private void FixedUpdate()
@@ -43,7 +49,9 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        totalTime+= Time.deltaTime;
+        txt.text = "deviceOrientation" + Input.deviceOrientation + "\nrotation: " + Cam.transform.rotation.eulerAngles+ "\ngyrorate: " + Input.gyro.rotationRate+"\ngyrorotation"+Input.gyro.attitude.eulerAngles+ "\nuserAcceleration" + Input.gyro.userAcceleration + "\nrotationRateUnbiased" + Input.gyro.rotationRateUnbiased;
+
+        totalTime += Time.deltaTime;
 
         switch (counter)
         {
@@ -83,15 +91,15 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 7:
-                if (RoomCamera.deviceClicked == "Phone")
+                if (DeviceClick.dName == "Phone")
                 {
                     showStoryWindow("החלטתם משום מה להזמין המבורגר לארוחת בוקר. אנחנו לא שופטים...");
                 }
-                else if (RoomCamera.deviceClicked == "Computer")
+                else if (DeviceClick.dName == "Computer")
                 {
                     showStoryWindow("החלטתם שבא לכם לבקר בפלנתניה - המקום הכי מושלם בעולם!!!");
                 }
-                else if (RoomCamera.deviceClicked == "TV")
+                else if (DeviceClick.dName == "TV")
                 {
                     showStoryWindow("החלטתם משום מה לפתוח את הבוקר בצפייה בטלוויזיה");
                 }
@@ -103,15 +111,15 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 9:
-                if (RoomCamera.deviceClicked == "Phone")
+                if (DeviceClick.dName == "Phone")
                 {
                     showStoryWindow("השליח בדרך אליכם, ואתם עוקבים אחריו במפה");
                 }
-                else if (RoomCamera.deviceClicked == "Computer")
+                else if (DeviceClick.dName == "Computer")
                 {
                     showStoryWindow("התחלתם לתכנן את המסלול לנתניה באתר עם מפות");
                 }
-                else if (RoomCamera.deviceClicked == "TV")
+                else if (DeviceClick.dName == "TV")
                 {
                     showStoryWindow("סבבה, זה לא שיש לכם דברים יותר חשובים לעשות...");
                 }
@@ -123,15 +131,15 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 11:
-                if (RoomCamera.deviceClicked == "Phone")
+                if (DeviceClick.dName == "Phone")
                 {
                     showStoryWindow("אבל רגע, איך בעצם הטלפון יודע איפה השליח נמצא על המפה?");
                 }
-                else if (RoomCamera.deviceClicked == "Computer")
+                else if (DeviceClick.dName == "Computer")
                 {
                     showStoryWindow("אבל רגע, איך בעצם צילמו את המפה הזאת?");
                 }
-                else if (RoomCamera.deviceClicked == "TV")
+                else if (DeviceClick.dName == "TV")
                 {
                     showStoryWindow("אבל רגע, איך בעצם הטלוויזיה יודעת מה לשדר לנו?");
                 }
@@ -158,7 +166,8 @@ public class CanvasManager : MonoBehaviour
                 break;
 
             case 15:
-                Globals.LevelStats1 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                //Globals.LevelStats1 += " זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                Globals.totalGameTime += totalTime;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
 

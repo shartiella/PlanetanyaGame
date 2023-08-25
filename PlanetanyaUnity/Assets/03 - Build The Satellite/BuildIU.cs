@@ -31,6 +31,12 @@ public class BuildIU : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        counter = 0;
+        numberOfObjectConnections = 0;
+        numberOfCorrectObjectsConnected = 0;
+        numberOfWrongObjectsConnected = 0;
+        overallNumberOfCorrectParts = 0;
+
         //InstructionTXT = InstructionWindow.GetComponentInChildren<TextMeshProUGUI>();
         ////InstructionBTN= InstructionWindow.GetComponentInChildren<GameObject>();
         //StoryTXT = StoryWindow.GetComponentInChildren<TextMeshProUGUI>();
@@ -115,8 +121,10 @@ public class BuildIU : MonoBehaviour
             case 10:
                 //יהיה עוד משהו לפני זה?
                 Fader.SetActive(true);
-                Globals.LevelStats3 += " מספר חיבורים כולל: " + Globals.Reverse(BodyTrigger.connectedPartCounter.ToString()); //כמה פעמים חוברו חלקים עד שהצליחו
-                Globals.LevelStats3 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                //Globals.LevelStats3 += " מספר חיבורים כולל: " + Globals.Reverse(BodyTrigger.connectedPartCounter.ToString()); //כמה פעמים חוברו חלקים עד שהצליחו
+                //Globals.LevelStats3 += "\n זמן כולל: " + Globals.Reverse(Mathf.RoundToInt(totalTime).ToString()) + " שניות";
+                Globals.totalGameTime += totalTime;
+                Globals.connectionNum = BodyTrigger.connectedPartCounter;
                 counter = 11;
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;

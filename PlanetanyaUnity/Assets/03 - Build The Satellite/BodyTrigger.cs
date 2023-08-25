@@ -16,7 +16,7 @@ public class BodyTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        connectedPartCounter = 0;
     }
 
     // Update is called once per frame
@@ -38,8 +38,6 @@ public class BodyTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        connectedPartCounter++;
-
         identifyPart(other.gameObject.name);
         //showInfo(currentPart.Description);
         currentPart.isConnected = true;

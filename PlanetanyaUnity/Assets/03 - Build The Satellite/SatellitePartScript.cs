@@ -19,6 +19,11 @@ public class SatellitePartScript : MonoBehaviour
     float distance_to_screen;
     [SerializeField] private float zAtDesk = 0;
 
+    private void Start()
+    {
+        zAtDesk = 0;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -142,7 +147,7 @@ public class SatellitePartScript : MonoBehaviour
             if (thisSatPart.isConnected) //אם משחררים אותו בפנים
             {
                 //Debug.Log("I'm In");
-
+                BodyTrigger.connectedPartCounter++;
                 if (BuildIU.counter == 3)
                 {
                     BuildIU.counter = 4;
@@ -152,7 +157,7 @@ public class SatellitePartScript : MonoBehaviour
                     BuildIU.counter = 6;
                 }
 
-                Debug.Log("released inside");
+                //Debug.Log("released inside");
                 transform.position = new Vector3(transform.position.x, 0.5f, zAtDesk);
                 GetComponent<Rigidbody>().useGravity= true;
 
@@ -188,7 +193,7 @@ public class SatellitePartScript : MonoBehaviour
 
                 }
                 //Debug.Log("I'm out");
-                Debug.Log("released outside");
+                //Debug.Log("released outside");
                 transform.position = initialobjectPosition;
                 //GetComponent<Rigidbody>().velocity = Vector3.zero;
                 //GetComponent<Rigidbody>().useGravity = true;

@@ -22,11 +22,11 @@ public class EndStats : MonoBehaviour
     {
         groupname.text = Globals.GroupName; //שם הקבוצה
         SatName.text = "סוג לוויין: " + Globals.ChosenSatellite.Kind;
-        LevelStats1.text= Globals.LevelStats1;
-        LevelStats2.text= Globals.LevelStats2;
-        LevelStats3.text= Globals.LevelStats3;
-        LevelStats4.text= Globals.LevelStats4;
-        LevelStats5.text= Globals.LevelStats5;
-        LevelStats6.text= Globals.LevelStats6;
+        //LevelStats1.text= Globals.LevelStats1;
+        //LevelStats2.text= Globals.LevelStats2;
+        //LevelStats3.text= Globals.LevelStats3;
+        //LevelStats4.text= Globals.LevelStats4;
+        //LevelStats5.text= Globals.LevelStats5;
+        //LevelStats6.text= Globals.LevelStats6;
     }
 }

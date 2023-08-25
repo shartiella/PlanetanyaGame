@@ -64,15 +64,30 @@ public class CameraRotate : MonoBehaviour
                 {
                     transform.position = TargetForCam.position; //new Vector3();
 
-                    cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x);
-                    cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World);
-
+                    if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
+                    {
+                        cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.y, Space.World);
+                        cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.x); //ימינה שמאלה
+                    }
+                    else
+                    {
+                        cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x); //מעלה מטה
+                        cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World); //ימינה שמאלה
+                    }
                     cam.transform.Translate(initialPosition);
                 }
                 else
                 {
-                    cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x);
-                    cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World);
+                    if (Input.deviceOrientation == DeviceOrientation.LandscapeLeft)
+                    {
+                        cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.y, Space.World);
+                        cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.x); //ימינה שמאלה
+                    }
+                    else
+                    {
+                        cam.transform.Rotate(new Vector3(1, 0, 0), -Input.gyro.rotationRate.x); //מעלה מטה
+                        cam.transform.Rotate(new Vector3(0, 1, 0), -Input.gyro.rotationRate.y, Space.World); //ימינה שמאלה
+                    }
                 }
             }
         }
